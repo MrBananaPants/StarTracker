@@ -34,6 +34,7 @@ class MyAppState extends State<MyApp> {
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          elevation: 4,
           leading: Icon(Icons.menu),
           backgroundColor: Color(0xFF6200EE),
           title: Text("StarTracker"),
