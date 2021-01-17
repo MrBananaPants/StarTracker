@@ -9,4 +9,5 @@ You can control following things:
 
 # Notice
 
-This is my first app I've ever programmed.
+The app is still under development and not complete.
+It's also my first app I've ever programmed so it's far from perfect.
