@@ -26,10 +26,16 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: Color(0xFF6200EE),
+            ),
+      ),
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 98, 0, 238),
+          leading: Icon(Icons.menu),
+          backgroundColor: Color(0xFF6200EE),
           title: Text("StarTracker"),
         ),
         body: Column(
@@ -37,11 +43,14 @@ class MyAppState extends State<MyApp> {
           children: [
             Card(
               color: Colors.white,
+              elevation: 2.5,
               clipBehavior: Clip.antiAlias,
               child: Column(
                 children: [
                   ListTile(
-                    title: Text('Status'),
+                    title: Text(
+                      'Status',
+                    ),
                   ),
                   // Padding(
                   //   padding: const EdgeInsets.all(16.0),
@@ -62,6 +71,78 @@ class MyAppState extends State<MyApp> {
                           //Perform some action
                         },
                         child: const Text('UIT'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              color: Colors.white,
+              elevation: 2.5,
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      'Snelheid',
+                    ),
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(16.0),
+                  // ),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.start,
+                    children: [
+                      FlatButton(
+                        textColor: const Color(0xFF6200EE),
+                        onPressed: () {
+                          //Perform some action
+                        },
+                        child: const Text('TRAAG'),
+                      ),
+                      FlatButton(
+                        textColor: const Color(0xFF6200EE),
+                        onPressed: () {
+                          //Perform some action
+                        },
+                        child: const Text('SNEL'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              color: Colors.white,
+              elevation: 2.5,
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      'Richting',
+                    ),
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(16.0),
+                  // ),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.start,
+                    children: [
+                      FlatButton(
+                        textColor: const Color(0xFF6200EE),
+                        onPressed: () {
+                          //Perform some action
+                        },
+                        child: const Text('OMHOOG'),
+                      ),
+                      FlatButton(
+                        textColor: const Color(0xFF6200EE),
+                        onPressed: () {
+                          //Perform some action
+                        },
+                        child: const Text('OMLAAG'),
                       ),
                     ],
                   ),
