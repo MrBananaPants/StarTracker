@@ -14,13 +14,13 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+  var buttonIndex = 0;
 
   void answerQuestion() {
     setState(() {
-      questionIndex++;
+      buttonIndex++;
     });
-    print(questionIndex);
+    print(buttonIndex);
   }
 
   @override
