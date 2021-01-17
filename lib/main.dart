@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   var buttonIndex = 0;
 
-  void answerQuestion() {
+  void buttonPressed() {
     setState(() {
       buttonIndex++;
     });
@@ -29,20 +29,46 @@ class MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("StarTracker"),
         ),
-        body: Column(children: [
-          RaisedButton(
-            child: Text("Aan"),
-            onPressed: answerQuestion,
-          ),
-          RaisedButton(
-            child: Text("Traag"),
-            onPressed: answerQuestion,
-          ),
-          RaisedButton(
-            child: Text("Omhoog"),
-            onPressed: answerQuestion,
-          ),
-        ]),
+        body: Column(
+          children: [
+            Row(
+              children: [
+                RaisedButton(
+                  child: Text('Aan'),
+                  onPressed: buttonPressed,
+                ),
+                RaisedButton(
+                  child: Text('Uit'),
+                  onPressed: buttonPressed,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                RaisedButton(
+                  child: Text('Traag'),
+                  onPressed: buttonPressed,
+                ),
+                RaisedButton(
+                  child: Text('Snel'),
+                  onPressed: buttonPressed,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                RaisedButton(
+                  child: Text('Omhoog'),
+                  onPressed: buttonPressed,
+                ),
+                RaisedButton(
+                  child: Text('Omlaag'),
+                  onPressed: buttonPressed,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
