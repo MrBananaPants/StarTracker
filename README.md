@@ -10,7 +10,7 @@ You can control following things:
 # Notice
 
 - The app is still under development and not complete.
-- The current language is Dutch but it will be translated to English in the future once it's done.
+- The current language is Dutch.
 - It's also my first app I've ever programmed so it's far from perfect.
 
 # Bugs / problems
