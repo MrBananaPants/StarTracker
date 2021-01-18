@@ -13,7 +13,7 @@ You can control following things:
 - The current language is Dutch but it will be translated to English in the future once it's done.
 - It's also my first app I've ever programmed so it's far from perfect.
 
-# Notice
+# Bugs / problems
 
 What needs to be added / fixed:
 
