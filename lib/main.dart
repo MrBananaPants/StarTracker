@@ -39,6 +39,7 @@ class MyAppState extends State<MyApp> {
             ),
       ),
       home: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 4,
@@ -163,18 +164,21 @@ class MyAppState extends State<MyApp> {
                 ],
               ),
             ),
-            Container(
-              child: FloatingActionButton.extended(
-                //alignment: MainAxisAlignment.end,
-                backgroundColor: Color(0xFF6200EE),
-                foregroundColor: Colors.white,
-                onPressed: () {
-                  //Respond to button press
-                },
-                icon: Icon(Icons.add),
-                label: Text('RESET'),
-              ),
-            ),
+            // Container(
+            //   height: double.infinity,
+            //   child: Align(
+            //     child: FloatingActionButton.extended(
+            //       //alignment: MainAxisAlignment.end,
+            //       backgroundColor: Color(0xFF6200EE),
+            //       foregroundColor: Colors.white,
+            //       onPressed: () {
+            //         //Respond to button press
+            //       },
+            //       // icon: Icon(Icons.add),
+            //       label: Text('RESET'),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
