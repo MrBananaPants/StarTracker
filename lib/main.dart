@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:http/http.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,16 +13,39 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var buttonIndex = 0;
+// class MyAppState extends State<MyApp> {
+//   var questionIndex = 0;
 
+//   void answerQuestion() {
+//     setState(() {
+//       questionIndex++;
+//     });
+//     print(questionIndex);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var questions = [
+//       "What's your favorite color?",
+//       "What's your favorite animal?"
+//     ];
+
+class MyAppState extends State<MyApp> {
   void buttonPressed() {
-    setState(() {
-      buttonIndex++;
-    });
-    print(buttonIndex);
+    String url = requestURL[requestURLIndex];
+    get(url);
+    print(requestURL);
   }
 
+  var requestURLIndex = 0;
+  var requestURL = [
+    'http://192.168.4.1/StarTrackerMainAan',
+    'http://192.168.4.1/StarTrackerMainUit',
+    'http://192.168.4.1/SpeedTraag',
+    'http://192.168.4.1/SpeedSnel',
+    'http://192.168.4.1/RichtingOmhoog',
+    'http://192.168.4.1/RichtingOmlaag',
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,7 +68,7 @@ class MyAppState extends State<MyApp> {
           children: [
             Card(
               color: Colors.white,
-              elevation: 2.5,
+              elevation: 3,
               clipBehavior: Clip.antiAlias,
               child: Column(
                 children: [
@@ -62,14 +86,16 @@ class MyAppState extends State<MyApp> {
                       FlatButton(
                         textColor: const Color(0xFF6200EE),
                         onPressed: () {
-                          //Perform some action
+                          requestURLIndex = 0;
+                          buttonPressed();
                         },
                         child: const Text('AAN'),
                       ),
                       FlatButton(
                         textColor: const Color(0xFF6200EE),
                         onPressed: () {
-                          //Perform some action
+                          requestURLIndex = 1;
+                          buttonPressed();
                         },
                         child: const Text('UIT'),
                       ),
@@ -80,7 +106,7 @@ class MyAppState extends State<MyApp> {
             ),
             Card(
               color: Colors.white,
-              elevation: 2.5,
+              elevation: 3,
               clipBehavior: Clip.antiAlias,
               child: Column(
                 children: [
@@ -98,14 +124,16 @@ class MyAppState extends State<MyApp> {
                       FlatButton(
                         textColor: const Color(0xFF6200EE),
                         onPressed: () {
-                          //Perform some action
+                          requestURLIndex = 2;
+                          buttonPressed();
                         },
                         child: const Text('TRAAG'),
                       ),
                       FlatButton(
                         textColor: const Color(0xFF6200EE),
                         onPressed: () {
-                          //Perform some action
+                          requestURLIndex = 3;
+                          buttonPressed();
                         },
                         child: const Text('SNEL'),
                       ),
@@ -116,7 +144,7 @@ class MyAppState extends State<MyApp> {
             ),
             Card(
               color: Colors.white,
-              elevation: 2.5,
+              elevation: 3,
               clipBehavior: Clip.antiAlias,
               child: Column(
                 children: [
@@ -134,20 +162,34 @@ class MyAppState extends State<MyApp> {
                       FlatButton(
                         textColor: const Color(0xFF6200EE),
                         onPressed: () {
-                          //Perform some action
+                          requestURLIndex = 4;
+                          buttonPressed();
                         },
                         child: const Text('OMHOOG'),
                       ),
                       FlatButton(
                         textColor: const Color(0xFF6200EE),
                         onPressed: () {
-                          //Perform some action
+                          requestURLIndex = 5;
+                          buttonPressed();
                         },
                         child: const Text('OMLAAG'),
                       ),
                     ],
                   ),
                 ],
+              ),
+            ),
+            Container(
+              child: FloatingActionButton.extended(
+                //alignment: MainAxisAlignment.end,
+                backgroundColor: Color(0xFF6200EE),
+                foregroundColor: Colors.white,
+                onPressed: () {
+                  //Respond to button press
+                },
+                icon: Icon(Icons.add),
+                label: Text('RESET'),
               ),
             ),
           ],
