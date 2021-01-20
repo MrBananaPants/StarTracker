@@ -19,3 +19,7 @@ What needs to be added / fixed:
 
 - The FAB needs to be replaced to the bottom right.
 - The buttons need to visually show the user what mode is currently selected.
+- Timer should be added to show the user how long the Star Tracker has been running for.
+- App icons need to be made.
+- APK needs to be signed.
+
