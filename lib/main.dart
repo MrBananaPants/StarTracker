@@ -31,155 +31,217 @@ class MyAppState extends State<MyApp> {
   ];
   @override
   Widget build(BuildContext context) {
+    final buttonGotPressed = false;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: Color(0xFF6200EE),
-            ),
+       //Make primary color that can be reused.
       ),
       home: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Color(0xFF6200EE),
+          label: Text("Reset"),
+          icon: Icon(Icons.refresh),
+        ),
         backgroundColor: Colors.white,
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Text('Drawer Header'),
+                decoration: BoxDecoration(
+                  color: Color(0xFF6200EE),
+                ),
+              ),
+              ListTile(
+                title: Text('Item 1'),
+                onTap: () {
+                  //Nothing yet...
+                },
+              ),
+              ListTile(
+                title: Text('Item 2'),
+                onTap: () {
+                  //Nothing yet...
+                },
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           elevation: 4,
-          leading: Icon(Icons.menu),
           backgroundColor: Color(0xFF6200EE),
           title: Text("StarTracker"),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Card(
-              color: Colors.white,
-              elevation: 3,
-              clipBehavior: Clip.antiAlias,
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text(
-                      'Status',
-                    ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(16.0),
-                  // ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.start,
+        body: Container(
+          margin: EdgeInsets.only(left: 13, right:13, top: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                elevation: 4,
+                clipBehavior: Clip.antiAlias,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
                     children: [
-                      FlatButton(
-                        textColor: const Color(0xFF6200EE),
-                        onPressed: () {
-                          requestURLIndex = 0;
-                          buttonPressed();
-                        },
-                        child: const Text('AAN'),
+                      ListTile(
+                        title: Text(
+                          'Status',
+                        ),
                       ),
-                      FlatButton(
-                        textColor: const Color(0xFF6200EE),
-                        onPressed: () {
-                          requestURLIndex = 1;
-                          buttonPressed();
-                        },
-                        child: const Text('UIT'),
+                      ButtonBar(
+                        buttonHeight: 40,
+                        buttonMinWidth: 150,
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF6200EE),
+                            onPressed: () {
+                              requestURLIndex = 0;
+                              buttonPressed();
+                            },
+                            child: Text('AAN'),
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF6200EE),
+                            onPressed: () {
+                              requestURLIndex = 1;
+                              buttonPressed();
+                            },
+                            child: Text('UIT'),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
-            Card(
-              color: Colors.white,
-              elevation: 3,
-              clipBehavior: Clip.antiAlias,
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text(
-                      'Snelheid',
-                    ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(16.0),
-                  // ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.start,
+              SizedBox(height: 15,),
+              Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                elevation: 4,
+                clipBehavior: Clip.antiAlias,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
                     children: [
-                      FlatButton(
-                        textColor: const Color(0xFF6200EE),
-                        onPressed: () {
-                          requestURLIndex = 2;
-                          buttonPressed();
-                        },
-                        child: const Text('TRAAG'),
+                      ListTile(
+                        title: Text(
+                          'Snelheid',
+                        ),
                       ),
-                      FlatButton(
-                        textColor: const Color(0xFF6200EE),
-                        onPressed: () {
-                          requestURLIndex = 3;
-                          buttonPressed();
-                        },
-                        child: const Text('SNEL'),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(16.0),
+                      // ),
+                      ButtonBar(
+                        buttonHeight: 40,
+                        buttonMinWidth: 150,
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF6200EE),
+                            onPressed: () {
+                              requestURLIndex = 2;
+                              buttonPressed();
+                            },
+                            child: const Text('TRAAG'),
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF6200EE),
+                            onPressed: () {
+                              requestURLIndex = 3;
+                              buttonPressed();
+                            },
+                            child: const Text('SNEL'),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
-            Card(
-              color: Colors.white,
-              elevation: 3,
-              clipBehavior: Clip.antiAlias,
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text(
-                      'Richting',
-                    ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(16.0),
-                  // ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.start,
+              SizedBox(height: 15,),
+              Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                elevation: 4,
+                clipBehavior: Clip.antiAlias,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
                     children: [
-                      FlatButton(
-                        textColor: const Color(0xFF6200EE),
-                        onPressed: () {
-                          requestURLIndex = 4;
-                          buttonPressed();
-                        },
-                        child: const Text('OMHOOG'),
+                      ListTile(
+                        title: Text(
+                          'Richting',
+                        ),
                       ),
-                      FlatButton(
-                        textColor: const Color(0xFF6200EE),
-                        onPressed: () {
-                          requestURLIndex = 5;
-                          buttonPressed();
-                        },
-                        child: const Text('OMLAAG'),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(16.0),
+                      // ),
+                      ButtonBar(
+                        buttonHeight: 40,
+                        buttonMinWidth: 150,
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF6200EE),
+                            onPressed: () {
+                              requestURLIndex = 4;
+                              buttonPressed();
+                            },
+                            child: const Text('OMHOOG'),
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF6200EE),
+                            onPressed: () {
+                              requestURLIndex = 5;
+                              buttonPressed();
+                            },
+                            child: const Text('OMLAAG'),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
-            // Container(
-            //   height: double.infinity,
-            //   child: Align(
-            //     child: FloatingActionButton.extended(
-            //       //alignment: MainAxisAlignment.end,
-            //       backgroundColor: Color(0xFF6200EE),
-            //       foregroundColor: Colors.white,
-            //       onPressed: () {
-            //         //Respond to button press
-            //       },
-            //       // icon: Icon(Icons.add),
-            //       label: Text('RESET'),
-            //     ),
-            //   ),
-            // ),
-          ],
+              SizedBox(height: 15,),
+              Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                elevation: 4,
+                clipBehavior: Clip.antiAlias,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: Text(
+                          'Title',
+                        ),
+                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(16.0),
+                      // ),
+                      ButtonBar(
+                        buttonHeight: 40,
+                        buttonMinWidth: 150,
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: []
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
