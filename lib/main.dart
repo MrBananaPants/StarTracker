@@ -35,11 +35,12 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-       //Make primary color that can be reused.
-      ),
+          //Make primary color that can be reused.
+          ),
       home: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Color(0xFF6200EE),
+          //backgroundColor: Color(0xFF6200EE),
+          backgroundColor: Color(0xFF3D5AFE),
           label: Text("Reset"),
           icon: Icon(Icons.refresh),
         ),
@@ -51,7 +52,7 @@ class MyAppState extends State<MyApp> {
               DrawerHeader(
                 child: Text('Drawer Header'),
                 decoration: BoxDecoration(
-                  color: Color(0xFF6200EE),
+                  color: Color(0xFF3D5AFE),
                 ),
               ),
               ListTile(
@@ -71,16 +72,17 @@ class MyAppState extends State<MyApp> {
         ),
         appBar: AppBar(
           elevation: 4,
-          backgroundColor: Color(0xFF6200EE),
+          backgroundColor: Color(0xFF0031CA),
           title: Text("StarTracker"),
         ),
         body: Container(
-          margin: EdgeInsets.only(left: 13, right:13, top: 20),
+          margin: EdgeInsets.only(left: 13, right: 13, top: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
                 elevation: 4,
                 clipBehavior: Clip.antiAlias,
                 child: Container(
@@ -98,8 +100,9 @@ class MyAppState extends State<MyApp> {
                         alignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RaisedButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF6200EE),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF3D5AFE),
                             onPressed: () {
                               requestURLIndex = 0;
                               buttonPressed();
@@ -107,8 +110,9 @@ class MyAppState extends State<MyApp> {
                             child: Text('AAN'),
                           ),
                           RaisedButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF6200EE),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF3D5AFE),
                             onPressed: () {
                               requestURLIndex = 1;
                               buttonPressed();
@@ -121,9 +125,12 @@ class MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
                 elevation: 4,
                 clipBehavior: Clip.antiAlias,
                 child: Container(
@@ -144,8 +151,9 @@ class MyAppState extends State<MyApp> {
                         alignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RaisedButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF6200EE),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF3D5AFE),
                             onPressed: () {
                               requestURLIndex = 2;
                               buttonPressed();
@@ -153,8 +161,9 @@ class MyAppState extends State<MyApp> {
                             child: const Text('TRAAG'),
                           ),
                           RaisedButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF6200EE),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF3D5AFE),
                             onPressed: () {
                               requestURLIndex = 3;
                               buttonPressed();
@@ -167,9 +176,12 @@ class MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
                 elevation: 4,
                 clipBehavior: Clip.antiAlias,
                 child: Container(
@@ -190,8 +202,9 @@ class MyAppState extends State<MyApp> {
                         alignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RaisedButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF6200EE),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF3D5AFE),
                             onPressed: () {
                               requestURLIndex = 4;
                               buttonPressed();
@@ -199,8 +212,9 @@ class MyAppState extends State<MyApp> {
                             child: const Text('OMHOOG'),
                           ),
                           RaisedButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF6200EE),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF3D5AFE),
                             onPressed: () {
                               requestURLIndex = 5;
                               buttonPressed();
@@ -213,9 +227,12 @@ class MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
                 elevation: 4,
                 clipBehavior: Clip.antiAlias,
                 child: Container(
@@ -231,11 +248,10 @@ class MyAppState extends State<MyApp> {
                       //   padding: const EdgeInsets.all(16.0),
                       // ),
                       ButtonBar(
-                        buttonHeight: 40,
-                        buttonMinWidth: 150,
-                        alignment: MainAxisAlignment.spaceBetween,
-                        children: []
-                      ),
+                          buttonHeight: 40,
+                          buttonMinWidth: 150,
+                          alignment: MainAxisAlignment.spaceBetween,
+                          children: []),
                     ],
                   ),
                 ),
