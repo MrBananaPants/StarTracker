@@ -31,7 +31,7 @@ class MyAppState extends State<MyApp> {
   ];
   @override
   Widget build(BuildContext context) {
-    final buttonGotPressed = false;
+    // final buttonGotPressed = false;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -43,6 +43,7 @@ class MyAppState extends State<MyApp> {
           backgroundColor: Color(0xFF3D5AFE),
           label: Text("Reset"),
           icon: Icon(Icons.refresh),
+          onPressed: () {},
         ),
         backgroundColor: Colors.white,
         drawer: Drawer(
