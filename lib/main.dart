@@ -57,13 +57,13 @@ class MyAppState extends State<MyApp> {
                 ),
               ),
               ListTile(
-                title: Text('Item 1'),
+                title: Text('Home'),
                 onTap: () {
                   //Nothing yet...
                 },
               ),
               ListTile(
-                title: Text('Item 2'),
+                title: Text('About'),
                 onTap: () {
                   //Nothing yet...
                 },
