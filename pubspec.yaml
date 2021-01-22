@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  condition: ^0.0.8
   flutter:
     sdk: flutter
 
