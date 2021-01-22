@@ -318,7 +318,9 @@ class MyAppState extends State<MyApp> {
                                               BorderRadius.circular(5)),
                                       color: Color(0xFF3D5AFE),
                                       onPressed: () {
-                                        changeStateToFalse();
+                                        setState(() {
+                                          changeStateToFalse();
+                                        });
                                       },
                                       child: const Text('On'),
                                     ),
