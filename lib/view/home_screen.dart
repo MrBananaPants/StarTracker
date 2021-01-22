@@ -154,6 +154,8 @@ class home_screenState extends State<home_screen> {
                                             buttonPressed();
                                             setState(() {
                                               connection = false;
+                                              speed_fast = false;
+                                              direction_up = false;
                                             });
                                           },
                                           child: Text('OFF'),
