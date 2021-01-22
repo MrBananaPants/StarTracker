@@ -251,67 +251,63 @@ class MyAppState extends State<MyApp> {
                           Text("Simulate State : "),
                           Switch(
                               value: buttonGotPressed,
-                              onChanged: (bool value_changed){
+                              onChanged: (bool valueChanged) {
                                 setState(() {
-                                  buttonGotPressed = value_changed;
+                                  buttonGotPressed = valueChanged;
                                   print("Button State = $buttonGotPressed");
                                 });
-                              }
-                              )
+                              })
                         ],
                       ),
                       Container(
-                          child:
-                            Conditioned(
-                                cases:
-                                [
-                                  Case(buttonGotPressed == true, builder: () => ButtonBar(
-                                    buttonHeight: 40,
-                                    buttonMinWidth: 150,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      OutlineButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                        onPressed: () {
-                                        },
-                                        child: const Text('On'),
-                                      ),
-                                      RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                        color: Color(0xFF3D5AFE),
-                                        onPressed: () {
-                                        },
-                                        child: const Text('Off'),
-                                      ),
-                                    ],
-                                  )),
-                                  Case(buttonGotPressed == false, builder: () => ButtonBar(
-                                    buttonHeight: 40,
-                                    buttonMinWidth: 150,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                        color: Color(0xFF3D5AFE),
-                                        onPressed: () {
-                                        },
-                                        child: const Text('On'),
-                                      ),
-                                      OutlineButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                        onPressed: () {
-                                        },
-                                        child: const Text('Off'),
-                                      ),
-                                    ],
-                                  )),
-                                ],
-                                defaultBuilder: () =>Text("Null value returned"))
-                          ),
+                          child: Conditioned(cases: [
+                        Case(buttonGotPressed == true,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth: 150,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      onPressed: () {},
+                                      child: const Text('On'),
+                                    ),
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      color: Color(0xFF3D5AFE),
+                                      onPressed: () {},
+                                      child: const Text('Off'),
+                                    ),
+                                  ],
+                                )),
+                        Case(buttonGotPressed == false,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth: 150,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      color: Color(0xFF3D5AFE),
+                                      onPressed: () {},
+                                      child: const Text('On'),
+                                    ),
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      onPressed: () {},
+                                      child: const Text('Off'),
+                                    ),
+                                  ],
+                                )),
+                      ], defaultBuilder: () => Text("Null value returned"))),
                     ],
                   ),
                 ),
