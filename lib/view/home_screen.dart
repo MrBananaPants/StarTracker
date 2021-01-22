@@ -12,11 +12,13 @@ class home_screen extends StatefulWidget {
 }
 
 class home_screenState extends State<home_screen> {
+  @override void initState() {
+    remove_Navigation_color();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.transparent
-    ));
     return Stack(
       children: [
         SizedBox(
@@ -27,286 +29,471 @@ class home_screenState extends State<home_screen> {
             fit: BoxFit.cover,
           ),
         ),
-        Scaffold(
-          floatingActionButton: FloatingActionButton.extended(
-            backgroundColor: Color(0xFF3D5AFE),
-            label: Text("Reset"),
-            icon: Icon(Icons.refresh),
-            onPressed: () {},
-          ),
-          backgroundColor: Colors.transparent,
-          drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                DrawerHeader(
-                  child: Text('Drawer Header'),
-                  decoration: BoxDecoration(
-                    color: Color(0xFF3D5AFE),
-                  ),
-                ),
-                ListTile(
-                  title: Text('Home'),
-                  onTap: () {
-                    //Nothing yet...
-                  },
-                ),
-                ListTile(
-                  title: Text('About'),
-                  onTap: () {
-                    //Nothing yet...
-                  },
-                ),
-              ],
+        Container(
+          padding: EdgeInsets.only(top: 20, bottom: 30),
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            floatingActionButton: FloatingActionButton.extended(
+              backgroundColor: Color(0xFF3D5AFE),
+              label: Text("Reset"),
+              icon: Icon(Icons.refresh),
+              onPressed: () {},
             ),
-          ),
-          appBar: AppBar(
-            elevation: 4,
-            centerTitle: true,
             backgroundColor: Colors.transparent,
-            title: Text("StarTracker", style: TextStyle(fontFamily: "Equinox", fontWeight: FontWeight.bold),),
-            toolbarHeight: 70,
-          ),
-          body: Container(
-            margin: EdgeInsets.only(left: 13, right: 13, top: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  elevation: 4,
-                  clipBehavior: Clip.antiAlias,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text(
-                            'Status',
+            drawer: Container(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              child: Drawer(
+                elevation: 100,
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: <Widget>[
+                    DrawerHeader(
+                      child: Text('Drawer Header'),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF3D5AFE),
+                      ),
+                    ),
+                    ListTile(
+                      title: Text('Home'),
+                      onTap: () {
+                        //Nothing yet...
+                      },
+                    ),
+                    ListTile(
+                      title: Text('About'),
+                      onTap: () {
+                        //Nothing yet...
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            appBar: AppBar(
+              elevation: 4,
+              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              title: Text("StarTracker", style: TextStyle(fontFamily: "Equinox", fontWeight: FontWeight.bold, letterSpacing: 1.6, fontSize: 23),),
+              toolbarHeight: 70,
+            ),
+            body: Container(
+              margin: EdgeInsets.only(left: 13, right: 13, top: 20),
+              child: ListView(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Card(
+                    color: Colors.grey.withOpacity(0.3),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    clipBehavior: Clip.antiAlias,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Status',
+                              style: TextStyle(
+                                  fontFamily: "Equinox",
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 20,
+                                  color: Colors.orangeAccent,
+                                letterSpacing: 1
+                              ),
+                            ),
                           ),
-                        ),
-                        ButtonBar(
-                          buttonHeight: 40,
-                          buttonMinWidth: 150,
-                          alignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              color: Color(0xFF3D5AFE),
-                              onPressed: () {
-                                requestURLIndex = 0;
-                                buttonPressed();
-                              },
-                              child: Text('AAN'),
-                            ),
-                            RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              color: Color(0xFF3D5AFE),
-                              onPressed: () {
-                                requestURLIndex = 1;
-                                buttonPressed();
-                              },
-                              child: Text('UIT'),
-                            ),
-                          ],
-                        ),
-                      ],
+                          SizedBox(height: 30,),
+                          Row(
+                            children: [
+                              Text("Conntection : ", style: TextStyle(fontFamily: "Equinox", color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 2),),
+                              Container(
+                                  child:
+                                  Conditioned(
+                                      cases:
+                                      [
+                                        Case(connection == true, builder: () => Text("Established", style: TextStyle(fontFamily: "Equinox", color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 2))),
+                                        Case(connection == false, builder: () => Text("Lost Connection", style: TextStyle(fontFamily: "Equinox", color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 2))),
+                                      ],
+                                      defaultBuilder: () =>Text("Unknow State", style: TextStyle(fontFamily: "Equinox", color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 2)))
+                              ),
+
+                            ],
+                          ),
+                          SizedBox(height: 30,),
+                          Container(
+                              child:
+                              Conditioned(
+                                  cases:
+                                  [
+                                    Case(connection == true, builder: () => ButtonBar(
+                                      buttonPadding: EdgeInsets.all(0),
+                                      buttonHeight: 40,
+                                      buttonMinWidth: 150,
+                                      alignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15),
+                                              side: BorderSide(color: Colors.orangeAccent)
+                                          ),
+                                          textColor: Colors.orangeAccent,
+                                          color: Colors.transparent,
+                                          onPressed: () {
+                                            requestURLIndex = 1;
+                                            buttonPressed();
+                                          },
+                                          child: Text('ON'),
+                                        ),
+                                        RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                          color: Colors.orange,
+                                          onPressed: () {
+                                            requestURLIndex = 0;
+                                            buttonPressed();
+                                            setState(() {
+                                              connection = false;
+                                            });
+                                          },
+                                          child: Text('OFF'),
+                                        ),
+                                      ],
+                                    ),),
+                                    Case(connection == false, builder: () => ButtonBar(
+                                      buttonPadding: EdgeInsets.all(0),
+                                      buttonHeight: 40,
+                                      buttonMinWidth: 150,
+                                      alignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                          color: Colors.orange,
+                                          onPressed: () {
+                                            requestURLIndex = 0;
+                                            buttonPressed();
+                                            setState(() {
+                                              connection = true;
+                                            });
+                                          },
+                                          child: Text('ON'),
+                                        ),
+                                        FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15),
+                                              side: BorderSide(color: Colors.orangeAccent)
+                                          ),
+                                          textColor: Colors.orangeAccent,
+                                          color: Colors.transparent,
+                                          onPressed: () {
+                                            requestURLIndex = 1;
+                                            buttonPressed();
+                                          },
+                                          child: Text('OFF'),
+                                        ),
+                                      ],
+                                    ),),
+                                  ],
+                                  defaultBuilder: () =>Text("Unknow State", style: TextStyle(fontFamily: "Equinox", color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 2)))
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  elevation: 4,
-                  clipBehavior: Clip.antiAlias,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text(
-                            'Snelheid',
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Card(
+                    color: Colors.grey.withOpacity(0.3),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    clipBehavior: Clip.antiAlias,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Speed',
+                              style: TextStyle(
+                                  letterSpacing: 1,
+                                  fontFamily: "Equinox",
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 20,
+                                  color: Colors.orangeAccent
+                              ),
+                            ),
                           ),
-                        ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(16.0),
-                        // ),
-                        ButtonBar(
-                          buttonHeight: 40,
-                          buttonMinWidth: 150,
-                          alignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              color: Color(0xFF3D5AFE),
-                              onPressed: () {
-                                requestURLIndex = 2;
-                                buttonPressed();
-                              },
-                              child: const Text('TRAAG'),
-                            ),
-                            RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              color: Color(0xFF3D5AFE),
-                              onPressed: () {
-                                requestURLIndex = 3;
-                                buttonPressed();
-                              },
-                              child: const Text('SNEL'),
-                            ),
-                          ],
-                        ),
-                      ],
+                          SizedBox(height: 30,),
+                          Container(
+                              child:
+                              Conditioned(
+                                  cases:
+                                  [
+                                    Case(speed_fast == true, builder: () => ButtonBar(
+                                      buttonPadding: EdgeInsets.all(0),
+                                      buttonHeight: 40,
+                                      buttonMinWidth: 150,
+                                      alignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15),
+                                              side: BorderSide(color: Colors.orangeAccent)
+                                          ),
+                                          textColor: Colors.orangeAccent,
+                                          color: Colors.transparent,
+                                          onPressed: () {
+                                            requestURLIndex = 1;
+                                            buttonPressed();
+                                          },
+                                          child: Text('Fast'),
+                                        ),
+                                        RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                          color: Colors.orange,
+                                          onPressed: () {
+                                            requestURLIndex = 0;
+                                            buttonPressed();
+                                            setState(() {
+                                              speed_fast = false;
+                                            });
+                                          },
+                                          child: Text('Slow'),
+                                        ),
+                                      ],
+                                    ),),
+                                    Case(speed_fast == false, builder: () => ButtonBar(
+                                      buttonPadding: EdgeInsets.all(0),
+                                      buttonHeight: 40,
+                                      buttonMinWidth: 150,
+                                      alignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                          color: Colors.orange,
+                                          onPressed: () {
+                                            if(connection == true)
+                                              {
+                                                requestURLIndex = 0;
+                                                buttonPressed();
+                                                setState(() {
+                                                  speed_fast = true;
+                                                });
+                                              }
+                                          },
+                                          child: Text('Fast'),
+                                        ),
+                                        FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15),
+                                              side: BorderSide(color: Colors.orangeAccent)
+                                          ),
+                                          textColor: Colors.orangeAccent,
+                                          color: Colors.transparent,
+                                          onPressed: () {
+                                            requestURLIndex = 1;
+                                            buttonPressed();
+                                          },
+                                          child: Text('Slow'),
+                                        ),
+                                      ],
+                                    ),),
+                                  ],
+                                  defaultBuilder: () =>Text("Unknow State", style: TextStyle(fontFamily: "Equinox", color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 2)))
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  elevation: 4,
-                  clipBehavior: Clip.antiAlias,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text(
-                            'Richting',
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Card(
+                    color: Colors.grey.withOpacity(0.3),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    clipBehavior: Clip.antiAlias,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Direction',
+                              style: TextStyle(
+                                  letterSpacing: 1,
+                                  fontFamily: "Equinox",
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 20,
+                                  color: Colors.orangeAccent
+                              ),
+                            ),
                           ),
-                        ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(16.0),
-                        // ),
-                        ButtonBar(
-                          buttonHeight: 40,
-                          buttonMinWidth: 150,
-                          alignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              color: Color(0xFF3D5AFE),
-                              onPressed: () {
-                                requestURLIndex = 4;
-                                buttonPressed();
-                              },
-                              child: const Text('OMHOOG'),
-                            ),
-                            RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              color: Color(0xFF3D5AFE),
-                              onPressed: () {
-                                requestURLIndex = 5;
-                                buttonPressed();
-                              },
-                              child: const Text('OMLAAG'),
-                            ),
-                          ],
-                        ),
-                      ],
+                          SizedBox(height: 30,),
+                          Container(
+                              child:
+                              Conditioned(
+                                  cases:
+                                  [
+                                    Case(direction_up == true, builder: () => ButtonBar(
+                                      buttonPadding: EdgeInsets.all(0),
+                                      buttonHeight: 40,
+                                      buttonMinWidth: 150,
+                                      alignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15),
+                                              side: BorderSide(color: Colors.orangeAccent)
+                                          ),
+                                          textColor: Colors.orangeAccent,
+                                          color: Colors.transparent,
+                                          onPressed: () {
+                                            requestURLIndex = 1;
+                                            buttonPressed();
+                                          },
+                                          child: Text('Up'),
+                                        ),
+                                        RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                          color: Colors.orange,
+                                          onPressed: () {
+                                            requestURLIndex = 0;
+                                            buttonPressed();
+                                            setState(() {
+                                              direction_up = false;
+                                            });
+                                          },
+                                          child: Text('Down'),
+                                        ),
+                                      ],
+                                    ),),
+                                    Case(direction_up == false, builder: () => ButtonBar(
+                                      buttonPadding: EdgeInsets.all(0),
+                                      buttonHeight: 40,
+                                      buttonMinWidth: 150,
+                                      alignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                          color: Colors.orange,
+                                          onPressed: () {
+                                            if(connection == true)
+                                              {
+                                                requestURLIndex = 0;
+                                                buttonPressed();
+                                                setState(() {
+                                                  direction_up = true;
+                                                });
+                                              }
+                                          },
+                                          child: Text('Up'),
+                                        ),
+                                        FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15),
+                                              side: BorderSide(color: Colors.orangeAccent)
+                                          ),
+                                          textColor: Colors.orangeAccent,
+                                          color: Colors.transparent,
+                                          onPressed: () {
+                                            requestURLIndex = 1;
+                                            buttonPressed();
+                                          },
+                                          child: Text('Down'),
+                                        ),
+                                      ],
+                                    ),),
+                                  ],
+                                  defaultBuilder: () =>Text("Unknow State", style: TextStyle(fontFamily: "Equinox", color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 2)))
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  elevation: 4,
-                  clipBehavior: Clip.antiAlias,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text(
-                            'Title',
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Card(
+                    color: Colors.grey.withOpacity(0.3),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    clipBehavior: Clip.antiAlias,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Testing Area',
+                              style: TextStyle(
+                                  fontFamily: "Equinox",
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 20,
+                                  color: Colors.orangeAccent
+                              ),
+                            ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Text("Simulate State : "),
-                            Switch(
-                                value: buttonGotPressed,
-                                onChanged: (bool value_changed){
-                                  setState(() {
-                                    buttonGotPressed = value_changed;
-                                    print("Button State = $buttonGotPressed");
-                                  });
-                                }
-                            )
-                          ],
-                        ),
-                        Container(
-                            child:
-                            Conditioned(
-                                cases:
-                                [
-                                  Case(buttonGotPressed == true, builder: () => ButtonBar(
-                                    buttonHeight: 40,
-                                    buttonMinWidth: 150,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      OutlineButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                        onPressed: () {
-                                        },
-                                        child: const Text('On'),
-                                      ),
-                                      RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                        color: Color(0xFF3D5AFE),
-                                        onPressed: () {
-                                        },
-                                        child: const Text('Off'),
-                                      ),
-                                    ],
-                                  )),
-                                  Case(buttonGotPressed == false, builder: () => ButtonBar(
-                                    buttonHeight: 40,
-                                    buttonMinWidth: 150,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                        color: Color(0xFF3D5AFE),
-                                        onPressed: () {
-                                        },
-                                        child: const Text('On'),
-                                      ),
-                                      OutlineButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                        onPressed: () {
-                                        },
-                                        child: const Text('Off'),
-                                      ),
-                                    ],
-                                  )),
-                                ],
-                                defaultBuilder: () =>Text("Null value returned"))
-                        ),
-                      ],
+                          Row(
+                            children: [
+                              Text("Simulate Connection : ", style: TextStyle(color: Colors.white),),
+                              Switch(
+                                  value: connection,
+                                  onChanged: (bool value_changed){
+                                    setState(() {
+                                      connection = value_changed;
+                                      if(connection == false)
+                                        {
+                                          speed_fast = false;
+                                          direction_up = false;
+                                        }
+                                    });
+                                  }
+                              ),
+                              Text("$connection", style: TextStyle(color: Colors.white),)
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text("Simulate Speed : ", style: TextStyle(color: Colors.white),),
+                              Switch(
+                                  value: speed_fast,
+                                  onChanged: (bool value_changed){
+                                    setState(() {
+                                      speed_fast = value_changed;
+                                    });
+                                  }
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text("Simulate Direction : ", style: TextStyle(color: Colors.white),),
+                              Switch(
+                                  value: direction_up,
+                                  onChanged: (bool value_changed){
+                                    setState(() {
+                                      direction_up = value_changed;
+                                    });
+                                  }
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
