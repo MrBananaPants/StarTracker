@@ -21,6 +21,23 @@ class MyAppState extends State<MyApp> {
     print(requestURL);
   }
 
+  void changeStateToTrue() {
+    buttonGotPressed = true;
+    testTextIndex = 0;
+    print(buttonGotPressed);
+  }
+
+  void changeStateToFalse() {
+    buttonGotPressed = false;
+    testTextIndex = 1;
+    print(buttonGotPressed);
+  }
+
+  var testTextIndex = 0;
+  var testText = [
+    'true',
+    'false',
+  ];
   var requestURLIndex = 0;
   var requestURL = [
     'http://192.168.4.1/StarTrackerMainAan',
@@ -31,6 +48,7 @@ class MyAppState extends State<MyApp> {
     'http://192.168.4.1/RichtingOmlaag',
   ];
   bool buttonGotPressed = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -243,22 +261,22 @@ class MyAppState extends State<MyApp> {
                     children: [
                       ListTile(
                         title: Text(
-                          'Title',
+                          testText[testTextIndex],
                         ),
                       ),
-                      Row(
-                        children: [
-                          Text("Simulate State : "),
-                          Switch(
-                              value: buttonGotPressed,
-                              onChanged: (bool valueChanged) {
-                                setState(() {
-                                  buttonGotPressed = valueChanged;
-                                  print("Button State = $buttonGotPressed");
-                                });
-                              })
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Text("Simulate State : "),
+                      //     Switch(
+                      //         value: buttonGotPressed,
+                      //         onChanged: (bool valueChanged) {
+                      //           setState(() {
+                      //             buttonGotPressed = valueChanged;
+                      //             print("Button State = $buttonGotPressed");
+                      //           });
+                      //         })
+                      //   ],
+                      // ),
                       Container(
                           child: Conditioned(cases: [
                         Case(buttonGotPressed == true,
@@ -271,7 +289,9 @@ class MyAppState extends State<MyApp> {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5)),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        changeStateToFalse();
+                                      },
                                       child: const Text('On'),
                                     ),
                                     RaisedButton(
@@ -279,7 +299,9 @@ class MyAppState extends State<MyApp> {
                                           borderRadius:
                                               BorderRadius.circular(5)),
                                       color: Color(0xFF3D5AFE),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        changeStateToTrue();
+                                      },
                                       child: const Text('Off'),
                                     ),
                                   ],
@@ -295,14 +317,18 @@ class MyAppState extends State<MyApp> {
                                           borderRadius:
                                               BorderRadius.circular(5)),
                                       color: Color(0xFF3D5AFE),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        changeStateToFalse();
+                                      },
                                       child: const Text('On'),
                                     ),
                                     OutlineButton(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5)),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        changeStateToTrue();
+                                      },
                                       child: const Text('Off'),
                                     ),
                                   ],
