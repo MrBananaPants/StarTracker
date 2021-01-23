@@ -21,23 +21,25 @@ class MyAppState extends State<MyApp> {
     print(requestURL);
   }
 
-  void changeStateToTrue() {
-    buttonGotPressed = true;
-    testTextIndex = 0;
-    print(buttonGotPressed);
+  void changeStateToAAN() => buttonStatus = true;
+  void changeStateToUIT() => buttonStatus = false;
+
+  void changeStateToTRAAG() => buttonSnelheid = true;
+  void changeStateToSNEL() => buttonSnelheid = false;
+
+  void changeStateToOMHOOG() => buttonRichting = true;
+  void changeStateToOMLAAG() => buttonRichting = false;
+
+  void resetPressed() {
+    get(requestURL[0]);
+    get(requestURL[3]);
+    get(requestURL[5]);
+
+    buttonStatus = false;
+    buttonSnelheid = true;
+    buttonRichting = true;
   }
 
-  void changeStateToFalse() {
-    buttonGotPressed = false;
-    testTextIndex = 1;
-    print(buttonGotPressed);
-  }
-
-  var testTextIndex = 0;
-  var testText = [
-    'true',
-    'false',
-  ];
   var requestURLIndex = 0;
   var requestURL = [
     'http://192.168.4.1/StarTrackerMainAan',
@@ -47,7 +49,10 @@ class MyAppState extends State<MyApp> {
     'http://192.168.4.1/RichtingOmhoog',
     'http://192.168.4.1/RichtingOmlaag',
   ];
-  bool buttonGotPressed = false;
+
+  bool buttonStatus = true;
+  bool buttonSnelheid = false;
+  bool buttonRichting = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +67,15 @@ class MyAppState extends State<MyApp> {
           backgroundColor: Color(0xFF3D5AFE),
           label: Text("Reset"),
           icon: Icon(Icons.refresh),
-          onPressed: () {},
+          onPressed: () {
+            resetPressed();
+
+            setState(() {
+              changeStateToUIT();
+              changeStateToTRAAG();
+              changeStateToOMHOOG();
+            });
+          },
         ),
         backgroundColor: Colors.white,
         drawer: Drawer(
@@ -114,33 +127,79 @@ class MyAppState extends State<MyApp> {
                           'Status',
                         ),
                       ),
-                      ButtonBar(
-                        buttonHeight: 40,
-                        buttonMinWidth: 150,
-                        alignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF3D5AFE),
-                            onPressed: () {
-                              requestURLIndex = 0;
-                              buttonPressed();
-                            },
-                            child: Text('AAN'),
-                          ),
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF3D5AFE),
-                            onPressed: () {
-                              requestURLIndex = 1;
-                              buttonPressed();
-                            },
-                            child: Text('UIT'),
-                          ),
-                        ],
-                      ),
+                      Container(
+                          child: Conditioned(cases: [
+                        Case(buttonStatus == true,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth: 150,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: const Text('AAN'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToUIT();
+                                          requestURLIndex = 0;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('UIT'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToAAN();
+                                          requestURLIndex = 1;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )),
+                        Case(buttonStatus == false,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth: 150,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('AAN'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToUIT();
+                                          requestURLIndex = 0;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: const Text('UIT'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToAAN();
+                                          requestURLIndex = 1;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )),
+                      ], defaultBuilder: () => Text("Null value returned"))),
                     ],
                   ),
                 ),
@@ -162,36 +221,79 @@ class MyAppState extends State<MyApp> {
                           'Snelheid',
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(16.0),
-                      // ),
-                      ButtonBar(
-                        buttonHeight: 40,
-                        buttonMinWidth: 150,
-                        alignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF3D5AFE),
-                            onPressed: () {
-                              requestURLIndex = 2;
-                              buttonPressed();
-                            },
-                            child: const Text('TRAAG'),
-                          ),
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF3D5AFE),
-                            onPressed: () {
-                              requestURLIndex = 3;
-                              buttonPressed();
-                            },
-                            child: const Text('SNEL'),
-                          ),
-                        ],
-                      ),
+                      Container(
+                          child: Conditioned(cases: [
+                        Case(buttonSnelheid == true,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth: 150,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: const Text('TRAAG'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToSNEL();
+                                          requestURLIndex = 2;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('SNEL'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToTRAAG();
+                                          requestURLIndex = 3;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )),
+                        Case(buttonSnelheid == false,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth: 150,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('TRAAG'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToSNEL();
+                                          requestURLIndex = 2;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: const Text('SNEL'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToTRAAG();
+                                          requestURLIndex = 3;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )),
+                      ], defaultBuilder: () => Text("Null value returned"))),
                     ],
                   ),
                 ),
@@ -213,36 +315,79 @@ class MyAppState extends State<MyApp> {
                           'Richting',
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(16.0),
-                      // ),
-                      ButtonBar(
-                        buttonHeight: 40,
-                        buttonMinWidth: 150,
-                        alignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF3D5AFE),
-                            onPressed: () {
-                              requestURLIndex = 4;
-                              buttonPressed();
-                            },
-                            child: const Text('OMHOOG'),
-                          ),
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF3D5AFE),
-                            onPressed: () {
-                              requestURLIndex = 5;
-                              buttonPressed();
-                            },
-                            child: const Text('OMLAAG'),
-                          ),
-                        ],
-                      ),
+                      Container(
+                          child: Conditioned(cases: [
+                        Case(buttonRichting == true,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth: 150,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: const Text('OMHOOG'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToOMLAAG();
+                                          requestURLIndex = 4;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('OMLAAG'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToOMHOOG();
+                                          requestURLIndex = 5;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )),
+                        Case(buttonRichting == false,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth: 150,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('OMHOOG'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToOMLAAG();
+                                          requestURLIndex = 4;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: const Text('OMLAAG'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToOMHOOG();
+                                          requestURLIndex = 5;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )),
+                      ], defaultBuilder: () => Text("Null value returned"))),
                     ],
                   ),
                 ),
@@ -257,87 +402,40 @@ class MyAppState extends State<MyApp> {
                 clipBehavior: Clip.antiAlias,
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(
-                          testText[testTextIndex],
-                        ),
+                  child: Column(children: [
+                    ListTile(
+                      title: Text(
+                        'Weer & Timer',
                       ),
-                      // Row(
-                      //   children: [
-                      //     Text("Simulate State : "),
-                      //     Switch(
-                      //         value: buttonGotPressed,
-                      //         onChanged: (bool valueChanged) {
-                      //           setState(() {
-                      //             buttonGotPressed = valueChanged;
-                      //             print("Button State = $buttonGotPressed");
-                      //           });
-                      //         })
-                      //   ],
-                      // ),
-                      Container(
-                          child: Conditioned(cases: [
-                        Case(buttonGotPressed == true,
-                            builder: () => ButtonBar(
-                                  buttonHeight: 40,
-                                  buttonMinWidth: 150,
-                                  alignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      onPressed: () {
-                                        changeStateToFalse();
-                                      },
-                                      child: const Text('On'),
-                                    ),
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      color: Color(0xFF3D5AFE),
-                                      onPressed: () {
-                                        changeStateToTrue();
-                                      },
-                                      child: const Text('Off'),
-                                    ),
-                                  ],
-                                )),
-                        Case(buttonGotPressed == false,
-                            builder: () => ButtonBar(
-                                  buttonHeight: 40,
-                                  buttonMinWidth: 150,
-                                  alignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      color: Color(0xFF3D5AFE),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToFalse();
-                                        });
-                                      },
-                                      child: const Text('On'),
-                                    ),
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      onPressed: () {
-                                        changeStateToTrue();
-                                      },
-                                      child: const Text('Off'),
-                                    ),
-                                  ],
-                                )),
-                      ], defaultBuilder: () => Text("Null value returned"))),
-                    ],
-                  ),
+                    ),
+                    ButtonBar(
+                      buttonHeight: 40,
+                      buttonMinWidth: 150,
+                      alignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          color: Color(0xFF3D5AFE),
+                          onPressed: () {
+                            requestURLIndex = 4;
+                            buttonPressed();
+                          },
+                          child: const Text('TEST1'),
+                        ),
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          color: Color(0xFF3D5AFE),
+                          onPressed: () {
+                            requestURLIndex = 5;
+                            buttonPressed();
+                          },
+                          child: const Text('TEST2'),
+                        ),
+                      ],
+                    ),
+                  ]),
                 ),
               ),
             ],
