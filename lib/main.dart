@@ -61,6 +61,7 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(
           //Make primary color that can be reused.
           ),
+      darkTheme: ThemeData.dark(),
       home: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
           //backgroundColor: Color(0xFF6200EE),
@@ -77,7 +78,7 @@ class MyAppState extends State<MyApp> {
             });
           },
         ),
-        backgroundColor: Colors.white,
+        //  backgroundColor: Colors.white,
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
