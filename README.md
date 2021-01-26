@@ -13,11 +13,17 @@ You can control following things:
 - The current language is Dutch.
 - It's also my first app I've ever programmed so it's far from perfect.
 
+
+# Features that need to be added
+
+- App icon
+- Timer
+- Weather data
+- About screen / FAQ
+
+
 # Bugs / problems
 
-What needs to be added / fixed:
-
-- Timer should be added to show the user how long the Star Tracker has been running for.
-- App icons need to be made.
+- Text in reset FAB doesn't stay white when enabling dark mode
 - APK needs to be signed.
 
