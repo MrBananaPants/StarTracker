@@ -59,15 +59,20 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          //Make primary color that can be reused.
           ),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
-          //backgroundColor: Color(0xFF6200EE),
           backgroundColor: Color(0xFF3D5AFE),
-          label: Text("Reset"),
-          icon: Icon(Icons.refresh),
+          label: Text(
+            'Reset',
+            style: TextStyle(color: Colors.white),
+          ),
+
+          icon: Icon(
+            Icons.refresh,
+            color: Colors.white,
+          ),
           onPressed: () {
             resetPressed();
 
