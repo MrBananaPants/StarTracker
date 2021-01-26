@@ -449,10 +449,12 @@ class MyAppState extends State<MyApp> {
             children: [
               IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
               Spacer(),
-             // IconButton(icon: Icon(Icons.search), onPressed: () {}),
-              IconButton(icon: Icon(Icons.settings), onPressed: () {
-                //Go to settings page
-              }),
+              // IconButton(icon: Icon(Icons.search), onPressed: () {}),
+              IconButton(
+                  icon: Icon(Icons.settings),
+                  onPressed: () {
+                    //Go to settings page
+                  }),
             ],
           ),
         ),
