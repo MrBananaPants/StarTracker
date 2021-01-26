@@ -18,7 +18,7 @@ class MyAppState extends State<MyApp> {
   void buttonPressed() {
     String url = requestURL[requestURLIndex];
     get(url);
-    print(requestURL);
+    //  print(requestURL);
   }
 
   void changeStateToAAN() => buttonStatus = true;
