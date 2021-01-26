@@ -2,19 +2,23 @@ import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
+import 'SettingsPage.dart';
 
 void main() {
-  runApp(HomeScreen());
+  runApp(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: body_of_app(),
+      ));
 }
 
-class HomeScreen extends StatefulWidget {
+class body_of_app extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return MyAppState();
-  }
+  _body_of_appState createState() => _body_of_appState();
 }
 
-class MyAppState extends State<HomeScreen> {
+class _body_of_appState extends State<body_of_app> {
+
   void buttonPressed() {
     String url = requestURL[requestURLIndex];
     get(url);
@@ -55,430 +59,425 @@ class MyAppState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      darkTheme: ThemeData.dark(),
-      home: Scaffold(
-        // floatingActionButton: FloatingActionButton.extended(
-        //   backgroundColor: Color(0xFF3D5AFE),
-        //   label: Text(
-        //     'Reset',
-        //     style: TextStyle(color: Colors.white),
-        //   ),
-        //   icon: Icon(
-        //     Icons.refresh,
-        //     color: Colors.white,
-        //   ),
-        //   onPressed: () {
-        //     resetPressed();
-        //     setState(() {
-        //       changeStateToUIT();
-        //       changeStateToTRAAG();
-        //       changeStateToOMHOOG();
-        //     });
-        //   },
-        // ),
-        //  backgroundColor: Colors.white,
-        // drawer: Drawer(
-        //   child: ListView(
-        //     padding: EdgeInsets.zero,
-        //     children: <Widget>[
-        //       DrawerHeader(
-        //         child: Text('Menu'),
-        //         decoration: BoxDecoration(
-        //           color: Color(0xFF3D5AFE),
-        //         ),
-        //       ),
-        //       ListTile(
-        //         title: Text('Home'),
-        //         onTap: () {
-        //           //Go to Home
-        //         },
-        //       ),
-        //       ListTile(
-        //         title: Text('Over'),
-        //         onTap: () {
-        //           //Go to About
-        //         },
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        appBar: AppBar(
-          elevation: 4,
-          backgroundColor: Color(0xFF0031CA),
-          title: Text("StarTracker"),
-        ),
-        body: Container(
-          margin: EdgeInsets.only(left: 13, right: 13, top: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                elevation: 4,
-                clipBehavior: Clip.antiAlias,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(
-                          'Status',
-                        ),
-                      ),
-                      Container(
-                          child: Conditioned(cases: [
-                        Case(buttonStatus == true,
-                            builder: () => ButtonBar(
-                                  buttonHeight: 40,
-                                  buttonMinWidth: 150,
-                                  alignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: const Text('AAN'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToUIT();
-                                          requestURLIndex = 0;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      color: Color(0xFF3D5AFE),
-                                      child: const Text('UIT'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToAAN();
-                                          requestURLIndex = 1;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                )),
-                        Case(buttonStatus == false,
-                            builder: () => ButtonBar(
-                                  buttonHeight: 40,
-                                  buttonMinWidth: 150,
-                                  alignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      color: Color(0xFF3D5AFE),
-                                      child: const Text('AAN'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToUIT();
-                                          requestURLIndex = 0;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: const Text('UIT'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToAAN();
-                                          requestURLIndex = 1;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                )),
-                      ], defaultBuilder: () => Text("Null value returned"))),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                elevation: 4,
-                clipBehavior: Clip.antiAlias,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(
-                          'Snelheid',
-                        ),
-                      ),
-                      Container(
-                          child: Conditioned(cases: [
-                        Case(buttonSnelheid == true,
-                            builder: () => ButtonBar(
-                                  buttonHeight: 40,
-                                  buttonMinWidth: 150,
-                                  alignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: const Text('TRAAG'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToSNEL();
-                                          requestURLIndex = 2;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      color: Color(0xFF3D5AFE),
-                                      child: const Text('SNEL'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToTRAAG();
-                                          requestURLIndex = 3;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                )),
-                        Case(buttonSnelheid == false,
-                            builder: () => ButtonBar(
-                                  buttonHeight: 40,
-                                  buttonMinWidth: 150,
-                                  alignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      color: Color(0xFF3D5AFE),
-                                      child: const Text('TRAAG'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToSNEL();
-                                          requestURLIndex = 2;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: const Text('SNEL'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToTRAAG();
-                                          requestURLIndex = 3;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                )),
-                      ], defaultBuilder: () => Text("Null value returned"))),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                elevation: 4,
-                clipBehavior: Clip.antiAlias,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(
-                          'Richting',
-                        ),
-                      ),
-                      Container(
-                          child: Conditioned(cases: [
-                        Case(buttonRichting == true,
-                            builder: () => ButtonBar(
-                                  buttonHeight: 40,
-                                  buttonMinWidth: 150,
-                                  alignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: const Text('OMHOOG'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToOMLAAG();
-                                          requestURLIndex = 4;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      color: Color(0xFF3D5AFE),
-                                      child: const Text('OMLAAG'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToOMHOOG();
-                                          requestURLIndex = 5;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                )),
-                        Case(buttonRichting == false,
-                            builder: () => ButtonBar(
-                                  buttonHeight: 40,
-                                  buttonMinWidth: 150,
-                                  alignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      color: Color(0xFF3D5AFE),
-                                      child: const Text('OMHOOG'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToOMLAAG();
-                                          requestURLIndex = 4;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: const Text('OMLAAG'),
-                                      onPressed: () {
-                                        setState(() {
-                                          changeStateToOMHOOG();
-                                          requestURLIndex = 5;
-                                          buttonPressed();
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                )),
-                      ], defaultBuilder: () => Text("Null value returned"))),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              // Card(
-              //   shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(5)),
-              //   elevation: 4,
-              //   clipBehavior: Clip.antiAlias,
-              //   child: Container(
-              //     padding: EdgeInsets.symmetric(horizontal: 10),
-              //     child: Column(children: [
-              //       ListTile(
-              //         title: Text(
-              //           'Weer & Timer',
-              //         ),
-              //       ),
-              //       ButtonBar(
-              //         buttonHeight: 40,
-              //         buttonMinWidth: 150,
-              //         alignment: MainAxisAlignment.spaceBetween,
-              //         children: [
-              //           RaisedButton(
-              //             shape: RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(5)),
-              //             color: Color(0xFF3D5AFE),
-              //             onPressed: () {
-              //               requestURLIndex = 4;
-              //               buttonPressed();
-              //             },
-              //             child: const Text('TEST1'),
-              //           ),
-              //           RaisedButton(
-              //             shape: RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(5)),
-              //             color: Color(0xFF3D5AFE),
-              //             onPressed: () {
-              //               requestURLIndex = 5;
-              //               buttonPressed();
-              //             },
-              //             child: const Text('TEST2'),
-              //           ),
-              //         ],
-              //       ),
-              //     ]),
-              //   ),
-              // ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          child: Row(
-            children: [
-              IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
-              Spacer(),
-              // IconButton(icon: Icon(Icons.search), onPressed: () {}),
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsPage()));
-                },
-              )
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Color(0xFF3D5AFE),
-          label: Text(
-            'Reset',
-            style: TextStyle(color: Colors.white),
-          ),
-          icon: Icon(
-            Icons.refresh,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            resetPressed();
-            setState(() {
-              changeStateToUIT();
-              changeStateToTRAAG();
-              changeStateToOMHOOG();
-            });
-          },
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    return Scaffold(
+      // floatingActionButton: FloatingActionButton.extended(
+      //   backgroundColor: Color(0xFF3D5AFE),
+      //   label: Text(
+      //     'Reset',
+      //     style: TextStyle(color: Colors.white),
+      //   ),
+      //   icon: Icon(
+      //     Icons.refresh,
+      //     color: Colors.white,
+      //   ),
+      //   onPressed: () {
+      //     resetPressed();
+      //     setState(() {
+      //       changeStateToUIT();
+      //       changeStateToTRAAG();
+      //       changeStateToOMHOOG();
+      //     });
+      //   },
+      // ),
+      //  backgroundColor: Colors.white,
+      // drawer: Drawer(
+      //   child: ListView(
+      //     padding: EdgeInsets.zero,
+      //     children: <Widget>[
+      //       DrawerHeader(
+      //         child: Text('Menu'),
+      //         decoration: BoxDecoration(
+      //           color: Color(0xFF3D5AFE),
+      //         ),
+      //       ),
+      //       ListTile(
+      //         title: Text('Home'),
+      //         onTap: () {
+      //           //Go to Home
+      //         },
+      //       ),
+      //       ListTile(
+      //         title: Text('Over'),
+      //         onTap: () {
+      //           //Go to About
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      appBar: AppBar(
+        elevation: 4,
+        backgroundColor: Color(0xFF0031CA),
+        title: Text("StarTracker"),
       ),
+      body: Container(
+        margin: EdgeInsets.only(left: 13, right: 13, top: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              elevation: 4,
+              clipBehavior: Clip.antiAlias,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        'Status',
+                      ),
+                    ),
+                    Container(
+                        child: Conditioned(cases: [
+                          Case(buttonStatus == true,
+                              builder: () => ButtonBar(
+                                buttonHeight: 40,
+                                buttonMinWidth: 150,
+                                alignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  OutlineButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    child: const Text('AAN'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToUIT();
+                                        requestURLIndex = 0;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                  RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    color: Color(0xFF3D5AFE),
+                                    child: const Text('UIT'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToAAN();
+                                        requestURLIndex = 1;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              )),
+                          Case(buttonStatus == false,
+                              builder: () => ButtonBar(
+                                buttonHeight: 40,
+                                buttonMinWidth: 150,
+                                alignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    color: Color(0xFF3D5AFE),
+                                    child: const Text('AAN'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToUIT();
+                                        requestURLIndex = 0;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                  OutlineButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    child: const Text('UIT'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToAAN();
+                                        requestURLIndex = 1;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              )),
+                        ], defaultBuilder: () => Text("Null value returned"))),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              elevation: 4,
+              clipBehavior: Clip.antiAlias,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        'Snelheid',
+                      ),
+                    ),
+                    Container(
+                        child: Conditioned(cases: [
+                          Case(buttonSnelheid == true,
+                              builder: () => ButtonBar(
+                                buttonHeight: 40,
+                                buttonMinWidth: 150,
+                                alignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  OutlineButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    child: const Text('TRAAG'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToSNEL();
+                                        requestURLIndex = 2;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                  RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    color: Color(0xFF3D5AFE),
+                                    child: const Text('SNEL'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToTRAAG();
+                                        requestURLIndex = 3;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              )),
+                          Case(buttonSnelheid == false,
+                              builder: () => ButtonBar(
+                                buttonHeight: 40,
+                                buttonMinWidth: 150,
+                                alignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    color: Color(0xFF3D5AFE),
+                                    child: const Text('TRAAG'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToSNEL();
+                                        requestURLIndex = 2;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                  OutlineButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    child: const Text('SNEL'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToTRAAG();
+                                        requestURLIndex = 3;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              )),
+                        ], defaultBuilder: () => Text("Null value returned"))),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              elevation: 4,
+              clipBehavior: Clip.antiAlias,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        'Richting',
+                      ),
+                    ),
+                    Container(
+                        child: Conditioned(cases: [
+                          Case(buttonRichting == true,
+                              builder: () => ButtonBar(
+                                buttonHeight: 40,
+                                buttonMinWidth: 150,
+                                alignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  OutlineButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    child: const Text('OMHOOG'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToOMLAAG();
+                                        requestURLIndex = 4;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                  RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    color: Color(0xFF3D5AFE),
+                                    child: const Text('OMLAAG'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToOMHOOG();
+                                        requestURLIndex = 5;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              )),
+                          Case(buttonRichting == false,
+                              builder: () => ButtonBar(
+                                buttonHeight: 40,
+                                buttonMinWidth: 150,
+                                alignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    color: Color(0xFF3D5AFE),
+                                    child: const Text('OMHOOG'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToOMLAAG();
+                                        requestURLIndex = 4;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                  OutlineButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5)),
+                                    child: const Text('OMLAAG'),
+                                    onPressed: () {
+                                      setState(() {
+                                        changeStateToOMHOOG();
+                                        requestURLIndex = 5;
+                                        buttonPressed();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              )),
+                        ], defaultBuilder: () => Text("Null value returned"))),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            // Card(
+            //   shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(5)),
+            //   elevation: 4,
+            //   clipBehavior: Clip.antiAlias,
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(horizontal: 10),
+            //     child: Column(children: [
+            //       ListTile(
+            //         title: Text(
+            //           'Weer & Timer',
+            //         ),
+            //       ),
+            //       ButtonBar(
+            //         buttonHeight: 40,
+            //         buttonMinWidth: 150,
+            //         alignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           RaisedButton(
+            //             shape: RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.circular(5)),
+            //             color: Color(0xFF3D5AFE),
+            //             onPressed: () {
+            //               requestURLIndex = 4;
+            //               buttonPressed();
+            //             },
+            //             child: const Text('TEST1'),
+            //           ),
+            //           RaisedButton(
+            //             shape: RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.circular(5)),
+            //             color: Color(0xFF3D5AFE),
+            //             onPressed: () {
+            //               requestURLIndex = 5;
+            //               buttonPressed();
+            //             },
+            //             child: const Text('TEST2'),
+            //           ),
+            //         ],
+            //       ),
+            //     ]),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          children: [
+            IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+            Spacer(),
+            // IconButton(icon: Icon(Icons.search), onPressed: () {}),
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => SettingsPage()));
+              },
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Color(0xFF3D5AFE),
+        label: Text(
+          'Reset',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: Icon(
+          Icons.refresh,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          resetPressed();
+          setState(() {
+            changeStateToUIT();
+            changeStateToTRAAG();
+            changeStateToOMHOOG();
+          });
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
