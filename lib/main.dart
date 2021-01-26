@@ -447,10 +447,12 @@ class MyAppState extends State<MyApp> {
         bottomNavigationBar: BottomAppBar(
           child: Row(
             children: [
-              IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-              Spacer(),
-              IconButton(icon: Icon(Icons.search), onPressed: () {}),
               IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+              Spacer(),
+             // IconButton(icon: Icon(Icons.search), onPressed: () {}),
+              IconButton(icon: Icon(Icons.settings), onPressed: () {
+                //Go to settings page
+              }),
             ],
           ),
         ),
