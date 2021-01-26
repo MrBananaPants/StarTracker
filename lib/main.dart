@@ -58,57 +58,54 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          ),
+      theme: ThemeData(),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Color(0xFF3D5AFE),
-          label: Text(
-            'Reset',
-            style: TextStyle(color: Colors.white),
-          ),
-
-          icon: Icon(
-            Icons.refresh,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            resetPressed();
-
-            setState(() {
-              changeStateToUIT();
-              changeStateToTRAAG();
-              changeStateToOMHOOG();
-            });
-          },
-        ),
+        // floatingActionButton: FloatingActionButton.extended(
+        //   backgroundColor: Color(0xFF3D5AFE),
+        //   label: Text(
+        //     'Reset',
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        //   icon: Icon(
+        //     Icons.refresh,
+        //     color: Colors.white,
+        //   ),
+        //   onPressed: () {
+        //     resetPressed();
+        //     setState(() {
+        //       changeStateToUIT();
+        //       changeStateToTRAAG();
+        //       changeStateToOMHOOG();
+        //     });
+        //   },
+        // ),
         //  backgroundColor: Colors.white,
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Text('Drawer Header'),
-                decoration: BoxDecoration(
-                  color: Color(0xFF3D5AFE),
-                ),
-              ),
-              ListTile(
-                title: Text('Home'),
-                onTap: () {
-                  //Nothing yet...
-                },
-              ),
-              ListTile(
-                title: Text('About'),
-                onTap: () {
-                  //Nothing yet...
-                },
-              ),
-            ],
-          ),
-        ),
+        // drawer: Drawer(
+        //   child: ListView(
+        //     padding: EdgeInsets.zero,
+        //     children: <Widget>[
+        //       DrawerHeader(
+        //         child: Text('Menu'),
+        //         decoration: BoxDecoration(
+        //           color: Color(0xFF3D5AFE),
+        //         ),
+        //       ),
+        //       ListTile(
+        //         title: Text('Home'),
+        //         onTap: () {
+        //           //Go to Home
+        //         },
+        //       ),
+        //       ListTile(
+        //         title: Text('Over'),
+        //         onTap: () {
+        //           //Go to About
+        //         },
+        //       ),
+        //     ],
+        //   ),
+        // ),
         appBar: AppBar(
           elevation: 4,
           backgroundColor: Color(0xFF0031CA),
@@ -401,52 +398,82 @@ class MyAppState extends State<MyApp> {
               SizedBox(
                 height: 15,
               ),
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                elevation: 4,
-                clipBehavior: Clip.antiAlias,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(children: [
-                    ListTile(
-                      title: Text(
-                        'Weer & Timer',
-                      ),
-                    ),
-                    ButtonBar(
-                      buttonHeight: 40,
-                      buttonMinWidth: 150,
-                      alignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          color: Color(0xFF3D5AFE),
-                          onPressed: () {
-                            requestURLIndex = 4;
-                            buttonPressed();
-                          },
-                          child: const Text('TEST1'),
-                        ),
-                        RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          color: Color(0xFF3D5AFE),
-                          onPressed: () {
-                            requestURLIndex = 5;
-                            buttonPressed();
-                          },
-                          child: const Text('TEST2'),
-                        ),
-                      ],
-                    ),
-                  ]),
-                ),
-              ),
+              // Card(
+              //   shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(5)),
+              //   elevation: 4,
+              //   clipBehavior: Clip.antiAlias,
+              //   child: Container(
+              //     padding: EdgeInsets.symmetric(horizontal: 10),
+              //     child: Column(children: [
+              //       ListTile(
+              //         title: Text(
+              //           'Weer & Timer',
+              //         ),
+              //       ),
+              //       ButtonBar(
+              //         buttonHeight: 40,
+              //         buttonMinWidth: 150,
+              //         alignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           RaisedButton(
+              //             shape: RoundedRectangleBorder(
+              //                 borderRadius: BorderRadius.circular(5)),
+              //             color: Color(0xFF3D5AFE),
+              //             onPressed: () {
+              //               requestURLIndex = 4;
+              //               buttonPressed();
+              //             },
+              //             child: const Text('TEST1'),
+              //           ),
+              //           RaisedButton(
+              //             shape: RoundedRectangleBorder(
+              //                 borderRadius: BorderRadius.circular(5)),
+              //             color: Color(0xFF3D5AFE),
+              //             onPressed: () {
+              //               requestURLIndex = 5;
+              //               buttonPressed();
+              //             },
+              //             child: const Text('TEST2'),
+              //           ),
+              //         ],
+              //       ),
+              //     ]),
+              //   ),
+              // ),
             ],
           ),
         ),
+        bottomNavigationBar: BottomAppBar(
+          child: Row(
+            children: [
+              IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+              Spacer(),
+              IconButton(icon: Icon(Icons.search), onPressed: () {}),
+              IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Color(0xFF3D5AFE),
+          label: Text(
+            'Reset',
+            style: TextStyle(color: Colors.white),
+          ),
+          icon: Icon(
+            Icons.refresh,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            resetPressed();
+            setState(() {
+              changeStateToUIT();
+              changeStateToTRAAG();
+              changeStateToOMHOOG();
+            });
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
   }
