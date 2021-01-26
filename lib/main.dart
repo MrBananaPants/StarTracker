@@ -1,24 +1,23 @@
 import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
 import 'package:http/http.dart';
+import 'SettingsPage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(HomeScreen());
 }
 
-class MyApp extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
+class MyAppState extends State<HomeScreen> {
   void buttonPressed() {
     String url = requestURL[requestURLIndex];
     get(url);
-    //  print(requestURL);
   }
 
   void changeStateToAAN() => buttonStatus = true;
@@ -451,10 +450,11 @@ class MyAppState extends State<MyApp> {
               Spacer(),
               // IconButton(icon: Icon(Icons.search), onPressed: () {}),
               IconButton(
-                  icon: Icon(Icons.settings),
-                  onPressed: () {
-                    //Go to settings page
-                  }),
+                icon: Icon(Icons.settings),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingsPage()));
+                },
+              )
             ],
           ),
         ),
