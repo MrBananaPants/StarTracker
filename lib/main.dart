@@ -2,6 +2,8 @@ import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
+import 'FAQPage.dart';
+import 'AboutPage.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -432,13 +434,33 @@ class BodyOfAppState extends State<BodyOfApp> {
         child: Row(
           children: [
             PopupMenuButton(
+              onSelected: (value) {
+                if (value == 0) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FAQPage(),
+                    ),
+                  );
+                }
+                if (value == 1) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AboutPage(),
+                    ),
+                  );
+                }
+              },
               icon: Icon(Icons.more_vert),
               itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                 PopupMenuItem(
                   child: Text('FAQ'),
+                  value: 0,
                 ),
                 PopupMenuItem(
                   child: Text('Over'),
+                  value: 1,
                 ),
               ],
             ),
