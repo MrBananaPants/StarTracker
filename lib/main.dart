@@ -59,51 +59,6 @@ class BodyOfAppState extends State<BodyOfApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton.extended(
-      //   backgroundColor: Color(0xFF3D5AFE),
-      //   label: Text(
-      //     'Reset',
-      //     style: TextStyle(color: Colors.white),
-      //   ),
-      //   icon: Icon(
-      //     Icons.refresh,
-      //     color: Colors.white,
-      //   ),
-      //   onPressed: () {
-      //     resetPressed();
-      //     setState(() {
-      //       changeStateToUIT();
-      //       changeStateToTRAAG();
-      //       changeStateToOMHOOG();
-      //     });
-      //   },
-      // ),
-      //  backgroundColor: Colors.white,
-      // drawer: Drawer(
-      //   child: ListView(
-      //     padding: EdgeInsets.zero,
-      //     children: <Widget>[
-      //       DrawerHeader(
-      //         child: Text('Menu'),
-      //         decoration: BoxDecoration(
-      //           color: Color(0xFF3D5AFE),
-      //         ),
-      //       ),
-      //       ListTile(
-      //         title: Text('Home'),
-      //         onTap: () {
-      //           //Go to Home
-      //         },
-      //       ),
-      //       ListTile(
-      //         title: Text('Over'),
-      //         onTap: () {
-      //           //Go to About
-      //         },
-      //       ),
-      //     ],
-      //   ),
-      // ),
       appBar: AppBar(
         elevation: 4,
         backgroundColor: Color(0xFF0031CA),
@@ -431,52 +386,56 @@ class BodyOfAppState extends State<BodyOfApp> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: [
-            PopupMenuButton(
-              onSelected: (value) {
-                if (value == 0) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FAQPage(),
-                    ),
-                  );
-                }
-                if (value == 1) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AboutPage(),
-                    ),
-                  );
-                }
-              },
-              icon: Icon(Icons.more_vert),
-              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                PopupMenuItem(
-                  child: Text('FAQ'),
-                  value: 0,
-                ),
-                PopupMenuItem(
-                  child: Text('Over'),
-                  value: 1,
-                ),
-              ],
-            ),
-            Spacer(),
-            IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SettingsPage(),
+        elevation: 8.0,
+        child: SizedBox(
+          height: 55,
+          child: Row(
+            children: [
+              PopupMenuButton(
+                onSelected: (value) {
+                  if (value == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FAQPage(),
+                      ),
+                    );
+                  }
+                  if (value == 1) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AboutPage(),
+                      ),
+                    );
+                  }
+                },
+                icon: Icon(Icons.more_vert),
+                itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                  PopupMenuItem(
+                    child: Text('FAQ'),
+                    value: 0,
                   ),
-                );
-              },
-            )
-          ],
+                  PopupMenuItem(
+                    child: Text('Over'),
+                    value: 1,
+                  ),
+                ],
+              ),
+              Spacer(),
+              IconButton(
+                icon: Icon(Icons.settings),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsPage(),
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
