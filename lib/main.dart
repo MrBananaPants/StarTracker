@@ -2,23 +2,20 @@ import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
-import 'SettingsPage.dart';
 
 void main() {
-  runApp(
-      MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: body_of_app(),
-      ));
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: BodyOfApp(),
+  ));
 }
 
-class body_of_app extends StatefulWidget {
+class BodyOfApp extends StatefulWidget {
   @override
-  _body_of_appState createState() => _body_of_appState();
+  BodyOfAppState createState() => BodyOfAppState();
 }
 
-class _body_of_appState extends State<body_of_app> {
-
+class BodyOfAppState extends State<BodyOfApp> {
   void buttonPressed() {
     String url = requestURL[requestURLIndex];
     get(url);
@@ -131,16 +128,15 @@ class _body_of_appState extends State<body_of_app> {
                     ),
                     Container(
                         child: Conditioned(cases: [
-                          Case(buttonStatus == true,
-                              builder: () => ButtonBar(
+                      Case(buttonStatus == true,
+                          builder: () => ButtonBar(
                                 buttonHeight: 40,
                                 buttonMinWidth: 150,
                                 alignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   OutlineButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     child: const Text('AAN'),
                                     onPressed: () {
                                       setState(() {
@@ -152,8 +148,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                   RaisedButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     color: Color(0xFF3D5AFE),
                                     child: const Text('UIT'),
                                     onPressed: () {
@@ -166,16 +161,15 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                 ],
                               )),
-                          Case(buttonStatus == false,
-                              builder: () => ButtonBar(
+                      Case(buttonStatus == false,
+                          builder: () => ButtonBar(
                                 buttonHeight: 40,
                                 buttonMinWidth: 150,
                                 alignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   RaisedButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     color: Color(0xFF3D5AFE),
                                     child: const Text('AAN'),
                                     onPressed: () {
@@ -188,8 +182,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                   OutlineButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     child: const Text('UIT'),
                                     onPressed: () {
                                       setState(() {
@@ -201,7 +194,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                 ],
                               )),
-                        ], defaultBuilder: () => Text("Null value returned"))),
+                    ], defaultBuilder: () => Text("Null value returned"))),
                   ],
                 ),
               ),
@@ -225,16 +218,15 @@ class _body_of_appState extends State<body_of_app> {
                     ),
                     Container(
                         child: Conditioned(cases: [
-                          Case(buttonSnelheid == true,
-                              builder: () => ButtonBar(
+                      Case(buttonSnelheid == true,
+                          builder: () => ButtonBar(
                                 buttonHeight: 40,
                                 buttonMinWidth: 150,
                                 alignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   OutlineButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     child: const Text('TRAAG'),
                                     onPressed: () {
                                       setState(() {
@@ -246,8 +238,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                   RaisedButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     color: Color(0xFF3D5AFE),
                                     child: const Text('SNEL'),
                                     onPressed: () {
@@ -260,16 +251,15 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                 ],
                               )),
-                          Case(buttonSnelheid == false,
-                              builder: () => ButtonBar(
+                      Case(buttonSnelheid == false,
+                          builder: () => ButtonBar(
                                 buttonHeight: 40,
                                 buttonMinWidth: 150,
                                 alignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   RaisedButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     color: Color(0xFF3D5AFE),
                                     child: const Text('TRAAG'),
                                     onPressed: () {
@@ -282,8 +272,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                   OutlineButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     child: const Text('SNEL'),
                                     onPressed: () {
                                       setState(() {
@@ -295,7 +284,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                 ],
                               )),
-                        ], defaultBuilder: () => Text("Null value returned"))),
+                    ], defaultBuilder: () => Text("Null value returned"))),
                   ],
                 ),
               ),
@@ -319,16 +308,15 @@ class _body_of_appState extends State<body_of_app> {
                     ),
                     Container(
                         child: Conditioned(cases: [
-                          Case(buttonRichting == true,
-                              builder: () => ButtonBar(
+                      Case(buttonRichting == true,
+                          builder: () => ButtonBar(
                                 buttonHeight: 40,
                                 buttonMinWidth: 150,
                                 alignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   OutlineButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     child: const Text('OMHOOG'),
                                     onPressed: () {
                                       setState(() {
@@ -340,8 +328,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                   RaisedButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     color: Color(0xFF3D5AFE),
                                     child: const Text('OMLAAG'),
                                     onPressed: () {
@@ -354,16 +341,15 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                 ],
                               )),
-                          Case(buttonRichting == false,
-                              builder: () => ButtonBar(
+                      Case(buttonRichting == false,
+                          builder: () => ButtonBar(
                                 buttonHeight: 40,
                                 buttonMinWidth: 150,
                                 alignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   RaisedButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     color: Color(0xFF3D5AFE),
                                     child: const Text('OMHOOG'),
                                     onPressed: () {
@@ -376,8 +362,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                   OutlineButton(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     child: const Text('OMLAAG'),
                                     onPressed: () {
                                       setState(() {
@@ -389,7 +374,7 @@ class _body_of_appState extends State<body_of_app> {
                                   ),
                                 ],
                               )),
-                        ], defaultBuilder: () => Text("Null value returned"))),
+                    ], defaultBuilder: () => Text("Null value returned"))),
                   ],
                 ),
               ),
@@ -446,13 +431,27 @@ class _body_of_appState extends State<body_of_app> {
       bottomNavigationBar: BottomAppBar(
         child: Row(
           children: [
-            IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+            PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                PopupMenuItem(
+                  child: Text('FAQ'),
+                ),
+                PopupMenuItem(
+                  child: Text('Over'),
+                ),
+              ],
+            ),
             Spacer(),
-            // IconButton(icon: Icon(Icons.search), onPressed: () {}),
             IconButton(
               icon: Icon(Icons.settings),
               onPressed: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => SettingsPage()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ),
+                );
               },
             )
           ],

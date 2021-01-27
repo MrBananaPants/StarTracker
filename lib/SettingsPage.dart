@@ -16,7 +16,14 @@ class MyAppState extends State<SettingsPage> {
         backgroundColor: Color(0xFF0031CA),
         title: Text("Instellingen"),
       ),
-      body: Container(),
+      body: Container(
+        margin: EdgeInsets.only(left: 13, right: 13, top: 20),
+        child: Column(
+          children: <Widget>[
+           Text("test")
+          ],
+        ),
+      ),
     );
   }
 }
