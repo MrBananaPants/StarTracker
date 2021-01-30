@@ -16,6 +16,10 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          //Make primary color that can be reused.
+          ),
+      darkTheme: ThemeData.dark(),
       home: BodyOfApp(),
     ),
   );
