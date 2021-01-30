@@ -19,7 +19,7 @@ class MyAppState extends State<SettingsPage> {
       body: Container(
         margin: EdgeInsets.only(left: 13, right: 13, top: 20),
         child: Column(
-          children: <Widget>[Text("Harry stinkt")],
+          children: <Widget>[],
         ),
       ),
     );

@@ -2,14 +2,23 @@ import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
+//import 'stopwatch.dart';
 import 'FAQPage.dart';
 import 'AboutPage.dart';
+import 'dart:async';
+//import 'package:weather/weather.dart';
+
+// WeatherFactory wf = new WeatherFactory('40a5994694fe3f819ab0e809530381bc',
+//     language: Language.DUTCH);
+// String cityName = 'Brussel';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: BodyOfApp(),
-  ));
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BodyOfApp(),
+    ),
+  );
 }
 
 class BodyOfApp extends StatefulWidget {
@@ -32,7 +41,7 @@ class BodyOfAppState extends State<BodyOfApp> {
   void changeStateToOMHOOG() => buttonRichting = true;
   void changeStateToOMLAAG() => buttonRichting = false;
 
-  void resetPressed() {
+  Future<void> resetPressed() async {
     get(requestURL[0]);
     get(requestURL[3]);
     get(requestURL[5]);
@@ -40,6 +49,9 @@ class BodyOfAppState extends State<BodyOfApp> {
     buttonStatus = false;
     buttonSnelheid = true;
     buttonRichting = true;
+
+    //  Weather weather = await wf.currentWeatherByCityName(cityName);
+    //  print(weather);
   }
 
   var requestURLIndex = 0;
@@ -55,6 +67,50 @@ class BodyOfAppState extends State<BodyOfApp> {
   bool buttonStatus = true;
   bool buttonSnelheid = false;
   bool buttonRichting = false;
+
+  bool flag = true;
+  Stream<int> timerStream;
+  StreamSubscription<int> timerSubscription;
+  String hoursStr = '00';
+  String minutesStr = '00';
+  String secondsStr = '00';
+
+  Stream<int> stopWatchStream() {
+    StreamController<int> streamController;
+    Timer timer;
+    Duration timerInterval = Duration(seconds: 1);
+    int counter = 0;
+
+    void stopTimer() {
+      if (timer != null) {
+        timer.cancel();
+        timer = null;
+        counter = 0;
+        streamController.close();
+      }
+    }
+
+    void tick(_) {
+      counter++;
+      streamController.add(counter);
+      if (!flag) {
+        stopTimer();
+      }
+    }
+
+    void startTimer() {
+      timer = Timer.periodic(timerInterval, tick);
+    }
+
+    streamController = StreamController<int>(
+      onListen: startTimer,
+      onCancel: stopTimer,
+      onResume: startTimer,
+      onPause: stopTimer,
+    );
+
+    return streamController.stream;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,11 +153,35 @@ class BodyOfAppState extends State<BodyOfApp> {
                                       borderRadius: BorderRadius.circular(5)),
                                   child: const Text('AAN'),
                                   onPressed: () {
-                                    setState(() {
-                                      changeStateToUIT();
-                                      requestURLIndex = 0;
-                                      buttonPressed();
-                                    });
+                                    setState(
+                                      () {
+                                        changeStateToUIT();
+                                        requestURLIndex = 0;
+                                        buttonPressed();
+                                      },
+                                    );
+                                    timerStream = stopWatchStream();
+                                    timerSubscription = timerStream.listen(
+                                      (int newTick) {
+                                        setState(
+                                          () {
+                                            hoursStr =
+                                                ((newTick / (60 * 60)) % 60)
+                                                    .floor()
+                                                    .toString()
+                                                    .padLeft(2, '0');
+                                            minutesStr = ((newTick / 60) % 60)
+                                                .floor()
+                                                .toString()
+                                                .padLeft(2, '0');
+                                            secondsStr = (newTick % 60)
+                                                .floor()
+                                                .toString()
+                                                .padLeft(2, '0');
+                                          },
+                                        );
+                                      },
+                                    );
                                   },
                                 ),
                                 RaisedButton(
@@ -110,11 +190,22 @@ class BodyOfAppState extends State<BodyOfApp> {
                                   color: Color(0xFF3D5AFE),
                                   child: const Text('UIT'),
                                   onPressed: () {
-                                    setState(() {
-                                      changeStateToAAN();
-                                      requestURLIndex = 1;
-                                      buttonPressed();
-                                    });
+                                    setState(
+                                      () {
+                                        changeStateToAAN();
+                                        requestURLIndex = 1;
+                                        buttonPressed();
+                                      },
+                                    );
+                                    timerSubscription.cancel();
+                                    timerStream = null;
+                                    setState(
+                                      () {
+                                        hoursStr = '00';
+                                        minutesStr = '00';
+                                        secondsStr = '00';
+                                      },
+                                    );
                                   },
                                 ),
                               ],
@@ -131,11 +222,35 @@ class BodyOfAppState extends State<BodyOfApp> {
                                   color: Color(0xFF3D5AFE),
                                   child: const Text('AAN'),
                                   onPressed: () {
-                                    setState(() {
-                                      changeStateToUIT();
-                                      requestURLIndex = 0;
-                                      buttonPressed();
-                                    });
+                                    setState(
+                                      () {
+                                        changeStateToUIT();
+                                        requestURLIndex = 0;
+                                        buttonPressed();
+                                      },
+                                    );
+                                    timerStream = stopWatchStream();
+                                    timerSubscription = timerStream.listen(
+                                      (int newTick) {
+                                        setState(
+                                          () {
+                                            hoursStr =
+                                                ((newTick / (60 * 60)) % 60)
+                                                    .floor()
+                                                    .toString()
+                                                    .padLeft(2, '0');
+                                            minutesStr = ((newTick / 60) % 60)
+                                                .floor()
+                                                .toString()
+                                                .padLeft(2, '0');
+                                            secondsStr = (newTick % 60)
+                                                .floor()
+                                                .toString()
+                                                .padLeft(2, '0');
+                                          },
+                                        );
+                                      },
+                                    );
                                   },
                                 ),
                                 OutlineButton(
@@ -143,11 +258,22 @@ class BodyOfAppState extends State<BodyOfApp> {
                                       borderRadius: BorderRadius.circular(5)),
                                   child: const Text('UIT'),
                                   onPressed: () {
-                                    setState(() {
-                                      changeStateToAAN();
-                                      requestURLIndex = 1;
-                                      buttonPressed();
-                                    });
+                                    setState(
+                                      () {
+                                        changeStateToAAN();
+                                        requestURLIndex = 1;
+                                        buttonPressed();
+                                      },
+                                    );
+                                    timerSubscription.cancel();
+                                    timerStream = null;
+                                    setState(
+                                      () {
+                                        hoursStr = '00';
+                                        minutesStr = '00';
+                                        secondsStr = '00';
+                                      },
+                                    );
                                   },
                                 ),
                               ],
@@ -301,91 +427,96 @@ class BodyOfAppState extends State<BodyOfApp> {
                                 ),
                               ],
                             )),
-                    Case(buttonRichting == false,
-                        builder: () => ButtonBar(
-                              buttonHeight: 40,
-                              buttonMinWidth: 150,
-                              alignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  color: Color(0xFF3D5AFE),
-                                  child: const Text('OMHOOG'),
-                                  onPressed: () {
-                                    setState(() {
-                                      changeStateToOMLAAG();
-                                      requestURLIndex = 4;
-                                      buttonPressed();
-                                    });
-                                  },
-                                ),
-                                OutlineButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Text('OMLAAG'),
-                                  onPressed: () {
-                                    setState(() {
-                                      changeStateToOMHOOG();
-                                      requestURLIndex = 5;
-                                      buttonPressed();
-                                    });
-                                  },
-                                ),
-                              ],
-                            )),
+                    Case(
+                      buttonRichting == false,
+                      builder: () => ButtonBar(
+                        buttonHeight: 40,
+                        buttonMinWidth: 150,
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: Color(0xFF3D5AFE),
+                            child: const Text('OMHOOG'),
+                            onPressed: () {
+                              setState(() {
+                                changeStateToOMLAAG();
+                                requestURLIndex = 4;
+                                buttonPressed();
+                              });
+                            },
+                          ),
+                          OutlineButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            child: const Text('OMLAAG'),
+                            onPressed: () {
+                              setState(() {
+                                changeStateToOMHOOG();
+                                requestURLIndex = 5;
+                                buttonPressed();
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                   ], defaultBuilder: () => Text("Null value returned"))),
                 ],
               ),
             ),
           ),
-          // SizedBox(
-          //   height: 15,
-          // ),
-          // Card(
-          //   shape:
-          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          //   elevation: 4,
-          //   clipBehavior: Clip.antiAlias,
-          //   margin: EdgeInsets.only(left: 13, right: 13, top: 3),
-          //   child: Container(
-          //     padding: EdgeInsets.symmetric(horizontal: 10),
-          //     child: Column(children: [
-          //       ListTile(
-          //         title: Text(
-          //           'Weer & Timer',
-          //         ),
-          //       ),
-          //       ButtonBar(
-          //         buttonHeight: 40,
-          //         buttonMinWidth: 150,
-          //         alignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           RaisedButton(
-          //             shape: RoundedRectangleBorder(
-          //                 borderRadius: BorderRadius.circular(5)),
-          //             color: Color(0xFF3D5AFE),
-          //             onPressed: () {
-          //               requestURLIndex = 4;
-          //               buttonPressed();
-          //             },
-          //             child: const Text('TEST1'),
-          //           ),
-          //           RaisedButton(
-          //             shape: RoundedRectangleBorder(
-          //                 borderRadius: BorderRadius.circular(5)),
-          //             color: Color(0xFF3D5AFE),
-          //             onPressed: () {
-          //               requestURLIndex = 5;
-          //               buttonPressed();
-          //             },
-          //             child: const Text('TEST2'),
-          //           ),
-          //         ],
-          //       ),
-          //     ]),
-          //   ),
-          // ),
+          SizedBox(
+            height: 15,
+          ),
+          Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            elevation: 4,
+            clipBehavior: Clip.antiAlias,
+            margin: EdgeInsets.only(left: 13, right: 13, top: 3),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Column(children: [
+                ListTile(
+                  title: Text(
+                    'Timer',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  child: Text(
+                    "$hoursStr:$minutesStr:$secondsStr",
+                    style: TextStyle(
+                      fontSize: 15.0,
+                    ),
+                  ),
+                ),
+                // ButtonBar(
+                //   buttonHeight: 40,
+                //   buttonMinWidth: 150,
+                //   alignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     RaisedButton(
+                //       shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(5)),
+                //       color: Color(0xFF3D5AFE),
+                //       onPressed: () {},
+                //       child: const Text('START'),
+                //     ),
+                //     RaisedButton(
+                //       shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(5)),
+                //       color: Color(0xFF3D5AFE),
+                //       onPressed: () {},
+                //       child: const Text('STOP'),
+                //     ),
+                //   ],
+                // ),
+              ]),
+            ),
+          ),
           SizedBox(
             height: 40,
           ),
@@ -432,6 +563,13 @@ class BodyOfAppState extends State<BodyOfApp> {
               IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {
+                  // SnackBar(
+                  //   behavior: SnackBarBehavior.floating,
+                  //   content: Text('Deze app is nog in ontwikkeling'),
+                  //   action: SnackBarAction(
+                  //     label: 'OK',
+                  //     onPressed: () {},
+                  //   ),
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -456,11 +594,22 @@ class BodyOfAppState extends State<BodyOfApp> {
         ),
         onPressed: () {
           resetPressed();
-          setState(() {
-            changeStateToUIT();
-            changeStateToTRAAG();
-            changeStateToOMHOOG();
-          });
+          setState(
+            () {
+              changeStateToUIT();
+              changeStateToTRAAG();
+              changeStateToOMHOOG();
+            },
+          );
+          timerSubscription.cancel();
+          timerStream = null;
+          setState(
+            () {
+              hoursStr = '00';
+              minutesStr = '00';
+              secondsStr = '00';
+            },
+          );
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
