@@ -24,4 +24,4 @@ You can control following things:
 # Bugs / problems
 
 - APK needs to be signed.
-
+- Text in about / FAQ page becomes unreadable when using dark mode.
