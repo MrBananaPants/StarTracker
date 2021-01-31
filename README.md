@@ -17,13 +17,11 @@ You can control following things:
 # Features that need to be added
 
 - App icon
-- Timer
 - Weather data
 - About screen / FAQ
 
 
 # Bugs / problems
 
-- Text in reset FAB doesn't stay white when enabling dark mode
 - APK needs to be signed.
 
