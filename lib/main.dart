@@ -125,10 +125,10 @@ class BodyOfAppState extends State<BodyOfApp> {
         title: Text("StarTracker"),
       ),
       body: ListView(
-        //  margin: EdgeInsets.only(left: 13, right: 13, top: 20),
-        //  child: Column(
-        //    mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          // LinearProgressIndicator(
+          //   minHeight: 4.0,
+          // ),
           Card(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -493,40 +493,68 @@ class BodyOfAppState extends State<BodyOfApp> {
                   child: Text(
                     "$hoursStr:$minutesStr:$secondsStr",
                     style: TextStyle(
-                      fontSize: 15.0,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
-                // ButtonBar(
-                //   buttonHeight: 40,
-                //   buttonMinWidth: 150,
-                //   alignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     RaisedButton(
-                //       shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(5)),
-                //       color: Color(0xFF3D5AFE),
-                //       onPressed: () {},
-                //       child: const Text('START'),
-                //     ),
-                //     RaisedButton(
-                //       shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(5)),
-                //       color: Color(0xFF3D5AFE),
-                //       onPressed: () {},
-                //       child: const Text('STOP'),
-                //     ),
-                //   ],
-                // ),
               ]),
             ),
           ),
+          SizedBox(
+            height: 15,
+          ),
+          // Card(
+          //   shape:
+          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          //   elevation: 4,
+          //   clipBehavior: Clip.antiAlias,
+          //   margin: EdgeInsets.only(left: 13, right: 13, top: 3),
+          //   child: Container(
+          //     padding: EdgeInsets.symmetric(horizontal: 10),
+          //     child: Column(children: [
+          //       ListTile(
+          //         title: Text(
+          //           'Timer',
+          //         ),
+          //       ),
+          //       ButtonBar(
+          //         buttonHeight: 40,
+          //         buttonMinWidth: 150,
+          //         alignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           RaisedButton(
+          //             shape: RoundedRectangleBorder(
+          //               borderRadius: BorderRadius.circular(5),
+          //             ),
+          //             color: Color(0xFF3D5AFE),
+          //             onPressed: () {},
+          //             child: const Text('START'),
+          //           ),
+          //           RaisedButton(
+          //             shape: RoundedRectangleBorder(
+          //               borderRadius: BorderRadius.circular(5),
+          //             ),
+          //             color: Color(0xFF3D5AFE),
+          //             onPressed: () {},
+          //             child: const Text('STOP'),
+          //           ),
+          //         ],
+          //       ),
+          //     ]),
+          //   ),
+          // ),
           SizedBox(
             height: 40,
           ),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
+        // shape: AutomaticNotchedShape(
+        //   RoundedRectangleBorder(),
+        //   StadiumBorder(
+        //     side: BorderSide(),
+        //   ),
+        // ),
         elevation: 8.0,
         child: SizedBox(
           height: 55,
@@ -586,6 +614,7 @@ class BodyOfAppState extends State<BodyOfApp> {
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Color(0xFF3D5AFE),
         label: Text(
@@ -616,7 +645,6 @@ class BodyOfAppState extends State<BodyOfApp> {
           );
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
