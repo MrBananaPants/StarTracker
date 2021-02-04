@@ -44,8 +44,8 @@ class MyAppState extends State<AboutPage> {
                           child: Text(
                             "Deze app is door Joran ontwikkeld voor zijn GIP StarTracker. Met deze app kan de StarTracker draadloos bediend worden.",
                             style: TextStyle(
-                              color: Colors.black.withOpacity(0.6),
-                            ),
+                                //color: Colors.black.withOpacity(0.6),
+                                ),
                           ),
                         ),
                         ListTile(
@@ -82,8 +82,8 @@ class MyAppState extends State<AboutPage> {
                     child: Text(
                       "Versie: Pre-release v0.2",
                       style: TextStyle(
-                        color: Colors.black.withOpacity(0.6),
-                      ),
+                          //color: Colors.black.withOpacity(0.6),
+                          ),
                     ),
                   ),
                   Padding(
@@ -91,8 +91,8 @@ class MyAppState extends State<AboutPage> {
                     child: Text(
                       "Flutter: 1.22.5",
                       style: TextStyle(
-                        color: Colors.black.withOpacity(0.6),
-                      ),
+                          //color: Colors.black.withOpacity(0.6),
+                          ),
                     ),
                   ),
                   Padding(
@@ -100,8 +100,8 @@ class MyAppState extends State<AboutPage> {
                     child: Text(
                       "Joran Vancoillie",
                       style: TextStyle(
-                        color: Colors.black.withOpacity(0.6),
-                      ),
+                          //color: Colors.black.withOpacity(0.6),
+                          ),
                     ),
                   ),
                 ],
