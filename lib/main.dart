@@ -17,9 +17,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          //Make primary color that can be reused.
-          ),
+      theme: ThemeData(),
       darkTheme: ThemeData.dark(),
       home: BodyOfApp(),
     ),
@@ -165,77 +163,77 @@ class BodyOfAppState extends State<BodyOfApp> {
                   ),
                   Container(
                       child: Conditioned(cases: [
-                    Case(buttonStatus == true,
-                        builder: () => ButtonBar(
-                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
-                              buttonMinWidth:
-                                  SizeConfig.blockSizeHorizontal * 36,
-                              alignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                OutlineButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: const Text('AAN'),
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        changeStateToUIT();
-                                        requestURLIndex = 0;
-                                        buttonPressed();
-                                      },
-                                    );
-                                    timerStream = stopWatchStream();
-                                    timerSubscription = timerStream.listen(
-                                      (int newTick) {
-                                        setState(
-                                          () {
-                                            hoursStr =
-                                                ((newTick / (60 * 60)) % 60)
-                                                    .floor()
-                                                    .toString()
-                                                    .padLeft(2, '0');
-                                            minutesStr = ((newTick / 60) % 60)
-                                                .floor()
-                                                .toString()
-                                                .padLeft(2, '0');
-                                            secondsStr = (newTick % 60)
-                                                .floor()
-                                                .toString()
-                                                .padLeft(2, '0');
-                                          },
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  color: Color(0xFF3D5AFE),
-                                  child: const Text('UIT'),
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        changeStateToAAN();
-                                        requestURLIndex = 1;
-                                        buttonPressed();
-                                      },
-                                    );
-                                    timerSubscription.cancel();
-                                    timerStream = null;
-                                    setState(
-                                      () {
-                                        hoursStr = '00';
-                                        minutesStr = '00';
-                                        secondsStr = '00';
-                                      },
-                                    );
-                                  },
-                                ),
-                              ],
-                            )),
+                    Case(
+                      buttonStatus == true,
+                      builder: () => ButtonBar(
+                        buttonHeight: SizeConfig.blockSizeVertical * 5.5,
+                        buttonMinWidth: SizeConfig.blockSizeHorizontal * 36,
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          OutlineButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: const Text('AAN'),
+                            onPressed: () {
+                              setState(
+                                () {
+                                  changeStateToUIT();
+                                  requestURLIndex = 0;
+                                  buttonPressed();
+                                },
+                              );
+                              timerStream = stopWatchStream();
+                              timerSubscription = timerStream.listen(
+                                (int newTick) {
+                                  setState(
+                                    () {
+                                      hoursStr = ((newTick / (60 * 60)) % 60)
+                                          .floor()
+                                          .toString()
+                                          .padLeft(2, '0');
+                                      minutesStr = ((newTick / 60) % 60)
+                                          .floor()
+                                          .toString()
+                                          .padLeft(2, '0');
+                                      secondsStr = (newTick % 60)
+                                          .floor()
+                                          .toString()
+                                          .padLeft(2, '0');
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            color: Color(0xFF3D5AFE),
+                            child: const Text('UIT'),
+                            onPressed: () {
+                              setState(
+                                () {
+                                  changeStateToAAN();
+                                  requestURLIndex = 1;
+                                  buttonPressed();
+                                },
+                              );
+                              timerSubscription.cancel();
+                              timerStream = null;
+                              setState(
+                                () {
+                                  hoursStr = '00';
+                                  minutesStr = '00';
+                                  secondsStr = '00';
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                     Case(buttonStatus == false,
                         builder: () => ButtonBar(
                               buttonHeight: SizeConfig.blockSizeVertical * 5.5,
