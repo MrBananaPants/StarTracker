@@ -18,7 +18,6 @@ You can control following things:
 
 - App icon
 - Weather data
-- About screen / FAQ
 
 
 # Bugs / problems
