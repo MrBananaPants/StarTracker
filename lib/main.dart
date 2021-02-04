@@ -1,3 +1,4 @@
+import 'package:url_launcher/url_launcher.dart';
 import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
@@ -87,6 +88,8 @@ class BodyOfAppState extends State<BodyOfApp> {
   bool buttonSnelheid = false;
   bool buttonRichting = false;
 
+  int showBanner = 1;
+
   bool flag = true;
   Stream<int> timerStream;
   StreamSubscription<int> timerSubscription;
@@ -145,6 +148,31 @@ class BodyOfAppState extends State<BodyOfApp> {
           // LinearProgressIndicator(
           //   minHeight: 4.0,
           // ),
+          if (showBanner == 1)
+            MaterialBanner(
+              content: const Text(
+                  'Deze app is nog in ontwikkeling. Er kunnen zich bugs voordoen.'),
+              leading: CircleAvatar(child: Icon(Icons.delete)),
+              actions: [
+                FlatButton(
+                  child: const Text('INFO'),
+                  onPressed: () {
+                    launch("https://github.com/MrBananaPants/StarTracker");
+                  },
+                ),
+                FlatButton(
+                  child: const Text('SLUITEN'),
+                  onPressed: () {
+                    setState(
+                      () {
+                        showBanner = 0;
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
@@ -599,6 +627,7 @@ class BodyOfAppState extends State<BodyOfApp> {
           //     ]),
           //   ),
           // ),
+
           SizedBox(
             height: 40,
           ),

@@ -56,10 +56,12 @@ class MyAppState extends State<AboutPage> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: GestureDetector(
-                            child: Text("GitHub StarTracker",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: Colors.blue)),
+                            child: Text(
+                              "GitHub StarTracker",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Colors.blue),
+                            ),
                             onTap: () {
                               launch(
                                   "https://github.com/MrBananaPants/StarTracker");

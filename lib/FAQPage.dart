@@ -67,8 +67,9 @@ class BodyOfFAQPageState extends State<FAQPage> {
             height: 15,
           ),
           Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
             elevation: 4,
             clipBehavior: Clip.antiAlias,
             margin: EdgeInsets.only(left: 13, right: 13, top: 3),
@@ -98,8 +99,9 @@ class BodyOfFAQPageState extends State<FAQPage> {
             height: 15,
           ),
           Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
             elevation: 4,
             clipBehavior: Clip.antiAlias,
             margin: EdgeInsets.only(left: 13, right: 13, top: 3),
@@ -115,7 +117,7 @@ class BodyOfFAQPageState extends State<FAQPage> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                     child: Text(
-                      "Alle feedback kan gestuurd worden naar joran.vancoillie@gmail.com. Bugs kunnen in de GitHub pagina gerapporteerd worden.",
+                      "Feedback en bugs kunnen in de GitHub pagina gerapporteerd worden.",
                       style: TextStyle(
                           //  color: Colors.black.withOpacity(0.6),
                           ),
