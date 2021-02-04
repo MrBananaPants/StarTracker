@@ -152,7 +152,9 @@ class BodyOfAppState extends State<BodyOfApp> {
             MaterialBanner(
               content: const Text(
                   'Deze app is nog in ontwikkeling. Er kunnen zich bugs voordoen.'),
-              leading: CircleAvatar(child: Icon(Icons.delete)),
+              leading: CircleAvatar(
+                child: Icon(Icons.error_outline),
+              ),
               actions: [
                 FlatButton(
                   child: const Text('INFO'),
