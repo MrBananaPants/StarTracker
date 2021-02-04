@@ -1,5 +1,6 @@
 import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
 //import 'stopwatch.dart';
@@ -28,6 +29,22 @@ void main() {
 class BodyOfApp extends StatefulWidget {
   @override
   BodyOfAppState createState() => BodyOfAppState();
+}
+
+class SizeConfig {
+  static MediaQueryData _mediaQueryData;
+  static double screenWidth;
+  static double screenHeight;
+  static double blockSizeHorizontal;
+  static double blockSizeVertical;
+
+  void init(BuildContext context) {
+    _mediaQueryData = MediaQuery.of(context);
+    screenWidth = _mediaQueryData.size.width;
+    screenHeight = _mediaQueryData.size.height;
+    blockSizeHorizontal = screenWidth / 100;
+    blockSizeVertical = screenHeight / 100;
+  }
 }
 
 class BodyOfAppState extends State<BodyOfApp> {
@@ -118,6 +135,7 @@ class BodyOfAppState extends State<BodyOfApp> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 4,
@@ -130,8 +148,9 @@ class BodyOfAppState extends State<BodyOfApp> {
           //   minHeight: 4.0,
           // ),
           Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
             elevation: 4,
             clipBehavior: Clip.antiAlias,
             margin: EdgeInsets.only(left: 13, right: 13, top: 20),
@@ -148,13 +167,15 @@ class BodyOfAppState extends State<BodyOfApp> {
                       child: Conditioned(cases: [
                     Case(buttonStatus == true,
                         builder: () => ButtonBar(
-                              buttonHeight: 40,
-                              buttonMinWidth: 150,
+                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
+                              buttonMinWidth:
+                                  SizeConfig.blockSizeHorizontal * 36,
                               alignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 OutlineButton(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
                                   child: const Text('AAN'),
                                   onPressed: () {
                                     setState(
@@ -190,7 +211,8 @@ class BodyOfAppState extends State<BodyOfApp> {
                                 ),
                                 RaisedButton(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
                                   color: Color(0xFF3D5AFE),
                                   child: const Text('UIT'),
                                   onPressed: () {
@@ -216,8 +238,9 @@ class BodyOfAppState extends State<BodyOfApp> {
                             )),
                     Case(buttonStatus == false,
                         builder: () => ButtonBar(
-                              buttonHeight: 40,
-                              buttonMinWidth: 150,
+                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
+                              buttonMinWidth:
+                                  SizeConfig.blockSizeHorizontal * 36,
                               alignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 RaisedButton(
@@ -309,8 +332,9 @@ class BodyOfAppState extends State<BodyOfApp> {
                       child: Conditioned(cases: [
                     Case(buttonSnelheid == true,
                         builder: () => ButtonBar(
-                              buttonHeight: 40,
-                              buttonMinWidth: 150,
+                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
+                              buttonMinWidth:
+                                  SizeConfig.blockSizeHorizontal * 36,
                               alignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 OutlineButton(
@@ -342,8 +366,9 @@ class BodyOfAppState extends State<BodyOfApp> {
                             )),
                     Case(buttonSnelheid == false,
                         builder: () => ButtonBar(
-                              buttonHeight: 40,
-                              buttonMinWidth: 150,
+                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
+                              buttonMinWidth:
+                                  SizeConfig.blockSizeHorizontal * 36,
                               alignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 RaisedButton(
@@ -400,8 +425,9 @@ class BodyOfAppState extends State<BodyOfApp> {
                       child: Conditioned(cases: [
                     Case(buttonRichting == true,
                         builder: () => ButtonBar(
-                              buttonHeight: 40,
-                              buttonMinWidth: 150,
+                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
+                              buttonMinWidth:
+                                  SizeConfig.blockSizeHorizontal * 36,
                               alignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 OutlineButton(
@@ -434,8 +460,8 @@ class BodyOfAppState extends State<BodyOfApp> {
                     Case(
                       buttonRichting == false,
                       builder: () => ButtonBar(
-                        buttonHeight: 40,
-                        buttonMinWidth: 150,
+                        buttonHeight: SizeConfig.blockSizeVertical * 5.5,
+                        buttonMinWidth: SizeConfig.blockSizeHorizontal * 36,
                         alignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RaisedButton(
