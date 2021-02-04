@@ -162,148 +162,156 @@ class BodyOfAppState extends State<BodyOfApp> {
                     ),
                   ),
                   Container(
-                      child: Conditioned(cases: [
-                    Case(
-                      buttonStatus == true,
-                      builder: () => ButtonBar(
-                        buttonHeight: SizeConfig.blockSizeVertical * 5.5,
-                        buttonMinWidth: SizeConfig.blockSizeHorizontal * 36,
-                        alignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          OutlineButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: const Text('AAN'),
-                            onPressed: () {
-                              setState(
-                                () {
-                                  changeStateToUIT();
-                                  requestURLIndex = 0;
-                                  buttonPressed();
-                                },
-                              );
-                              timerStream = stopWatchStream();
-                              timerSubscription = timerStream.listen(
-                                (int newTick) {
+                    child: Conditioned(
+                      cases: [
+                        Case(
+                          buttonStatus == true,
+                          builder: () => ButtonBar(
+                            buttonHeight: 40,
+                            buttonMinWidth: SizeConfig.blockSizeHorizontal * 38,
+                            alignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              OutlineButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: const Text('AAN'),
+                                onPressed: () {
                                   setState(
                                     () {
-                                      hoursStr = ((newTick / (60 * 60)) % 60)
-                                          .floor()
-                                          .toString()
-                                          .padLeft(2, '0');
-                                      minutesStr = ((newTick / 60) % 60)
-                                          .floor()
-                                          .toString()
-                                          .padLeft(2, '0');
-                                      secondsStr = (newTick % 60)
-                                          .floor()
-                                          .toString()
-                                          .padLeft(2, '0');
+                                      changeStateToUIT();
+                                      requestURLIndex = 0;
+                                      buttonPressed();
+                                    },
+                                  );
+                                  timerStream = stopWatchStream();
+                                  timerSubscription = timerStream.listen(
+                                    (int newTick) {
+                                      setState(
+                                        () {
+                                          hoursStr =
+                                              ((newTick / (60 * 60)) % 60)
+                                                  .floor()
+                                                  .toString()
+                                                  .padLeft(2, '0');
+                                          minutesStr = ((newTick / 60) % 60)
+                                              .floor()
+                                              .toString()
+                                              .padLeft(2, '0');
+                                          secondsStr = (newTick % 60)
+                                              .floor()
+                                              .toString()
+                                              .padLeft(2, '0');
+                                        },
+                                      );
                                     },
                                   );
                                 },
-                              );
-                            },
-                          ),
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            color: Color(0xFF3D5AFE),
-                            child: const Text('UIT'),
-                            onPressed: () {
-                              setState(
-                                () {
-                                  changeStateToAAN();
-                                  requestURLIndex = 1;
-                                  buttonPressed();
+                              ),
+                              RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                color: Color(0xFF3D5AFE),
+                                child: const Text('UIT'),
+                                onPressed: () {
+                                  setState(
+                                    () {
+                                      changeStateToAAN();
+                                      requestURLIndex = 1;
+                                      buttonPressed();
+                                    },
+                                  );
+                                  timerSubscription.cancel();
+                                  timerStream = null;
+                                  setState(
+                                    () {
+                                      hoursStr = '00';
+                                      minutesStr = '00';
+                                      secondsStr = '00';
+                                    },
+                                  );
                                 },
-                              );
-                              timerSubscription.cancel();
-                              timerStream = null;
-                              setState(
-                                () {
-                                  hoursStr = '00';
-                                  minutesStr = '00';
-                                  secondsStr = '00';
-                                },
-                              );
-                            },
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                    Case(buttonStatus == false,
-                        builder: () => ButtonBar(
-                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
-                              buttonMinWidth:
-                                  SizeConfig.blockSizeHorizontal * 36,
-                              alignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  color: Color(0xFF3D5AFE),
-                                  child: const Text('AAN'),
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        changeStateToUIT();
-                                        requestURLIndex = 0;
-                                        buttonPressed();
-                                      },
-                                    );
-                                    timerStream = stopWatchStream();
-                                    timerSubscription = timerStream.listen(
-                                      (int newTick) {
+                        ),
+                        Case(buttonStatus == false,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth:
+                                      SizeConfig.blockSizeHorizontal * 38,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('AAN'),
+                                      onPressed: () {
                                         setState(
                                           () {
-                                            hoursStr =
-                                                ((newTick / (60 * 60)) % 60)
+                                            changeStateToUIT();
+                                            requestURLIndex = 0;
+                                            buttonPressed();
+                                          },
+                                        );
+                                        timerStream = stopWatchStream();
+                                        timerSubscription = timerStream.listen(
+                                          (int newTick) {
+                                            setState(
+                                              () {
+                                                hoursStr =
+                                                    ((newTick / (60 * 60)) % 60)
+                                                        .floor()
+                                                        .toString()
+                                                        .padLeft(2, '0');
+                                                minutesStr =
+                                                    ((newTick / 60) % 60)
+                                                        .floor()
+                                                        .toString()
+                                                        .padLeft(2, '0');
+                                                secondsStr = (newTick % 60)
                                                     .floor()
                                                     .toString()
                                                     .padLeft(2, '0');
-                                            minutesStr = ((newTick / 60) % 60)
-                                                .floor()
-                                                .toString()
-                                                .padLeft(2, '0');
-                                            secondsStr = (newTick % 60)
-                                                .floor()
-                                                .toString()
-                                                .padLeft(2, '0');
+                                              },
+                                            );
                                           },
                                         );
                                       },
-                                    );
-                                  },
-                                ),
-                                OutlineButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Text('UIT'),
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        changeStateToAAN();
-                                        requestURLIndex = 1;
-                                        buttonPressed();
+                                    ),
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: const Text('UIT'),
+                                      onPressed: () {
+                                        setState(
+                                          () {
+                                            changeStateToAAN();
+                                            requestURLIndex = 1;
+                                            buttonPressed();
+                                          },
+                                        );
+                                        timerSubscription.cancel();
+                                        timerStream = null;
+                                        setState(
+                                          () {
+                                            hoursStr = '00';
+                                            minutesStr = '00';
+                                            secondsStr = '00';
+                                          },
+                                        );
                                       },
-                                    );
-                                    timerSubscription.cancel();
-                                    timerStream = null;
-                                    setState(
-                                      () {
-                                        hoursStr = '00';
-                                        minutesStr = '00';
-                                        secondsStr = '00';
-                                      },
-                                    );
-                                  },
-                                ),
-                              ],
-                            )),
-                  ], defaultBuilder: () => Text("Null value returned"))),
+                                    ),
+                                  ],
+                                )),
+                      ],
+                      defaultBuilder: () => Text("Null value returned"),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -312,8 +320,9 @@ class BodyOfAppState extends State<BodyOfApp> {
             height: 15,
           ),
           Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
             elevation: 4,
             clipBehavior: Clip.antiAlias,
             margin: EdgeInsets.only(left: 13, right: 13, top: 3),
@@ -327,76 +336,84 @@ class BodyOfAppState extends State<BodyOfApp> {
                     ),
                   ),
                   Container(
-                      child: Conditioned(cases: [
-                    Case(buttonSnelheid == true,
-                        builder: () => ButtonBar(
-                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
-                              buttonMinWidth:
-                                  SizeConfig.blockSizeHorizontal * 36,
-                              alignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                OutlineButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Text('TRAAG'),
-                                  onPressed: () {
-                                    setState(() {
-                                      changeStateToSNEL();
-                                      requestURLIndex = 2;
-                                      buttonPressed();
-                                    });
-                                  },
-                                ),
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  color: Color(0xFF3D5AFE),
-                                  child: const Text('SNEL'),
-                                  onPressed: () {
-                                    setState(() {
-                                      changeStateToTRAAG();
-                                      requestURLIndex = 3;
-                                      buttonPressed();
-                                    });
-                                  },
-                                ),
-                              ],
-                            )),
-                    Case(buttonSnelheid == false,
-                        builder: () => ButtonBar(
-                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
-                              buttonMinWidth:
-                                  SizeConfig.blockSizeHorizontal * 36,
-                              alignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  color: Color(0xFF3D5AFE),
-                                  child: const Text('TRAAG'),
-                                  onPressed: () {
-                                    setState(() {
-                                      changeStateToSNEL();
-                                      requestURLIndex = 2;
-                                      buttonPressed();
-                                    });
-                                  },
-                                ),
-                                OutlineButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Text('SNEL'),
-                                  onPressed: () {
-                                    setState(() {
-                                      changeStateToTRAAG();
-                                      requestURLIndex = 3;
-                                      buttonPressed();
-                                    });
-                                  },
-                                ),
-                              ],
-                            )),
-                  ], defaultBuilder: () => Text("Null value returned"))),
+                    child: Conditioned(
+                      cases: [
+                        Case(buttonSnelheid == true,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth:
+                                      SizeConfig.blockSizeHorizontal * 38,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: const Text('TRAAG'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToSNEL();
+                                          requestURLIndex = 2;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('SNEL'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToTRAAG();
+                                          requestURLIndex = 3;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )),
+                        Case(buttonSnelheid == false,
+                            builder: () => ButtonBar(
+                                  buttonHeight: 40,
+                                  buttonMinWidth:
+                                      SizeConfig.blockSizeHorizontal * 38,
+                                  alignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      color: Color(0xFF3D5AFE),
+                                      child: const Text('TRAAG'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToSNEL();
+                                          requestURLIndex = 2;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                    OutlineButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: const Text('SNEL'),
+                                      onPressed: () {
+                                        setState(() {
+                                          changeStateToTRAAG();
+                                          requestURLIndex = 3;
+                                          buttonPressed();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )),
+                      ],
+                      defaultBuilder: () => Text("Null value returned"),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -405,8 +422,9 @@ class BodyOfAppState extends State<BodyOfApp> {
             height: 15,
           ),
           Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
             elevation: 4,
             clipBehavior: Clip.antiAlias,
             margin: EdgeInsets.only(left: 13, right: 13, top: 3),
@@ -420,77 +438,90 @@ class BodyOfAppState extends State<BodyOfApp> {
                     ),
                   ),
                   Container(
-                      child: Conditioned(cases: [
-                    Case(buttonRichting == true,
-                        builder: () => ButtonBar(
-                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
-                              buttonMinWidth:
-                                  SizeConfig.blockSizeHorizontal * 36,
-                              alignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                OutlineButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Text('OMHOOG'),
-                                  onPressed: () {
-                                    setState(() {
-                                      changeStateToOMLAAG();
-                                      requestURLIndex = 4;
-                                      buttonPressed();
-                                    });
-                                  },
+                    child: Conditioned(
+                      cases: [
+                        Case(
+                          buttonRichting == true,
+                          builder: () => ButtonBar(
+                            buttonHeight: 40,
+                            buttonMinWidth: SizeConfig.blockSizeHorizontal * 38,
+                            alignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              OutlineButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  color: Color(0xFF3D5AFE),
-                                  child: const Text('OMLAAG'),
-                                  onPressed: () {
-                                    setState(() {
+                                child: const Text('OMHOOG'),
+                                onPressed: () {
+                                  setState(() {
+                                    changeStateToOMLAAG();
+                                    requestURLIndex = 4;
+                                    buttonPressed();
+                                  });
+                                },
+                              ),
+                              RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                color: Color(0xFF3D5AFE),
+                                child: const Text('OMLAAG'),
+                                onPressed: () {
+                                  setState(
+                                    () {
                                       changeStateToOMHOOG();
                                       requestURLIndex = 5;
                                       buttonPressed();
-                                    });
-                                  },
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        Case(
+                          buttonRichting == false,
+                          builder: () => ButtonBar(
+                            buttonHeight: 40,
+                            buttonMinWidth: SizeConfig.blockSizeHorizontal * 38,
+                            alignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                              ],
-                            )),
-                    Case(
-                      buttonRichting == false,
-                      builder: () => ButtonBar(
-                        buttonHeight: SizeConfig.blockSizeVertical * 5.5,
-                        buttonMinWidth: SizeConfig.blockSizeHorizontal * 36,
-                        alignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: Color(0xFF3D5AFE),
-                            child: const Text('OMHOOG'),
-                            onPressed: () {
-                              setState(() {
-                                changeStateToOMLAAG();
-                                requestURLIndex = 4;
-                                buttonPressed();
-                              });
-                            },
+                                color: Color(0xFF3D5AFE),
+                                child: const Text('OMHOOG'),
+                                onPressed: () {
+                                  setState(
+                                    () {
+                                      changeStateToOMLAAG();
+                                      requestURLIndex = 4;
+                                      buttonPressed();
+                                    },
+                                  );
+                                },
+                              ),
+                              OutlineButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: const Text('OMLAAG'),
+                                onPressed: () {
+                                  setState(() {
+                                    changeStateToOMHOOG();
+                                    requestURLIndex = 5;
+                                    buttonPressed();
+                                  });
+                                },
+                              ),
+                            ],
                           ),
-                          OutlineButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Text('OMLAAG'),
-                            onPressed: () {
-                              setState(() {
-                                changeStateToOMHOOG();
-                                requestURLIndex = 5;
-                                buttonPressed();
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
+                      defaultBuilder: () => Text("Null value returned"),
                     ),
-                  ], defaultBuilder: () => Text("Null value returned"))),
+                  ),
                 ],
               ),
             ),
@@ -499,8 +530,9 @@ class BodyOfAppState extends State<BodyOfApp> {
             height: 15,
           ),
           Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
             elevation: 4,
             clipBehavior: Clip.antiAlias,
             margin: EdgeInsets.only(left: 13, right: 13, top: 3),
@@ -658,15 +690,15 @@ class BodyOfAppState extends State<BodyOfApp> {
               changeStateToOMHOOG();
             },
           );
-          timerSubscription.cancel();
-          timerStream = null;
-          setState(
-            () {
-              hoursStr = '00';
-              minutesStr = '00';
-              secondsStr = '00';
-            },
-          );
+          // timerSubscription.cancel();
+          // timerStream = null;
+          // setState(
+          //   () {
+          //     hoursStr = '00';
+          //     minutesStr = '00';
+          //     secondsStr = '00';
+          //   },
+          // );
         },
       ),
     );
