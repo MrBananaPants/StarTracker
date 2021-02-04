@@ -25,8 +25,8 @@ class SizeConfig {
   }
 }
 
-void changeStateToAAN() => buttonThema = true;
-void changeStateToUIT() => buttonThema = false;
+void changeThemeToAAN() => buttonThema = true;
+void changeThemeToUIT() => buttonThema = false;
 
 bool buttonThema = false;
 
@@ -64,8 +64,8 @@ class MyAppState extends State<SettingsPage> {
                     Case(
                       buttonThema == true,
                       builder: () => ButtonBar(
-                        buttonHeight: SizeConfig.blockSizeVertical * 5.5,
-                        buttonMinWidth: SizeConfig.blockSizeHorizontal * 36,
+                        buttonHeight: 40,
+                        buttonMinWidth: SizeConfig.blockSizeHorizontal * 38,
                         alignment: MainAxisAlignment.spaceBetween,
                         children: [
                           OutlineButton(
@@ -73,7 +73,13 @@ class MyAppState extends State<SettingsPage> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: const Text('AAN'),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(
+                                () {
+                                  changeThemeToUIT();
+                                },
+                              );
+                            },
                           ),
                           RaisedButton(
                             shape: RoundedRectangleBorder(
@@ -81,7 +87,13 @@ class MyAppState extends State<SettingsPage> {
                             ),
                             color: Color(0xFF3D5AFE),
                             child: const Text('UIT'),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(
+                                () {
+                                  changeThemeToAAN();
+                                },
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -98,13 +110,25 @@ class MyAppState extends State<SettingsPage> {
                                       borderRadius: BorderRadius.circular(5)),
                                   color: Color(0xFF3D5AFE),
                                   child: const Text('AAN'),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        changeThemeToUIT();
+                                      },
+                                    );
+                                  },
                                 ),
                                 OutlineButton(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5)),
                                   child: const Text('UIT'),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        changeThemeToAAN();
+                                      },
+                                    );
+                                  },
                                 ),
                               ],
                             )),
