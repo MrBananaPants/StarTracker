@@ -24,3 +24,4 @@ You can control following things:
 
 - APK needs to be signed.
 - Text in about / FAQ page becomes unreadable when using dark mode.
+- The timer sometimes keeps counting even when it's turned off.
