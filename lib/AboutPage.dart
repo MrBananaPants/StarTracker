@@ -91,7 +91,7 @@ class MyAppState extends State<AboutPage> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Text(
-                      "Flutter: 1.22.5",
+                      "Flutter: 1.22.6",
                       style: TextStyle(
                           //color: Colors.black.withOpacity(0.6),
                           ),

@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 class SettingsPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return SettingsPageState();
   }
 }
 
@@ -30,7 +30,7 @@ void changeThemeToUIT() => buttonThema = false;
 
 bool buttonThema = false;
 
-class MyAppState extends State<SettingsPage> {
+class SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
