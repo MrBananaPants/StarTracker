@@ -14,8 +14,8 @@
           //           ),
           //         ),
           //         ButtonBar(
-          //           buttonHeight: 40,
-          //           buttonMinWidth: 150,
+          //                buttonHeight: 40,
+          //               buttonMinWidth: SizeConfig.blockSizeHorizontal * 38,
           //           alignment: MainAxisAlignment.spaceBetween,
           //           children: [
           //             RaisedButton(
