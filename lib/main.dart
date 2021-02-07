@@ -3,7 +3,7 @@ import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
-import 'SettingsPage.dart';
+//import 'SettingsPage.dart';
 //import 'Snackbar.dart';
 //import 'stopwatch.dart';
 import 'FAQPage.dart';
@@ -46,6 +46,15 @@ class SizeConfig {
     blockSizeVertical = screenHeight / 100;
   }
 }
+
+var appBarColor = 0;
+var buttonColor = 1;
+var themeColor = [
+  0xFF0031CA,
+  0xFF3D5AFE,
+  0xFF004c40,
+  0xFF00796b,
+];
 
 class BodyOfAppState extends State<BodyOfApp> {
   void buttonPressed() {
@@ -135,13 +144,18 @@ class BodyOfAppState extends State<BodyOfApp> {
     return streamController.stream;
   }
 
+  void changeTheme() {
+    // String url = requestURL[requestURLIndex];
+    // get(url);
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 4,
-        backgroundColor: Color(0xFF0031CA),
+        backgroundColor: Color(themeColor[appBarColor]),
         title: Text("StarTracker"),
       ),
       body: ListView(
@@ -243,7 +257,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                color: Color(0xFF3D5AFE),
+                                color: Color(themeColor[buttonColor]),
                                 child: const Text('UIT'),
                                 onPressed: () {
                                   setState(
@@ -278,7 +292,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5),
                                       ),
-                                      color: Color(0xFF3D5AFE),
+                                      color: Color(themeColor[buttonColor]),
                                       child: const Text('AAN'),
                                       onPressed: () {
                                         setState(
@@ -393,7 +407,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5),
                                       ),
-                                      color: Color(0xFF3D5AFE),
+                                      color: Color(themeColor[buttonColor]),
                                       child: const Text('SNEL'),
                                       onPressed: () {
                                         setState(() {
@@ -416,7 +430,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5),
                                       ),
-                                      color: Color(0xFF3D5AFE),
+                                      color: Color(themeColor[buttonColor]),
                                       child: const Text('TRAAG'),
                                       onPressed: () {
                                         setState(() {
@@ -495,7 +509,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                color: Color(0xFF3D5AFE),
+                                color: Color(themeColor[buttonColor]),
                                 child: const Text('OMLAAG'),
                                 onPressed: () {
                                   setState(
@@ -521,7 +535,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                color: Color(0xFF3D5AFE),
+                                color: Color(themeColor[buttonColor]),
                                 child: const Text('OMHOOG'),
                                 onPressed: () {
                                   setState(
@@ -590,42 +604,42 @@ class BodyOfAppState extends State<BodyOfApp> {
           SizedBox(
             height: 15,
           ),
-          Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            elevation: 4,
-            clipBehavior: Clip.antiAlias,
-            margin: EdgeInsets.only(left: 13, right: 13, top: 3),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text(
-                      'Snackbar',
-                    ),
-                  ),
-                  ButtonBar(
-                    buttonHeight: 40,
-                    buttonMinWidth: 150,
-                    alignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        color: Color(0xFF3D5AFE),
-                        child: const Text('TOON SNACKBAR'),
-                        onPressed: () {
-                          //Snackbar here
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // Card(
+          //   shape:
+          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          //   elevation: 4,
+          //   clipBehavior: Clip.antiAlias,
+          //   margin: EdgeInsets.only(left: 13, right: 13, top: 3),
+          //   child: Container(
+          //     padding: EdgeInsets.symmetric(horizontal: 10),
+          //     child: Column(
+          //       children: [
+          //         ListTile(
+          //           title: Text(
+          //             'Snackbar',
+          //           ),
+          //         ),
+          //         ButtonBar(
+          //           buttonHeight: 40,
+          //           buttonMinWidth: 150,
+          //           alignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             RaisedButton(
+          //               shape: RoundedRectangleBorder(
+          //                 borderRadius: BorderRadius.circular(5),
+          //               ),
+          //               color: Color(0xFF3D5AFE),
+          //               child: const Text('TOON SNACKBAR'),
+          //               onPressed: () {
+          //                 //action
+          //               },
+          //             ),
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
 
           SizedBox(
             height: 40,
@@ -679,13 +693,6 @@ class BodyOfAppState extends State<BodyOfApp> {
               IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {
-                  // SnackBar(
-                  //   behavior: SnackBarBehavior.floating,
-                  //   content: Text('Deze app is nog in ontwikkeling'),
-                  //   action: SnackBarAction(
-                  //     label: 'OK',
-                  //     onPressed: () {},
-                  //   ),
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -702,7 +709,7 @@ class BodyOfAppState extends State<BodyOfApp> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Color(0xFF3D5AFE),
+        backgroundColor: Color(themeColor[buttonColor]),
         label: Text(
           'Reset',
           style: TextStyle(color: Colors.white),
@@ -730,6 +737,157 @@ class BodyOfAppState extends State<BodyOfApp> {
           //   },
           // );
         },
+      ),
+    );
+  }
+}
+
+class SnackBarDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'SnackBar Demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('SnackBar Demo'),
+        ),
+        body: MaterialApp(),
+      ),
+    );
+  }
+}
+
+///////SETTINGS PAGE///////
+
+class SettingsPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return SettingsPageState();
+  }
+}
+
+void changeThemeToGROEN() {
+  buttonThema = true;
+  appBarColor = 2;
+  buttonColor = 3;
+}
+
+void changeThemeToBLAUW() {
+  buttonThema = false;
+  appBarColor = 0;
+  buttonColor = 1;
+}
+
+bool buttonThema = false;
+
+class SettingsPageState extends State<SettingsPage> {
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 4,
+        backgroundColor: Color(0xFF0031CA),
+        title: Text("Instellingen"),
+      ),
+      body: ListView(
+        children: [
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            elevation: 4,
+            clipBehavior: Clip.antiAlias,
+            margin: EdgeInsets.only(left: 13, right: 13, top: 20),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      'Thema',
+                    ),
+                  ),
+                  Container(
+                      child: Conditioned(cases: [
+                    Case(
+                      buttonThema == true,
+                      builder: () => ButtonBar(
+                        buttonHeight: 40,
+                        buttonMinWidth: SizeConfig.blockSizeHorizontal * 38,
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          OutlineButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: const Text('BLAUW'),
+                            onPressed: () {
+                              setState(
+                                () {
+                                  changeThemeToBLAUW();
+                                },
+                              );
+                            },
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            color: Color(0xFF3D5AFE),
+                            child: const Text('GROEN'),
+                            onPressed: () {
+                              setState(
+                                () {
+                                  changeThemeToGROEN();
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Case(buttonThema == false,
+                        builder: () => ButtonBar(
+                              buttonHeight: SizeConfig.blockSizeVertical * 5.5,
+                              buttonMinWidth:
+                                  SizeConfig.blockSizeHorizontal * 36,
+                              alignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)),
+                                  color: Color(0xFF3D5AFE),
+                                  child: const Text('BLAUW'),
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        changeThemeToBLAUW();
+                                      },
+                                    );
+                                  },
+                                ),
+                                OutlineButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: const Text('GROEN'),
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        changeThemeToGROEN();
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
+                            )),
+                  ], defaultBuilder: () => Text("Null value returned"))),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
