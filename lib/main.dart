@@ -163,32 +163,32 @@ class BodyOfAppState extends State<BodyOfApp> {
           // LinearProgressIndicator(
           //   minHeight: 4.0,
           // ),
-          // if (showBanner == 1)
-          //   MaterialBanner(
-          //     content: const Text(
-          //         'Deze app is nog in ontwikkeling. Er kunnen zich bugs voordoen.'),
-          //     leading: CircleAvatar(
-          //       child: Icon(Icons.error_outline),
-          //     ),
-          //     actions: [
-          //       FlatButton(
-          //         child: const Text('INFO'),
-          //         onPressed: () {
-          //           launch("https://github.com/MrBananaPants/StarTracker");
-          //         },
-          //       ),
-          //       FlatButton(
-          //         child: const Text('SLUITEN'),
-          //         onPressed: () {
-          //           setState(
-          //             () {
-          //               showBanner = 0;
-          //             },
-          //           );
-          //         },
-          //       ),
-          //     ],
-          //   ),
+          if (showBanner == 1)
+            MaterialBanner(
+              content: const Text(
+                  'Deze app is nog in ontwikkeling. Er kunnen zich bugs voordoen.'),
+              leading: CircleAvatar(
+                child: Icon(Icons.error_outline),
+              ),
+              actions: [
+                FlatButton(
+                  child: const Text('INFO'),
+                  onPressed: () {
+                    launch("https://github.com/MrBananaPants/StarTracker");
+                  },
+                ),
+                FlatButton(
+                  child: const Text('SLUITEN'),
+                  onPressed: () {
+                    setState(
+                      () {
+                        showBanner = 0;
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
