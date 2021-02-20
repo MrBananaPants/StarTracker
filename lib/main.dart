@@ -56,6 +56,19 @@ var themeColor = [
   0xFF00796b,
 ];
 
+bool timerStatus = true;
+bool buttonThema = true;
+
+void setTimerToAAN() {
+  timerStatus = true;
+  buttonThema = false;
+}
+
+void setTimerToUIT() {
+  timerStatus = false;
+  buttonThema = true;
+}
+
 class BodyOfAppState extends State<BodyOfApp> {
   void buttonPressed() {
     String url = requestURL[requestURLIndex];
@@ -573,6 +586,49 @@ class BodyOfAppState extends State<BodyOfApp> {
               ),
             ),
           ),
+          // SizedBox(
+          //   height: 15,
+          // ),
+          // Card(
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.circular(5),
+          //   ),
+          //   elevation: 4,
+          //   clipBehavior: Clip.antiAlias,
+          //   margin: EdgeInsets.only(left: 13, right: 13, top: 3),
+          //   child: Container(
+          //     padding: EdgeInsets.symmetric(horizontal: 10),
+          //     child: Column(
+          //       children: [
+          //         ListTile(
+          //           title: Text(
+          //             'Timer',
+          //           ),
+          //         ),
+          //         Container(
+          //           child: Conditioned(
+          //             cases: [
+          //               Case(
+          //                 timerStatus == true,
+          //                 builder: () => Padding(
+          //                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+          //                   child: Text(
+          //                     "$hoursStr:$minutesStr:$secondsStr",
+          //                     style: TextStyle(
+          //                       fontSize: 16.0,
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ),
+          //               Case(timerStatus == false, builder: () => null),
+          //             ],
+          //             defaultBuilder: () => Text("Null value returned"),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           SizedBox(
             height: 15,
           ),
@@ -721,6 +777,36 @@ class BodyOfAppState extends State<BodyOfApp> {
           color: Colors.white,
         ),
         onPressed: () {
+          if (buttonStatus != false) {
+            timerStream = stopWatchStream();
+            timerSubscription = timerStream.listen(
+              (int newTick) {
+                setState(
+                  () {
+                    hoursStr = ((newTick / (60 * 60)) % 60)
+                        .floor()
+                        .toString()
+                        .padLeft(2, '0');
+                    minutesStr = ((newTick / 60) % 60)
+                        .floor()
+                        .toString()
+                        .padLeft(2, '0');
+                    secondsStr =
+                        (newTick % 60).floor().toString().padLeft(2, '0');
+                  },
+                );
+              },
+            );
+            // timerSubscription.cancel();
+            // timerStream = null;
+            // setState(
+            //   () {
+            //     hoursStr = '00';
+            //     minutesStr = '00';
+            //     secondsStr = '00';
+            //   },
+            // );
+          }
           resetPressed();
           setState(
             () {
@@ -729,15 +815,6 @@ class BodyOfAppState extends State<BodyOfApp> {
               changeStateToOMHOOG();
             },
           );
-          // timerSubscription.cancel();
-          // timerStream = null;
-          // setState(
-          //   () {
-          //     hoursStr = '00';
-          //     minutesStr = '00';
-          //     secondsStr = '00';
-          //   },
-          // );
         },
       ),
     );
@@ -770,19 +847,7 @@ class SettingsPage extends StatefulWidget {
   }
 }
 
-void changeThemeToGROEN() {
-  buttonThema = true;
-  appBarColor = 2;
-  buttonColor = 3;
-}
-
-void changeThemeToBLAUW() {
-  buttonThema = false;
-  appBarColor = 0;
-  buttonColor = 1;
-}
-
-bool buttonThema = false;
+//bool buttonThema = false;
 
 class SettingsPageState extends State<SettingsPage> {
   @override
@@ -810,7 +875,7 @@ class SettingsPageState extends State<SettingsPage> {
                 children: [
                   ListTile(
                     title: Text(
-                      'Thema',
+                      'Timer',
                     ),
                   ),
                   Container(
@@ -826,13 +891,11 @@ class SettingsPageState extends State<SettingsPage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child: const Text('BLAUW'),
+                            child: const Text('AAN'),
                             onPressed: () {
-                              setState(
-                                () {
-                                  changeThemeToBLAUW();
-                                },
-                              );
+                              setState(() {
+                                setTimerToAAN();
+                              });
                             },
                           ),
                           RaisedButton(
@@ -840,11 +903,11 @@ class SettingsPageState extends State<SettingsPage> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             color: Color(0xFF3D5AFE),
-                            child: const Text('GROEN'),
+                            child: const Text('UIT'),
                             onPressed: () {
                               setState(
                                 () {
-                                  changeThemeToGROEN();
+                                  setTimerToUIT();
                                 },
                               );
                             },
@@ -863,11 +926,11 @@ class SettingsPageState extends State<SettingsPage> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5)),
                                   color: Color(0xFF3D5AFE),
-                                  child: const Text('BLAUW'),
+                                  child: const Text('AAN'),
                                   onPressed: () {
                                     setState(
                                       () {
-                                        changeThemeToBLAUW();
+                                        setTimerToAAN();
                                       },
                                     );
                                   },
@@ -875,11 +938,11 @@ class SettingsPageState extends State<SettingsPage> {
                                 OutlineButton(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5)),
-                                  child: const Text('GROEN'),
+                                  child: const Text('UIT'),
                                   onPressed: () {
                                     setState(
                                       () {
-                                        changeThemeToGROEN();
+                                        setTimerToUIT();
                                       },
                                     );
                                   },
