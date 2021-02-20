@@ -858,7 +858,7 @@ class SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         elevation: 4,
         backgroundColor: Color(0xFF0031CA),
-        title: Text("Instellingen"),
+        title: Text("Instellingen (niet functioneel)"),
       ),
       body: ListView(
         children: [
