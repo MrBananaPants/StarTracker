@@ -64,6 +64,8 @@ void main() {
   );
 }
 
+bool timerIsRunning = true;
+
 class BodyOfApp extends StatefulWidget {
   @override
   BodyOfAppState createState() => BodyOfAppState();
@@ -171,6 +173,8 @@ class BodyOfAppState extends State<BodyOfApp> {
     return streamController.stream;
   }
 
+  void startStopWatch() {}
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -243,6 +247,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                                             ),
                                           ),
                                           onPressed: () {
+                                            //if (buttonStatus = true) {}
                                             setState(
                                               () {
                                                 changeStateToUIT();
@@ -250,31 +255,34 @@ class BodyOfAppState extends State<BodyOfApp> {
                                                 buttonPressed();
                                               },
                                             );
-                                            timerStream = stopWatchStream();
-                                            timerSubscription =
-                                                timerStream.listen(
-                                              (int newTick) {
-                                                setState(
-                                                  () {
-                                                    hoursStr =
-                                                        ((newTick / (60 * 60)) %
-                                                                60)
-                                                            .floor()
-                                                            .toString()
-                                                            .padLeft(2, '0');
-                                                    minutesStr =
-                                                        ((newTick / 60) % 60)
-                                                            .floor()
-                                                            .toString()
-                                                            .padLeft(2, '0');
-                                                    secondsStr = (newTick % 60)
-                                                        .floor()
-                                                        .toString()
-                                                        .padLeft(2, '0');
-                                                  },
-                                                );
-                                              },
-                                            );
+                                            if (timerStream == null) {
+                                              timerStream = stopWatchStream();
+                                              timerSubscription =
+                                                  timerStream.listen(
+                                                (int newTick) {
+                                                  setState(
+                                                    () {
+                                                      hoursStr = ((newTick /
+                                                                  (60 * 60)) %
+                                                              60)
+                                                          .floor()
+                                                          .toString()
+                                                          .padLeft(2, '0');
+                                                      minutesStr =
+                                                          ((newTick / 60) % 60)
+                                                              .floor()
+                                                              .toString()
+                                                              .padLeft(2, '0');
+                                                      secondsStr =
+                                                          (newTick % 60)
+                                                              .floor()
+                                                              .toString()
+                                                              .padLeft(2, '0');
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            }
                                           },
                                         ),
                                         RaisedButton(
@@ -329,31 +337,34 @@ class BodyOfAppState extends State<BodyOfApp> {
                                                 buttonPressed();
                                               },
                                             );
-                                            timerStream = stopWatchStream();
-                                            timerSubscription =
-                                                timerStream.listen(
-                                              (int newTick) {
-                                                setState(
-                                                  () {
-                                                    hoursStr =
-                                                        ((newTick / (60 * 60)) %
-                                                                60)
-                                                            .floor()
-                                                            .toString()
-                                                            .padLeft(2, '0');
-                                                    minutesStr =
-                                                        ((newTick / 60) % 60)
-                                                            .floor()
-                                                            .toString()
-                                                            .padLeft(2, '0');
-                                                    secondsStr = (newTick % 60)
-                                                        .floor()
-                                                        .toString()
-                                                        .padLeft(2, '0');
-                                                  },
-                                                );
-                                              },
-                                            );
+                                            if (timerStream == null) {
+                                              timerStream = stopWatchStream();
+                                              timerSubscription =
+                                                  timerStream.listen(
+                                                (int newTick) {
+                                                  setState(
+                                                    () {
+                                                      hoursStr = ((newTick /
+                                                                  (60 * 60)) %
+                                                              60)
+                                                          .floor()
+                                                          .toString()
+                                                          .padLeft(2, '0');
+                                                      minutesStr =
+                                                          ((newTick / 60) % 60)
+                                                              .floor()
+                                                              .toString()
+                                                              .padLeft(2, '0');
+                                                      secondsStr =
+                                                          (newTick % 60)
+                                                              .floor()
+                                                              .toString()
+                                                              .padLeft(2, '0');
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            }
                                           },
                                         ),
                                         OutlineButton(
