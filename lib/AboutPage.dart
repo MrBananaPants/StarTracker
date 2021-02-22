@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-//import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatefulWidget {
@@ -28,9 +27,7 @@ class MyAppState extends State<AboutPage> {
               ),
               pinned: false,
               expandedHeight: 50.0,
-              //backgroundColor: Color(0xFFf3f3f8),
               flexibleSpace: FlexibleSpaceBar(
-                // titlePadding: EdgeInsets.fromLTRB(17, 0, 0, 0),
                 title: Text(
                   'Over',
                   style: TextStyle(
@@ -39,7 +36,6 @@ class MyAppState extends State<AboutPage> {
                   ),
                 ),
                 centerTitle: false,
-                // collapseMode: ,
               ),
             ),
             SliverList(

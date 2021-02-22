@@ -1,14 +1,10 @@
-//import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui';
-
 import 'package:condition/condition.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
-//import 'Snackbar.dart';
-//import 'stopwatch.dart';
 import 'FAQPage.dart';
 import 'AboutPage.dart';
 import 'dart:async';
@@ -87,15 +83,6 @@ class SizeConfig {
   }
 }
 
-var appBarColor = 0;
-var buttonColor = 1;
-var themeColor = [
-  0xFF0031CA,
-  0xFF3D5AFE,
-  0xFF004c40,
-  0xFF00796b,
-];
-
 class BodyOfAppState extends State<BodyOfApp> {
   void buttonPressed() {
     String url = requestURL[requestURLIndex];
@@ -137,8 +124,6 @@ class BodyOfAppState extends State<BodyOfApp> {
   bool buttonStatus = true;
   bool buttonSnelheid = false;
   bool buttonRichting = false;
-
-  int showBanner = 1;
 
   bool flag = true;
   Stream<int> timerStream;
@@ -195,7 +180,6 @@ class BodyOfAppState extends State<BodyOfApp> {
             SliverAppBar(
               pinned: false,
               expandedHeight: 80.0,
-              //backgroundColor: Color(0xFFf3f3f8),
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.fromLTRB(17, 0, 0, 0),
                 title: Text(
@@ -206,39 +190,11 @@ class BodyOfAppState extends State<BodyOfApp> {
                   ),
                 ),
                 centerTitle: false,
-                // collapseMode: ,
               ),
             ),
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  // if (showBanner == 1)
-                  //   MaterialBanner(
-                  //     content: const Text(
-                  //         'Deze app is nog in ontwikkeling. Er kunnen zich bugs voordoen.'),
-                  //     leading: CircleAvatar(
-                  //       child: Icon(Icons.error_outline),
-                  //     ),
-                  //     actions: [
-                  //       FlatButton(
-                  //         child: const Text('INFO'),
-                  //         onPressed: () {
-                  //           launch(
-                  //               "https://github.com/MrBananaPants/StarTracker");
-                  //         },
-                  //       ),
-                  //       FlatButton(
-                  //         child: const Text('SLUITEN'),
-                  //         onPressed: () {
-                  //           setState(
-                  //             () {
-                  //               showBanner = 0;
-                  //             },
-                  //           );
-                  //         },
-                  //       ),
-                  //     ],
-                  //   ),
                   Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -657,54 +613,6 @@ class BodyOfAppState extends State<BodyOfApp> {
                       ),
                     ),
                   ),
-                  // SizedBox(
-                  //   height: 15,
-                  // ),
-                  // Card(
-                  //   shape: RoundedRectangleBorder(
-                  //  shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //         ),
-                  //         elevation: 10,
-                  //   clipBehavior: Clip.antiAlias,
-                  //   margin: EdgeInsets.only(left: 13, right: 13, top: 3),
-                  //   child: Container(
-                  //     padding: EdgeInsets.symmetric(horizontal: 10),
-                  //     child: Column(
-                  //       children: [
-                  //         ListTile(
-                  //           title: Text(
-                  //             'Timer',
-                  //style: TextStyle(
-                  //              color:
-                  //                  Theme.of(context).textTheme.bodyText1.color,
-                  //            ),
-                  //           ),
-                  //         ),
-                  //         Container(
-                  //           child: Conditioned(
-                  //             cases: [
-                  //               Case(
-                  //                 timerStatus == true,
-                  //                 builder: () => Padding(
-                  //                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                  //                   child: Text(
-                  //                     "$hoursStr:$minutesStr:$secondsStr",
-                  //                     style: TextStyle(
-                  //                       fontSize: 16.0,
-                  //                     ),
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //               Case(timerStatus == false, builder: () => null),
-                  //             ],
-                  //             defaultBuilder: () => Text("Null value returned"),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(
                     height: 15,
                   ),
@@ -744,44 +652,6 @@ class BodyOfAppState extends State<BodyOfApp> {
                   SizedBox(
                     height: 15,
                   ),
-                  // Card(
-                  //   shape:
-                  //       RoundedRectangleBorder(                    borderRadius: BorderRadius.circular(10),
-                  // ),
-                  // elevation: 10,
-                  //   clipBehavior: Clip.antiAlias,
-                  //   margin: EdgeInsets.only(left: 13, right: 13, top: 3),
-                  //   child: Container(
-                  //     padding: EdgeInsets.symmetric(horizontal: 10),
-                  //     child: Column(
-                  //       children: [
-                  //         ListTile(
-                  //           title: Text(
-                  //             'Snackbar',
-                  //           ),
-                  //         ),
-                  //         ButtonBar(
-                  //           buttonHeight: 40,
-                  //           buttonMinWidth: 150,
-                  //           alignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             RaisedButton(
-                  //               shape: RoundedRectangleBorder(
-                  //                 borderRadius: BorderRadius.circular(7),
-                  //               ),
-                  //               color: Color(0xFF3D5AFE),
-                  //               child: const Text('TOON SNACKBAR'),
-                  //               onPressed: () {
-                  //                 //action
-                  //               },
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-
                   SizedBox(
                     height: 200,
                   ),
@@ -792,15 +662,7 @@ class BodyOfAppState extends State<BodyOfApp> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        // shape: AutomaticNotchedShape(
-        //   RoundedRectangleBorder(),
-        //   StadiumBorder(
-        //     side: BorderSide(),
-        //   ),
-        // ),
-
         elevation: 8,
-
         child: SizedBox(
           height: 55,
           child: Row(
@@ -885,15 +747,6 @@ class BodyOfAppState extends State<BodyOfApp> {
                 );
               },
             );
-            // timerSubscription.cancel();
-            // timerStream = null;
-            // setState(
-            //   () {
-            //     hoursStr = '00';
-            //     minutesStr = '00';
-            //     secondsStr = '00';
-            //   },
-            // );
           }
           resetPressed();
           setState(
@@ -908,21 +761,3 @@ class BodyOfAppState extends State<BodyOfApp> {
     );
   }
 }
-
-class SnackBarDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SnackBar Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('SnackBar Demo'),
-        ),
-        body: MaterialApp(),
-      ),
-    );
-  }
-}
-
-//Command to push to iPhone
-// flutter build ios --release
