@@ -62,9 +62,7 @@ class SettingsPageState extends State<SettingsPage> {
               ),
               pinned: false,
               expandedHeight: 50.0,
-              //backgroundColor: Color(0xFFf3f3f8),
               flexibleSpace: FlexibleSpaceBar(
-                // titlePadding: EdgeInsets.fromLTRB(17, 0, 0, 0),
                 title: Text(
                   'Instellingen (niet functioneel)',
                   style: TextStyle(
@@ -73,7 +71,6 @@ class SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 centerTitle: false,
-                // collapseMode: ,
               ),
             ),
             SliverList(
