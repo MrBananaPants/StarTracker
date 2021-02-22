@@ -21,9 +21,10 @@ void main() {
       theme: ThemeData(
         //Light theme data
         textTheme: TextTheme(
-          bodyText1: TextStyle(),
-          headline3: TextStyle(),
-        ).apply(bodyColor: Colors.black),
+            bodyText2: TextStyle(color: Color(0xFF3D5AFE)),
+            bodyText1: TextStyle(color: Colors.black),
+            headline3: TextStyle(color: Colors.black)),
+
         scaffoldBackgroundColor: Color(0xFFf3f3f8),
         cardColor: Colors.white,
         shadowColor: Color(0xFFe2f1fd),
@@ -41,9 +42,10 @@ void main() {
       darkTheme: ThemeData(
         //Dark theme data
         textTheme: TextTheme(
-          bodyText1: TextStyle(),
-          headline3: TextStyle(),
-        ).apply(bodyColor: Colors.white),
+            bodyText2: TextStyle(color: Colors.white),
+            bodyText1: TextStyle(color: Colors.white),
+            headline3: TextStyle(color: Colors.white)),
+
         scaffoldBackgroundColor: Color(0xFF2b2b2b),
         backgroundColor: Colors.black,
         cardColor: Color(0xFF454545),
@@ -231,8 +233,14 @@ class BodyOfAppState extends State<BodyOfApp> {
                                             borderRadius:
                                                 BorderRadius.circular(7),
                                           ),
-                                          child: const Text(
+                                          child: Text(
                                             'AAN',
+                                            style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2
+                                                  .color,
+                                            ),
                                           ),
                                           onPressed: () {
                                             setState(
@@ -353,7 +361,15 @@ class BodyOfAppState extends State<BodyOfApp> {
                                             borderRadius:
                                                 BorderRadius.circular(7),
                                           ),
-                                          child: const Text('UIT'),
+                                          child: Text(
+                                            'UIT',
+                                            style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2
+                                                  .color,
+                                            ),
+                                          ),
                                           onPressed: () {
                                             setState(
                                               () {
@@ -425,7 +441,15 @@ class BodyOfAppState extends State<BodyOfApp> {
                                                 borderRadius:
                                                     BorderRadius.circular(7),
                                               ),
-                                              child: const Text('TRAAG'),
+                                              child: Text(
+                                                'TRAAG',
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2
+                                                      .color,
+                                                ),
+                                              ),
                                               onPressed: () {
                                                 setState(() {
                                                   changeStateToSNEL();
@@ -478,7 +502,15 @@ class BodyOfAppState extends State<BodyOfApp> {
                                                 borderRadius:
                                                     BorderRadius.circular(7),
                                               ),
-                                              child: const Text('SNEL'),
+                                              child: Text(
+                                                'SNEL',
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2
+                                                      .color,
+                                                ),
+                                              ),
                                               onPressed: () {
                                                 setState(() {
                                                   changeStateToTRAAG();
@@ -536,7 +568,15 @@ class BodyOfAppState extends State<BodyOfApp> {
                                           borderRadius:
                                               BorderRadius.circular(7),
                                         ),
-                                        child: const Text('OMHOOG'),
+                                        child: Text(
+                                          'OMHOOG',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2
+                                                .color,
+                                          ),
+                                        ),
                                         onPressed: () {
                                           setState(() {
                                             changeStateToOMLAAG();
@@ -593,7 +633,15 @@ class BodyOfAppState extends State<BodyOfApp> {
                                           borderRadius:
                                               BorderRadius.circular(7),
                                         ),
-                                        child: const Text('OMLAAG'),
+                                        child: Text(
+                                          'OMLAAG',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2
+                                                .color,
+                                          ),
+                                        ),
                                         onPressed: () {
                                           setState(() {
                                             changeStateToOMHOOG();

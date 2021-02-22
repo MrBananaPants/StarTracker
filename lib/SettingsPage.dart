@@ -112,7 +112,15 @@ class SettingsPageState extends State<SettingsPage> {
                                           borderRadius:
                                               BorderRadius.circular(7),
                                         ),
-                                        child: const Text('AAN'),
+                                        child: Text(
+                                          'AAN',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2
+                                                .color,
+                                          ),
+                                        ),
                                         onPressed: () {
                                           setState(() {
                                             changeThemeToAAN();
@@ -161,7 +169,15 @@ class SettingsPageState extends State<SettingsPage> {
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(7)),
-                                        child: const Text('UIT'),
+                                        child: Text(
+                                          'UIT',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2
+                                                .color,
+                                          ),
+                                        ),
                                         onPressed: () {
                                           setState(
                                             () {
