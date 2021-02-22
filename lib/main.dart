@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 import 'package:condition/condition.dart';
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
@@ -809,17 +810,13 @@ class BodyOfAppState extends State<BodyOfApp> {
                   if (value == 0) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => FAQPage(),
-                      ),
+                      CupertinoPageRoute(builder: (context) => FAQPage()),
                     );
                   }
                   if (value == 1) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => AboutPage(),
-                      ),
+                      CupertinoPageRoute(builder: (context) => AboutPage()),
                     );
                   }
                 },
@@ -849,14 +846,8 @@ class BodyOfAppState extends State<BodyOfApp> {
               IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SettingsPage();
-                      },
-                    ),
-                  );
+                  Navigator.push(context,
+                      CupertinoPageRoute(builder: (context) => SettingsPage()));
                 },
               )
             ],
@@ -932,10 +923,6 @@ class SnackBarDemo extends StatelessWidget {
     );
   }
 }
-
-///////////////////////////
-///////SETTINGS PAGE///////
-///////////////////////////
 
 //Command to push to iPhone
 // flutter build ios --release
