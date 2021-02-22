@@ -13,98 +13,135 @@ class MyAppState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 4,
-        backgroundColor: Color(0xFF0031CA),
-        title: Text("Over"),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Column(
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  elevation: 4,
-                  clipBehavior: Clip.antiAlias,
-                  margin: EdgeInsets.only(left: 13, right: 13, top: 20),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text(
-                            'Over deze app',
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                          child: Text(
-                            "Deze app is door Joran ontwikkeld voor zijn GIP StarTracker. Met deze app kan de StarTracker draadloos bediend worden.",
-                            style: TextStyle(
-                                //color: Colors.black.withOpacity(0.6),
-                                ),
-                          ),
-                        ),
-                        ListTile(
-                          title: Text(
-                            'GitHub',
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                          child: GestureDetector(
-                            child: Text(
-                              "GitHub StarTracker",
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: Colors.blue),
-                            ),
-                            onTap: () {
-                              launch(
-                                  "https://github.com/MrBananaPants/StarTracker");
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Theme.of(context).textTheme.bodyText1.color,
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              pinned: false,
+              expandedHeight: 50.0,
+              //backgroundColor: Color(0xFFf3f3f8),
+              flexibleSpace: FlexibleSpaceBar(
+                // titlePadding: EdgeInsets.fromLTRB(17, 0, 0, 0),
+                title: Text(
+                  'Over',
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText1.color,
+                    fontFamily: 'SF',
                   ),
                 ),
-              ],
+                centerTitle: false,
+                // collapseMode: ,
+              ),
             ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Text(
-                      "Versie: Pre-release v0.3",
-                      style: TextStyle(
-                          //color: Colors.black.withOpacity(0.6),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 10,
+                    clipBehavior: Clip.antiAlias,
+                    margin: EdgeInsets.only(left: 13, right: 13, top: 20),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            title: Text(
+                              'Over deze app',
+                              style: TextStyle(
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            child: Text(
+                              "Deze app is door Joran ontwikkeld voor zijn GIP StarTracker. Met deze app kan de StarTracker draadloos bediend worden.",
+                              style: TextStyle(
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'GitHub',
+                              style: TextStyle(
+                                color:
+                                    Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            child: GestureDetector(
+                              child: Text(
+                                "GitHub StarTracker",
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              onTap: () {
+                                launch(
+                                    "https://github.com/MrBananaPants/StarTracker");
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Text(
-                      "Flutter: 1.22.6",
-                      style: TextStyle(
-                          //color: Colors.black.withOpacity(0.6),
-                          ),
-                    ),
+                  SizedBox(
+                    height: 15,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                    child: Text(
-                      "Joran Vancoillie",
-                      style: TextStyle(
-                          //color: Colors.black.withOpacity(0.6),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Text(
+                          "Versie: Pre-release v0.3",
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1.color,
                           ),
-                    ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Text(
+                          "Flutter: 1.22.6",
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1.color,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        child: Text(
+                          "Joran Vancoillie",
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1.color,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 375,
                   ),
                 ],
               ),
