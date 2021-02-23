@@ -23,4 +23,3 @@ You can control following things:
 # Bugs / problems
 
 - APK needs to be signed.
-- The timer sometimes keeps counting even when it's turned off.
