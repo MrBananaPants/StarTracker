@@ -1,12 +1,14 @@
 # Star Tracker
-![Home](/screenshot/iPhone_small.png?raw=true)
-
 An Android and IOS app to wirelessly control an Arduino (ESP8266).
 The app is completely written in Dart to make it cross-platform compatible.
 You can control following things:
 - Status (on/off)
 - Speed
 - Direction of the motor
+
+<div align="center">
+    <img src="/screenshot/iPhone.png" width="300"/>
+</div>
 
 # Notice
 
