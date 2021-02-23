@@ -6,7 +6,7 @@ You can control following things:
 - Speed
 - Direction of the motor
 
-<div align="center">
+<div align="left">
     <img src="/screenshot/iPhone.png" width="300"/>
 </div>
 
