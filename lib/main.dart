@@ -448,6 +448,10 @@ class BodyOfAppState extends State<BodyOfApp> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             OutlineButton(
+                                              // borderSide: BorderSide(
+                                              //   width: 1,
+                                              //   color: Color(0xFF3D5AFE),
+                                              // ),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(7),
@@ -712,7 +716,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                     height: 15,
                   ),
                   SizedBox(
-                    height: 200,
+                    height: 150,
                   ),
                 ],
               ),

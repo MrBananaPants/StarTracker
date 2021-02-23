@@ -89,7 +89,7 @@ class SettingsPageState extends State<SettingsPage> {
                         children: [
                           ListTile(
                             title: Text(
-                              'Timer',
+                              'Arduino LED',
                               style: TextStyle(
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,
