@@ -1,4 +1,6 @@
-import 'dart:ui';
+import 'dart:convert';
+
+import 'package:geolocator/geolocator.dart';
 import 'package:condition/condition.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -8,11 +10,17 @@ import 'SettingsPage.dart';
 import 'FAQPage.dart';
 import 'AboutPage.dart';
 import 'dart:async';
+import 'dart:ui';
+
+const apiKey = '40a5994694fe3f819ab0e809530381bc';
+
 //import 'package:weather/weather.dart';
 
 // WeatherFactory wf = new WeatherFactory('40a5994694fe3f819ab0e809530381bc',
 //     language: Language.DUTCH);
 // String cityName = 'Brussel';
+
+//getLocation();
 
 void main() {
   runApp(
@@ -108,9 +116,6 @@ class BodyOfAppState extends State<BodyOfApp> {
     buttonStatus = false;
     buttonSnelheid = true;
     buttonRichting = true;
-
-    //  Weather weather = await wf.currentWeatherByCityName(cityName);
-    //  print(weather);
   }
 
   var requestURLIndex = 0;
@@ -122,6 +127,9 @@ class BodyOfAppState extends State<BodyOfApp> {
     'http://192.168.4.1/RichtingOmhoog',
     'http://192.168.4.1/RichtingOmlaag',
   ];
+
+  double latitude;
+  double longitude;
 
   bool buttonStatus = true;
   bool buttonSnelheid = false;
@@ -172,6 +180,53 @@ class BodyOfAppState extends State<BodyOfApp> {
   }
 
   void startStopWatch() {}
+
+  void getLocation() async {
+    Position location = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+    latitude = location.latitude;
+    longitude = location.longitude;
+
+    getData();
+  }
+
+  var cloudCover;
+  var temperature;
+  String description;
+  String location;
+  var neerslag;
+
+  void getData() async {
+    Response response = await get('https://api.openweathermap.org/data/2.5/find?lat=$latitude&lon=$longitude&cnt=10&appid=$apiKey&units=metric&lang=nl');
+
+    if (response.statusCode == 200) {
+      String weatherData = response.body;
+      print(weatherData);
+
+      var decodedData = jsonDecode(weatherData);
+      location = decodedData['list'][0]['name'];
+      temperature = decodedData['list'][0]['main']['temp'];
+      cloudCover = decodedData['list'][0]['clouds']['all'];
+      description = decodedData['list'][0]['weather'][0]['description'];
+      neerslag = decodedData['list'][0]['rain'];
+
+      if (neerslag == null) {
+        neerslag = 0;
+      }
+
+      temperature = temperature.round();
+      print(location);
+      print(temperature);
+      print(cloudCover);
+      print(description);
+      print(neerslag);
+      setState(() {});
+    } else {
+      print(response.statusCode);
+    }
+  }
+
+  void updateUI(dynamic weatherData) {}
 
   @override
   Widget build(BuildContext context) {
@@ -617,6 +672,82 @@ class BodyOfAppState extends State<BodyOfApp> {
                   ),
                   SizedBox(
                     height: 15,
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 10,
+                    clipBehavior: Clip.antiAlias,
+                    margin: EdgeInsets.only(
+                      left: 13,
+                      right: 13,
+                      top: 3,
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            title: Text(
+                              'Weer',
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                          ),
+                          OutlinedButton(
+                            style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                            child: Text(
+                              'UPDATE',
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyText2.color,
+                              ),
+                            ),
+                            onPressed: () {
+                              getLocation();
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            child: Text(
+                              'Locatie: $location',
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Beschrijving: $description',
+                            style: TextStyle(
+                              color: Theme.of(context).textTheme.bodyText1.color,
+                            ),
+                          ),
+                          Text(
+                            'Bewolking: $cloudCover%',
+                            style: TextStyle(
+                              color: Theme.of(context).textTheme.bodyText1.color,
+                            ),
+                          ),
+                          Text(
+                            'Neerslag: $neerslag%',
+                            style: TextStyle(
+                              color: Theme.of(context).textTheme.bodyText1.color,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            child: Text(
+                              'Temperatuur: $temperature°C',
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyText1.color,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 150,

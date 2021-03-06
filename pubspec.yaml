@@ -15,11 +15,12 @@ dependencies:
   flutter:
     sdk: flutter
   weather:
-  url_launcher: 5.7.10
+  url_launcher: 
   cupertino_icons: ^1.0.0
+  geolocator: ^7.0.1
 
 dev_dependencies:
-  http: ^0.12.2
+  http:
   flutter_test:
     sdk: flutter
 
