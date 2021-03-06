@@ -19,32 +19,30 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        //Light theme data
-        textTheme: TextTheme(
-            bodyText2: TextStyle(color: Color(0xFF3D5AFE)),
-            bodyText1: TextStyle(color: Colors.black),
-            headline3: TextStyle(color: Colors.black)),
-
-        scaffoldBackgroundColor: Color(0xFFf3f3f8),
-        cardColor: Colors.white,
-        shadowColor: Color(0xFFe2f1fd),
-        iconTheme: IconThemeData(color: Colors.black),
-        appBarTheme: AppBarTheme(color: Color(0xFFf3f3f8)),
-        bottomAppBarColor: Colors.white,
-        buttonTheme: ButtonThemeData(
-          buttonColor: Color(0xFF3D5AFE),
-          shape: RoundedRectangleBorder(),
-          textTheme: ButtonTextTheme.primary,
-        ),
-        floatingActionButtonTheme:
-            FloatingActionButtonThemeData(backgroundColor: Color(0xFF3D5AFE)),
-      ),
+          //Light theme data
+          textTheme:
+              TextTheme(bodyText2: TextStyle(color: Color(0xFF3D5AFE)), bodyText1: TextStyle(color: Colors.black), headline3: TextStyle(color: Colors.black)),
+          scaffoldBackgroundColor: Color(0xFFf3f3f8),
+          cardColor: Colors.white,
+          shadowColor: Color(0xFFe2f1fd),
+          iconTheme: IconThemeData(color: Colors.black),
+          appBarTheme: AppBarTheme(color: Color(0xFFf3f3f8)),
+          bottomAppBarColor: Colors.white,
+          // outlinedButtonTheme: OutlinedButtonThemeData(style: ButtonStyle( ),),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF3D5AFE), shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(7))))),
+          outlinedButtonTheme:
+              OutlinedButtonThemeData(style: ElevatedButton.styleFrom(shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(7))))),
+          buttonTheme: ButtonThemeData(
+            buttonColor: Color(0xFF3D5AFE),
+            shape: RoundedRectangleBorder(),
+            textTheme: ButtonTextTheme.primary,
+          ),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xFF3D5AFE))),
       darkTheme: ThemeData(
         //Dark theme data
-        textTheme: TextTheme(
-            bodyText2: TextStyle(color: Colors.white),
-            bodyText1: TextStyle(color: Colors.white),
-            headline3: TextStyle(color: Colors.white)),
+        textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white), bodyText1: TextStyle(color: Colors.white), headline3: TextStyle(color: Colors.white)),
 
         scaffoldBackgroundColor: Color(0xFF2b2b2b),
         backgroundColor: Colors.black,
@@ -52,12 +50,8 @@ void main() {
         iconTheme: IconThemeData(color: Colors.white),
         appBarTheme: AppBarTheme(color: Color(0xFF2b2b2b)),
         bottomAppBarColor: Color(0xFF454545),
-        buttonTheme: ButtonThemeData(
-            buttonColor: Color(0xFF3D5AFE),
-            shape: RoundedRectangleBorder(),
-            textTheme: ButtonTextTheme.primary),
-        floatingActionButtonTheme:
-            FloatingActionButtonThemeData(backgroundColor: Color(0xFF3D5AFE)),
+        buttonTheme: ButtonThemeData(buttonColor: Color(0xFF3D5AFE), shape: RoundedRectangleBorder(), textTheme: ButtonTextTheme.primary),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xFF3D5AFE)),
       ),
       home: BodyOfApp(),
     ),
@@ -216,38 +210,29 @@ class BodyOfAppState extends State<BodyOfApp> {
                             title: Text(
                               'Status',
                               style: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1.color,
+                                color: Theme.of(context).textTheme.bodyText1.color,
                               ),
                             ),
                           ),
                           Container(
                             child: Conditioned(
-                                cases: [
-                                  Case(
-                                    buttonStatus == true,
-                                    builder: () => ButtonBar(
-                                      buttonHeight: 40,
-                                      buttonMinWidth:
-                                          SizeConfig.blockSizeHorizontal * 38,
-                                      alignment: MainAxisAlignment.spaceBetween,
+                              cases: [
+                                Case(
+                                  buttonStatus == true,
+                                  builder: () => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        OutlineButton(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(7),
-                                          ),
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
                                           child: Text(
                                             'AAN',
                                             style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2
-                                                  .color,
+                                              color: Theme.of(context).textTheme.bodyText2.color,
                                             ),
                                           ),
                                           onPressed: () {
-                                            //if (buttonStatus = true) {}
                                             setState(
                                               () {
                                                 changeStateToUIT();
@@ -257,27 +242,13 @@ class BodyOfAppState extends State<BodyOfApp> {
                                             );
                                             if (timerStream == null) {
                                               timerStream = stopWatchStream();
-                                              timerSubscription =
-                                                  timerStream.listen(
+                                              timerSubscription = timerStream.listen(
                                                 (int newTick) {
                                                   setState(
                                                     () {
-                                                      hoursStr = ((newTick /
-                                                                  (60 * 60)) %
-                                                              60)
-                                                          .floor()
-                                                          .toString()
-                                                          .padLeft(2, '0');
-                                                      minutesStr =
-                                                          ((newTick / 60) % 60)
-                                                              .floor()
-                                                              .toString()
-                                                              .padLeft(2, '0');
-                                                      secondsStr =
-                                                          (newTick % 60)
-                                                              .floor()
-                                                              .toString()
-                                                              .padLeft(2, '0');
+                                                      hoursStr = ((newTick / (60 * 60)) % 60).floor().toString().padLeft(2, '0');
+                                                      minutesStr = ((newTick / 60) % 60).floor().toString().padLeft(2, '0');
+                                                      secondsStr = (newTick % 60).floor().toString().padLeft(2, '0');
                                                     },
                                                   );
                                                 },
@@ -285,11 +256,8 @@ class BodyOfAppState extends State<BodyOfApp> {
                                             }
                                           },
                                         ),
-                                        RaisedButton(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(7),
-                                          ),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
                                           child: Text(
                                             'UIT',
                                           ),
@@ -315,19 +283,16 @@ class BodyOfAppState extends State<BodyOfApp> {
                                       ],
                                     ),
                                   ),
-                                  Case(
-                                    buttonStatus == false,
-                                    builder: () => ButtonBar(
-                                      buttonHeight: 40,
-                                      buttonMinWidth:
-                                          SizeConfig.blockSizeHorizontal * 38,
-                                      alignment: MainAxisAlignment.spaceBetween,
+                                ),
+                                Case(
+                                  buttonStatus == false,
+                                  builder: () => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        RaisedButton(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(7),
-                                          ),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
                                           child: const Text('AAN'),
                                           onPressed: () {
                                             setState(
@@ -339,27 +304,13 @@ class BodyOfAppState extends State<BodyOfApp> {
                                             );
                                             if (timerStream == null) {
                                               timerStream = stopWatchStream();
-                                              timerSubscription =
-                                                  timerStream.listen(
+                                              timerSubscription = timerStream.listen(
                                                 (int newTick) {
                                                   setState(
                                                     () {
-                                                      hoursStr = ((newTick /
-                                                                  (60 * 60)) %
-                                                              60)
-                                                          .floor()
-                                                          .toString()
-                                                          .padLeft(2, '0');
-                                                      minutesStr =
-                                                          ((newTick / 60) % 60)
-                                                              .floor()
-                                                              .toString()
-                                                              .padLeft(2, '0');
-                                                      secondsStr =
-                                                          (newTick % 60)
-                                                              .floor()
-                                                              .toString()
-                                                              .padLeft(2, '0');
+                                                      hoursStr = ((newTick / (60 * 60)) % 60).floor().toString().padLeft(2, '0');
+                                                      minutesStr = ((newTick / 60) % 60).floor().toString().padLeft(2, '0');
+                                                      secondsStr = (newTick % 60).floor().toString().padLeft(2, '0');
                                                     },
                                                   );
                                                 },
@@ -367,18 +318,12 @@ class BodyOfAppState extends State<BodyOfApp> {
                                             }
                                           },
                                         ),
-                                        OutlineButton(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(7),
-                                          ),
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
                                           child: Text(
                                             'UIT',
                                             style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2
-                                                  .color,
+                                              color: Theme.of(context).textTheme.bodyText2.color,
                                             ),
                                           ),
                                           onPressed: () {
@@ -403,10 +348,12 @@ class BodyOfAppState extends State<BodyOfApp> {
                                       ],
                                     ),
                                   ),
-                                ],
-                                defaultBuilder: () {
-                                  return Text("Null value returned");
-                                }),
+                                ),
+                              ],
+                              defaultBuilder: () {
+                                return Text("Null value returned");
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -430,8 +377,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                             title: Text(
                               'Snelheid',
                               style: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1.color,
+                                color: Theme.of(context).textTheme.bodyText1.color,
                               ),
                             ),
                           ),
@@ -439,102 +385,76 @@ class BodyOfAppState extends State<BodyOfApp> {
                             child: Conditioned(
                               cases: [
                                 Case(buttonSnelheid == true,
-                                    builder: () => ButtonBar(
-                                          buttonHeight: 40,
-                                          buttonMinWidth:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  38,
-                                          alignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            OutlineButton(
-                                              // borderSide: BorderSide(
-                                              //   width: 1,
-                                              //   color: Color(0xFF3D5AFE),
-                                              // ),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
-                                              ),
-                                              child: Text(
-                                                'TRAAG',
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2
-                                                      .color,
+                                    builder: () => Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              OutlinedButton(
+                                                style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                                child: Text(
+                                                  'TRAAG',
+                                                  style: TextStyle(
+                                                    color: Theme.of(context).textTheme.bodyText2.color,
+                                                  ),
                                                 ),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    changeStateToSNEL();
+                                                    requestURLIndex = 2;
+                                                    buttonPressed();
+                                                  });
+                                                },
                                               ),
-                                              onPressed: () {
-                                                setState(() {
-                                                  changeStateToSNEL();
-                                                  requestURLIndex = 2;
-                                                  buttonPressed();
-                                                });
-                                              },
-                                            ),
-                                            RaisedButton(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                                child: const Text('SNEL'),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    changeStateToTRAAG();
+                                                    requestURLIndex = 3;
+                                                    buttonPressed();
+                                                  });
+                                                },
                                               ),
-                                              child: const Text('SNEL'),
-                                              onPressed: () {
-                                                setState(() {
-                                                  changeStateToTRAAG();
-                                                  requestURLIndex = 3;
-                                                  buttonPressed();
-                                                });
-                                              },
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         )),
                                 Case(buttonSnelheid == false,
-                                    builder: () => ButtonBar(
-                                          buttonHeight: 40,
-                                          buttonMinWidth:
-                                              SizeConfig.blockSizeHorizontal *
-                                                  38,
-                                          alignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            RaisedButton(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
+                                    builder: () => Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              ElevatedButton(
+                                                style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                                child: const Text('TRAAG'),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    changeStateToSNEL();
+                                                    requestURLIndex = 2;
+                                                    buttonPressed();
+                                                  });
+                                                },
                                               ),
-                                              child: const Text('TRAAG'),
-                                              onPressed: () {
-                                                setState(() {
-                                                  changeStateToSNEL();
-                                                  requestURLIndex = 2;
-                                                  buttonPressed();
-                                                });
-                                              },
-                                            ),
-                                            OutlineButton(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
-                                              ),
-                                              child: Text(
-                                                'SNEL',
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2
-                                                      .color,
+                                              OutlinedButton(
+                                                style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                                child: Text(
+                                                  'SNEL',
+                                                  style: TextStyle(
+                                                    color: Theme.of(context).textTheme.bodyText2.color,
+                                                  ),
                                                 ),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    changeStateToTRAAG();
+                                                    requestURLIndex = 3;
+                                                    buttonPressed();
+                                                  });
+                                                },
                                               ),
-                                              onPressed: () {
-                                                setState(() {
-                                                  changeStateToTRAAG();
-                                                  requestURLIndex = 3;
-                                                  buttonPressed();
-                                                });
-                                              },
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         )),
                               ],
                               defaultBuilder: () => Text("Null value returned"),
@@ -562,8 +482,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                             title: Text(
                               'Richting',
                               style: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1.color,
+                                color: Theme.of(context).textTheme.bodyText1.color,
                               ),
                             ),
                           ),
@@ -572,100 +491,82 @@ class BodyOfAppState extends State<BodyOfApp> {
                               cases: [
                                 Case(
                                   buttonRichting == true,
-                                  builder: () => ButtonBar(
-                                    buttonHeight: 40,
-                                    buttonMinWidth:
-                                        SizeConfig.blockSizeHorizontal * 38,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      OutlineButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                        ),
-                                        child: Text(
-                                          'OMHOOG',
-                                          style: TextStyle(
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2
-                                                .color,
+                                  builder: () => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                          child: Text(
+                                            'OMHOOG',
+                                            style: TextStyle(
+                                              color: Theme.of(context).textTheme.bodyText2.color,
+                                            ),
                                           ),
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            changeStateToOMLAAG();
-                                            requestURLIndex = 4;
-                                            buttonPressed();
-                                          });
-                                        },
-                                      ),
-                                      RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                        ),
-                                        child: const Text('OMLAAG'),
-                                        onPressed: () {
-                                          setState(
-                                            () {
-                                              changeStateToOMHOOG();
-                                              requestURLIndex = 5;
+                                          onPressed: () {
+                                            setState(() {
+                                              changeStateToOMLAAG();
+                                              requestURLIndex = 4;
                                               buttonPressed();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ],
+                                            });
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                          child: const Text('OMLAAG'),
+                                          onPressed: () {
+                                            setState(
+                                              () {
+                                                changeStateToOMHOOG();
+                                                requestURLIndex = 5;
+                                                buttonPressed();
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Case(
                                   buttonRichting == false,
-                                  builder: () => ButtonBar(
-                                    buttonHeight: 40,
-                                    buttonMinWidth:
-                                        SizeConfig.blockSizeHorizontal * 38,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
+                                  builder: () => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                          child: const Text('OMHOOG'),
+                                          onPressed: () {
+                                            setState(
+                                              () {
+                                                changeStateToOMLAAG();
+                                                requestURLIndex = 4;
+                                                buttonPressed();
+                                              },
+                                            );
+                                          },
                                         ),
-                                        child: const Text('OMHOOG'),
-                                        onPressed: () {
-                                          setState(
-                                            () {
-                                              changeStateToOMLAAG();
-                                              requestURLIndex = 4;
-                                              buttonPressed();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      OutlineButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                        ),
-                                        child: Text(
-                                          'OMLAAG',
-                                          style: TextStyle(
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2
-                                                .color,
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                          child: Text(
+                                            'OMLAAG',
+                                            style: TextStyle(
+                                              color: Theme.of(context).textTheme.bodyText2.color,
+                                            ),
                                           ),
+                                          onPressed: () {
+                                            setState(() {
+                                              changeStateToOMHOOG();
+                                              requestURLIndex = 5;
+                                              buttonPressed();
+                                            });
+                                          },
                                         ),
-                                        onPressed: () {
-                                          setState(() {
-                                            changeStateToOMHOOG();
-                                            requestURLIndex = 5;
-                                            buttonPressed();
-                                          });
-                                        },
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -693,8 +594,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                           title: Text(
                             'Timer',
                             style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodyText1.color,
+                              color: Theme.of(context).textTheme.bodyText1.color,
                             ),
                           ),
                         ),
@@ -704,8 +604,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                             "$hoursStr:$minutesStr:$secondsStr",
                             style: TextStyle(
                               fontSize: 16.0,
-                              color:
-                                  Theme.of(context).textTheme.bodyText1.color,
+                              color: Theme.of(context).textTheme.bodyText1.color,
                             ),
                           ),
                         ),
@@ -771,8 +670,7 @@ class BodyOfAppState extends State<BodyOfApp> {
               IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {
-                  Navigator.push(context,
-                      CupertinoPageRoute(builder: (context) => SettingsPage()));
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => SettingsPage()));
                 },
               )
             ],
@@ -796,16 +694,9 @@ class BodyOfAppState extends State<BodyOfApp> {
               (int newTick) {
                 setState(
                   () {
-                    hoursStr = ((newTick / (60 * 60)) % 60)
-                        .floor()
-                        .toString()
-                        .padLeft(2, '0');
-                    minutesStr = ((newTick / 60) % 60)
-                        .floor()
-                        .toString()
-                        .padLeft(2, '0');
-                    secondsStr =
-                        (newTick % 60).floor().toString().padLeft(2, '0');
+                    hoursStr = ((newTick / (60 * 60)) % 60).floor().toString().padLeft(2, '0');
+                    minutesStr = ((newTick / 60) % 60).floor().toString().padLeft(2, '0');
+                    secondsStr = (newTick % 60).floor().toString().padLeft(2, '0');
                   },
                 );
               },

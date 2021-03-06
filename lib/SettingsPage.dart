@@ -91,8 +91,7 @@ class SettingsPageState extends State<SettingsPage> {
                             title: Text(
                               'Arduino LED',
                               style: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1.color,
+                                color: Theme.of(context).textTheme.bodyText1.color,
                               ),
                             ),
                           ),
@@ -101,92 +100,74 @@ class SettingsPageState extends State<SettingsPage> {
                               cases: [
                                 Case(
                                   buttonThema == true,
-                                  builder: () => ButtonBar(
-                                    buttonHeight: 40,
-                                    buttonMinWidth:
-                                        SizeConfig.blockSizeHorizontal * 38,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      OutlineButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                        ),
-                                        child: Text(
-                                          'AAN',
-                                          style: TextStyle(
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2
-                                                .color,
+                                  builder: () => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                          child: Text(
+                                            'AAN',
+                                            style: TextStyle(
+                                              color: Theme.of(context).textTheme.bodyText2.color,
+                                            ),
                                           ),
+                                          onPressed: () {
+                                            setState(() {
+                                              changeThemeToAAN();
+                                            });
+                                          },
                                         ),
-                                        onPressed: () {
-                                          setState(() {
-                                            changeThemeToAAN();
-                                          });
-                                        },
-                                      ),
-                                      RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                          child: const Text('UIT'),
+                                          onPressed: () {
+                                            setState(() {
+                                              changeThemeToUIT();
+                                            });
+                                          },
                                         ),
-                                        color: Color(0xFF3D5AFE),
-                                        child: const Text('UIT'),
-                                        onPressed: () {
-                                          setState(() {
-                                            changeThemeToUIT();
-                                          });
-                                        },
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Case(
                                   buttonThema == false,
-                                  builder: () => ButtonBar(
-                                    buttonHeight: 40,
-                                    buttonMinWidth:
-                                        SizeConfig.blockSizeHorizontal * 38,
-                                    alignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(7)),
-                                        color: Color(0xFF3D5AFE),
-                                        child: const Text('AAN'),
-                                        onPressed: () {
-                                          setState(
-                                            () {
-                                              changeThemeToAAN();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      OutlineButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(7)),
-                                        child: Text(
-                                          'UIT',
-                                          style: TextStyle(
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2
-                                                .color,
-                                          ),
+                                  builder: () => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                          child: const Text('AAN'),
+                                          onPressed: () {
+                                            setState(
+                                              () {
+                                                changeThemeToAAN();
+                                              },
+                                            );
+                                          },
                                         ),
-                                        onPressed: () {
-                                          setState(
-                                            () {
-                                              changeThemeToUIT();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ],
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(minimumSize: Size(SizeConfig.blockSizeHorizontal * 38, 40)),
+                                          child: Text(
+                                            'UIT',
+                                            style: TextStyle(
+                                              color: Theme.of(context).textTheme.bodyText2.color,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            setState(
+                                              () {
+                                                changeThemeToUIT();
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
