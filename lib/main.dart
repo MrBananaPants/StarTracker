@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:condition/condition.dart';
@@ -182,11 +183,12 @@ class BodyOfAppState extends State<BodyOfApp> {
     getData();
   }
 
-  var cloudCover;
-  var temperature;
-  String description;
-  String location;
-  var neerslag;
+  String location = 'nog geen data';
+  String description = '';
+  var cloudCover = 0;
+  var neerslag = 0;
+  double temperatureValue = 0;
+  var temperature = 0;
 
   void getData() async {
     Response response = await get('https://api.openweathermap.org/data/2.5/find?lat=$latitude&lon=$longitude&cnt=10&appid=$apiKey&units=metric&lang=nl');
@@ -197,16 +199,16 @@ class BodyOfAppState extends State<BodyOfApp> {
 
       var decodedData = jsonDecode(weatherData);
       location = decodedData['list'][0]['name'];
-      temperature = decodedData['list'][0]['main']['temp'];
-      cloudCover = decodedData['list'][0]['clouds']['all'];
       description = decodedData['list'][0]['weather'][0]['description'];
+      cloudCover = decodedData['list'][0]['clouds']['all'];
       neerslag = decodedData['list'][0]['rain'];
+      temperatureValue = decodedData['list'][0]['main']['temp'];
 
       if (neerslag == null) {
         neerslag = 0;
       }
 
-      temperature = temperature.round();
+      temperature = temperatureValue.round();
       print(location);
       print(temperature);
       print(cloudCover);
