@@ -750,7 +750,7 @@ class BodyOfAppState extends State<BodyOfApp> {
                     ),
                   ),
                   SizedBox(
-                    height: 150,
+                    height: 38,
                   ),
                 ],
               ),
