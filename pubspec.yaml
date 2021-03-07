@@ -17,7 +17,7 @@ dependencies:
   weather:
   url_launcher: 
   cupertino_icons: ^1.0.0
-  geolocator: ^7.0.1
+  geolocator: 
 
 dev_dependencies:
   http:
