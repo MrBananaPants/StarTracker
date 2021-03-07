@@ -5,6 +5,7 @@ You can control following things:
 - Status (on/off)
 - Speed
 - Direction of the motor
+You can also see the weather data (from GPS location) to know if the sky is clear (to take photos) and if it will rain or not.
 
 <div align="left">
     <img src="/screenshot/iPhone.png" width="300"/>
@@ -20,7 +21,6 @@ You can control following things:
 # Features that need to be added
 
 - App icon
-- Weather data
 
 
 # Bugs / problems
