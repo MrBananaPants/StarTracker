@@ -14,14 +14,6 @@ import 'dart:ui';
 
 const apiKey = '40a5994694fe3f819ab0e809530381bc';
 
-//import 'package:weather/weather.dart';
-
-// WeatherFactory wf = new WeatherFactory('40a5994694fe3f819ab0e809530381bc',
-//     language: Language.DUTCH);
-// String cityName = 'Brussel';
-
-//getLocation();
-
 void main() {
   runApp(
     MaterialApp(
@@ -225,8 +217,6 @@ class BodyOfAppState extends State<BodyOfApp> {
       print(response.statusCode);
     }
   }
-
-  void updateUI(dynamic weatherData) {}
 
   @override
   Widget build(BuildContext context) {
