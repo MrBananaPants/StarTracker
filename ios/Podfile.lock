@@ -2,38 +2,26 @@ PODS:
   - Flutter (1.0.0)
   - geolocator (6.2.0):
     - Flutter
-  - location (0.0.1):
-    - Flutter
   - url_launcher (0.0.1):
-    - Flutter
-  - weather (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
-  - location (from `.symlinks/plugins/location/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
-  - weather (from `.symlinks/plugins/weather/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
   geolocator:
     :path: ".symlinks/plugins/geolocator/ios"
-  location:
-    :path: ".symlinks/plugins/location/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
-  weather:
-    :path: ".symlinks/plugins/weather/ios"
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   geolocator: f5e3de65e241caba7ce3e8a618803387bda73384
-  location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
-  weather: a61cb57d3f28e042b84c6ccdf3b3b2b1835530d2
 
 PODFILE CHECKSUM: 8bc275aefbb61176b74a34fbb19fd07e4c46e63c
 
