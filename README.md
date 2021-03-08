@@ -21,8 +21,9 @@ You can also see the weather data (from GPS location) to know if the sky is clea
 # Features that need to be added
 
 - App icon
+- LED control of Arduino in settings
 
 
 # Bugs / problems
 
-- APK needs to be signed.
+- none in v0.6.1
