@@ -106,7 +106,7 @@ class MyAppState extends State<AboutPage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: Text(
-                          "Versie: Pre-release v5.1",
+                          "Versie: v0.6.1-beta",
                           style: TextStyle(
                             color: Theme.of(context).textTheme.bodyText1.color,
                           ),
