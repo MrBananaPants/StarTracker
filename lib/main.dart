@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:ffi';
-import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:condition/condition.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,9 +5,11 @@ import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
-import 'FAQPage.dart';
 import 'AboutPage.dart';
+import 'dart:convert';
+import 'FAQPage.dart';
 import 'dart:async';
+
 import 'dart:ui';
 
 const apiKey = '40a5994694fe3f819ab0e809530381bc';
@@ -90,7 +89,6 @@ class BodyOfAppState extends State<BodyOfApp> {
   void buttonPressed() {
     String url = requestURL[requestURLIndex];
     get(url);
-    print(url);
   }
 
   void changeStateToAAN() => buttonStatus = true;

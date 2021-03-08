@@ -1,6 +1,7 @@
 import 'package:condition/condition.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -25,20 +26,20 @@ class SizeConfig {
   }
 }
 
-bool timerStatus = true;
-bool buttonThema = true;
+bool buttonLED = false;
 
-void changeThemeToAAN() => buttonThema = false;
-void changeThemeToUIT() => buttonThema = true;
+void changeLEDToAAN() => buttonLED = false;
+void changeLEDToUIT() => buttonLED = true;
 
-void setTimerToAAN() {
-  timerStatus = true;
-  buttonThema = false;
-}
+var requestURLIndex = 0;
+var requestURL = [
+  'http://192.168.4.1/LedAan',
+  'http://192.168.4.1/LedUit',
+];
 
-void setTimerToUIT() {
-  timerStatus = false;
-  buttonThema = true;
+void buttonPressed() {
+  String url = requestURL[requestURLIndex];
+  get(url);
 }
 
 class SettingsPageState extends State<SettingsPage> {
@@ -64,7 +65,7 @@ class SettingsPageState extends State<SettingsPage> {
               expandedHeight: 50.0,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
-                  'Instellingen (niet functioneel)',
+                  'Instellingen',
                   style: TextStyle(
                     color: Theme.of(context).textTheme.bodyText1.color,
                     fontFamily: 'SF',
@@ -99,7 +100,7 @@ class SettingsPageState extends State<SettingsPage> {
                             child: Conditioned(
                               cases: [
                                 Case(
-                                  buttonThema == true,
+                                  buttonLED == true,
                                   builder: () => Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -115,7 +116,9 @@ class SettingsPageState extends State<SettingsPage> {
                                           ),
                                           onPressed: () {
                                             setState(() {
-                                              changeThemeToAAN();
+                                              changeLEDToAAN();
+                                              requestURLIndex = 0;
+                                              buttonPressed();
                                             });
                                           },
                                         ),
@@ -124,7 +127,9 @@ class SettingsPageState extends State<SettingsPage> {
                                           child: const Text('UIT'),
                                           onPressed: () {
                                             setState(() {
-                                              changeThemeToUIT();
+                                              changeLEDToUIT();
+                                              requestURLIndex = 1;
+                                              buttonPressed();
                                             });
                                           },
                                         ),
@@ -133,7 +138,7 @@ class SettingsPageState extends State<SettingsPage> {
                                   ),
                                 ),
                                 Case(
-                                  buttonThema == false,
+                                  buttonLED == false,
                                   builder: () => Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -145,7 +150,9 @@ class SettingsPageState extends State<SettingsPage> {
                                           onPressed: () {
                                             setState(
                                               () {
-                                                changeThemeToAAN();
+                                                changeLEDToAAN();
+                                                requestURLIndex = 0;
+                                                buttonPressed();
                                               },
                                             );
                                           },
@@ -161,7 +168,9 @@ class SettingsPageState extends State<SettingsPage> {
                                           onPressed: () {
                                             setState(
                                               () {
-                                                changeThemeToUIT();
+                                                changeLEDToUIT();
+                                                requestURLIndex = 1;
+                                                buttonPressed();
                                               },
                                             );
                                           },
