@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:ffi';
-
+import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:condition/condition.dart';
 import 'package:flutter/cupertino.dart';
@@ -90,6 +90,7 @@ class BodyOfAppState extends State<BodyOfApp> {
   void buttonPressed() {
     String url = requestURL[requestURLIndex];
     get(url);
+    print(url);
   }
 
   void changeStateToAAN() => buttonStatus = true;
