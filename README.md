@@ -5,6 +5,7 @@ You can control following things:
 - Status (on/off)
 - Speed
 - Direction of the motor
+- Turn the LED on or off
 You can also see the weather data (from GPS location) to know if the sky is clear (to take photos) and if it will rain or not.
 
 <div align="left">
@@ -21,9 +22,8 @@ You can also see the weather data (from GPS location) to know if the sky is clea
 # Features that need to be added
 
 - App icon
-- LED control of Arduino in settings
 
 
 # Bugs / problems
 
-- none in v0.6.1
+- none in v0.7-beta
