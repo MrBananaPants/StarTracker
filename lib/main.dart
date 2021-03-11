@@ -6,10 +6,11 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
 import 'AboutPage.dart';
+import 'Stopwatch.dart';
 import 'dart:convert';
 import 'FAQPage.dart';
 import 'Theme.dart';
-import 'dart:async';
+//import 'dart:async';
 import 'dart:ui';
 
 const apiKey = '40a5994694fe3f819ab0e809530381bc';
@@ -63,7 +64,7 @@ class BodyOfAppState extends State<BodyOfApp> {
   void changeStateToOMHOOG() => buttonRichting = true;
   void changeStateToOMLAAG() => buttonRichting = false;
 
-  Future<void> resetPressed() async {
+  void resetPressed() {
     get(requestURL[0]);
     get(requestURL[3]);
     get(requestURL[5]);
@@ -89,52 +90,6 @@ class BodyOfAppState extends State<BodyOfApp> {
   bool buttonStatus = true;
   bool buttonSnelheid = false;
   bool buttonRichting = false;
-
-  bool flag = true;
-  Stream<int> timerStream;
-  StreamSubscription<int> timerSubscription;
-  String hoursStr = '00';
-  String minutesStr = '00';
-  String secondsStr = '00';
-
-  Stream<int> stopWatchStream() {
-    StreamController<int> streamController;
-    Timer timer;
-    Duration timerInterval = Duration(seconds: 1);
-    int counter = 0;
-
-    void stopTimer() {
-      if (timer != null) {
-        timer.cancel();
-        timer = null;
-        counter = 0;
-        streamController.close();
-      }
-    }
-
-    void tick(_) {
-      counter++;
-      streamController.add(counter);
-      if (!flag) {
-        stopTimer();
-      }
-    }
-
-    void startTimer() {
-      timer = Timer.periodic(timerInterval, tick);
-    }
-
-    streamController = StreamController<int>(
-      onListen: startTimer,
-      onCancel: stopTimer,
-      onResume: startTimer,
-      onPause: stopTimer,
-    );
-
-    return streamController.stream;
-  }
-
-  void startStopWatch() {}
 
   void getLocation() async {
     Position location = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
