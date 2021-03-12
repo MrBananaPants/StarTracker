@@ -1,3 +1,4 @@
+import 'package:url_launcher/url_launcher.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:condition/condition.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +11,6 @@ import 'Stopwatch.dart';
 import 'dart:convert';
 import 'FAQPage.dart';
 import 'Theme.dart';
-//import 'dart:async';
 import 'dart:ui';
 
 const apiKey = '40a5994694fe3f819ab0e809530381bc';
@@ -164,11 +164,6 @@ class BodyOfAppState extends State<BodyOfApp> {
               delegate: SliverChildListDelegate(
                 [
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
-                    clipBehavior: Clip.antiAlias,
                     margin: EdgeInsets.only(left: 13, right: 13, top: 20),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -331,11 +326,6 @@ class BodyOfAppState extends State<BodyOfApp> {
                     height: 15,
                   ),
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
-                    clipBehavior: Clip.antiAlias,
                     margin: EdgeInsets.only(left: 13, right: 13, top: 3),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -436,11 +426,6 @@ class BodyOfAppState extends State<BodyOfApp> {
                     height: 15,
                   ),
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
-                    clipBehavior: Clip.antiAlias,
                     margin: EdgeInsets.only(left: 13, right: 13, top: 3),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -549,10 +534,6 @@ class BodyOfAppState extends State<BodyOfApp> {
                     height: 15,
                   ),
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
                     clipBehavior: Clip.antiAlias,
                     margin: EdgeInsets.only(left: 13, right: 13, top: 3),
                     child: Container(
@@ -583,11 +564,6 @@ class BodyOfAppState extends State<BodyOfApp> {
                     height: 15,
                   ),
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
-                    clipBehavior: Clip.antiAlias,
                     margin: EdgeInsets.only(
                       left: 13,
                       right: 13,
@@ -668,7 +644,6 @@ class BodyOfAppState extends State<BodyOfApp> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        elevation: 8,
         child: SizedBox(
           height: 55,
           child: Row(
@@ -687,29 +662,126 @@ class BodyOfAppState extends State<BodyOfApp> {
                       CupertinoPageRoute(builder: (context) => AboutPage()),
                     );
                   }
+                  if (value == 2) {
+                    launch("https://github.com/MrBananaPants/StarTracker");
+                  }
                 },
                 icon: Icon(Icons.more_vert),
                 itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                   PopupMenuItem(
-                    child: Text(
-                      'FAQ',
-                      style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                    child: ListTile(
+                      contentPadding: EdgeInsets.all(0),
+                      title: Text(
+                        "FAQ",
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                        ),
+                      ),
+                      leading: Icon(
+                        Icons.help,
                       ),
                     ),
                     value: 0,
                   ),
                   PopupMenuItem(
-                    child: Text(
-                      'Over',
-                      style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                    child: ListTile(
+                      contentPadding: EdgeInsets.all(0),
+                      title: Text(
+                        "Over",
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                        ),
+                      ),
+                      leading: Icon(
+                        Icons.info,
                       ),
                     ),
                     value: 1,
                   ),
+                  PopupMenuItem(
+                    child: ListTile(
+                      contentPadding: EdgeInsets.all(0),
+                      title: Text(
+                        "GitHub",
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                        ),
+                      ),
+                      leading: Icon(
+                        Icons.link,
+                      ),
+                    ),
+                    value: 2,
+                  ),
                 ],
               ),
+
+              // IconButton(
+              //   icon: Icon(Icons.more_vert),
+              //   onPressed: () {
+              //     showModalBottomSheet(
+              //       elevation: 20,
+              //       context: context,
+              //       builder: (builder) {
+              //         return Wrap(
+              //           children: [
+              //             ListTile(
+              //               title: Text(
+              //                 "FAQ",
+              //                 style: TextStyle(
+              //                   color: Theme.of(context).textTheme.bodyText1.color,
+              //                 ),
+              //               ),
+              //               leading: Icon(
+              //                 Icons.help,
+              //               ),
+              //               onTap: () {
+              //                 Navigator.of(context).pop();
+              //                 Navigator.push(
+              //                   context,
+              //                   CupertinoPageRoute(builder: (context) => FAQPage()),
+              //                 );
+              //               },
+              //             ),
+              //             ListTile(
+              //               title: Text(
+              //                 "Over",
+              //                 style: TextStyle(
+              //                   color: Theme.of(context).textTheme.bodyText1.color,
+              //                 ),
+              //               ),
+              //               leading: Icon(
+              //                 Icons.info,
+              //               ),
+              //               onTap: () {
+              //                 Navigator.of(context).pop();
+              //                 Navigator.push(
+              //                   context,
+              //                   CupertinoPageRoute(builder: (context) => AboutPage()),
+              //                 );
+              //               },
+              //             ),
+              //             ListTile(
+              //               title: Text(
+              //                 "GitHub",
+              //                 style: TextStyle(
+              //                   color: Theme.of(context).textTheme.bodyText1.color,
+              //                 ),
+              //               ),
+              //               leading: Icon(
+              //                 Icons.link,
+              //               ),
+              //               onTap: () {
+              //                 Navigator.of(context).pop();
+              //                 launch("https://github.com/MrBananaPants/StarTracker");
+              //               },
+              //             ),
+              //           ],
+              //         );
+              //       },
+              //     );
+              //   },
+              // ),
               Spacer(),
               IconButton(
                 icon: Icon(Icons.settings),
