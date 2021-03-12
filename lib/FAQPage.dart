@@ -148,9 +148,6 @@ class BodyOfFAQPageState extends State<FAQPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 250,
-                  ),
                 ],
               ),
             ),

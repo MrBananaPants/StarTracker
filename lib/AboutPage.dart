@@ -61,7 +61,7 @@ class MyAppState extends State<AboutPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
                             child: Text(
                               "Deze app is door Joran ontwikkeld voor zijn GIP StarTracker. Met deze app kan de StarTracker draadloos bediend worden.",
                               style: TextStyle(
@@ -78,7 +78,7 @@ class MyAppState extends State<AboutPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 18),
                             child: GestureDetector(
                               child: Text(
                                 "GitHub StarTracker",
@@ -131,9 +131,6 @@ class MyAppState extends State<AboutPage> {
                         ),
                       ),
                     ],
-                  ),
-                  SizedBox(
-                    height: 375,
                   ),
                 ],
               ),
