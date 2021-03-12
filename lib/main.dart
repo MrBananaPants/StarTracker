@@ -55,41 +55,8 @@ class BodyOfAppState extends State<BodyOfApp> {
     get(url);
   }
 
-  void changeStateToAAN() => buttonStatus = true;
-  void changeStateToUIT() => buttonStatus = false;
-
-  void changeStateToTRAAG() => buttonSnelheid = true;
-  void changeStateToSNEL() => buttonSnelheid = false;
-
-  void changeStateToOMHOOG() => buttonRichting = true;
-  void changeStateToOMLAAG() => buttonRichting = false;
-
-  void resetPressed() {
-    get(requestURL[0]);
-    get(requestURL[3]);
-    get(requestURL[5]);
-
-    buttonStatus = false;
-    buttonSnelheid = true;
-    buttonRichting = true;
-  }
-
-  var requestURLIndex = 0;
-  var requestURL = [
-    'http://192.168.4.1/StarTrackerMainAan',
-    'http://192.168.4.1/StarTrackerMainUit',
-    'http://192.168.4.1/SpeedTraag',
-    'http://192.168.4.1/SpeedSnel',
-    'http://192.168.4.1/RichtingOmhoog',
-    'http://192.168.4.1/RichtingOmlaag',
-  ];
-
   double latitude;
   double longitude;
-
-  bool buttonStatus = true;
-  bool buttonSnelheid = false;
-  bool buttonRichting = false;
 
   void getLocation() async {
     Position location = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
@@ -136,6 +103,39 @@ class BodyOfAppState extends State<BodyOfApp> {
       print(response.statusCode);
     }
   }
+
+  void changeStateToAAN() => buttonStatus = true;
+  void changeStateToUIT() => buttonStatus = false;
+
+  void changeStateToTRAAG() => buttonSnelheid = true;
+  void changeStateToSNEL() => buttonSnelheid = false;
+
+  void changeStateToOMHOOG() => buttonRichting = true;
+  void changeStateToOMLAAG() => buttonRichting = false;
+
+  void resetPressed() {
+    get(requestURL[0]);
+    get(requestURL[3]);
+    get(requestURL[5]);
+
+    buttonStatus = false;
+    buttonSnelheid = true;
+    buttonRichting = true;
+  }
+
+  var requestURLIndex = 0;
+  var requestURL = [
+    'http://192.168.4.1/StarTrackerMainAan',
+    'http://192.168.4.1/StarTrackerMainUit',
+    'http://192.168.4.1/SpeedTraag',
+    'http://192.168.4.1/SpeedSnel',
+    'http://192.168.4.1/RichtingOmhoog',
+    'http://192.168.4.1/RichtingOmlaag',
+  ];
+
+  bool buttonStatus = true;
+  bool buttonSnelheid = false;
+  bool buttonRichting = false;
 
   @override
   Widget build(BuildContext context) {
