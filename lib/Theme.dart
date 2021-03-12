@@ -9,6 +9,7 @@ ThemeData buildLightTheme() {
       textTheme:
           TextTheme(bodyText2: TextStyle(color: Color(0xFF3D5AFE)), bodyText1: TextStyle(color: Colors.black), headline3: TextStyle(color: Colors.black)),
       scaffoldBackgroundColor: Color(0xFFf3f3f8),
+      canvasColor: Color(0xFFfbfafa),
       cardColor: Colors.white,
       cardTheme: CardTheme(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -38,6 +39,8 @@ ThemeData buildDarkTheme() {
     //Dark theme data
     textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white), bodyText1: TextStyle(color: Colors.white), headline3: TextStyle(color: Colors.white)),
     scaffoldBackgroundColor: Color(0xFF2b2b2b),
+    canvasColor: Color(0xFF454545),
+
     backgroundColor: Colors.black,
     cardColor: Color(0xFF454545),
     cardTheme: CardTheme(
