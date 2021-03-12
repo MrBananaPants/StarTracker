@@ -46,11 +46,6 @@ class BodyOfFAQPageState extends State<FAQPage> {
               delegate: SliverChildListDelegate(
                 [
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
-                    clipBehavior: Clip.antiAlias,
                     margin: EdgeInsets.only(left: 13, right: 13, top: 20),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -82,11 +77,6 @@ class BodyOfFAQPageState extends State<FAQPage> {
                     height: 15,
                   ),
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
-                    clipBehavior: Clip.antiAlias,
                     margin: EdgeInsets.only(left: 13, right: 13, top: 3),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -117,11 +107,6 @@ class BodyOfFAQPageState extends State<FAQPage> {
                     height: 15,
                   ),
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
-                    clipBehavior: Clip.antiAlias,
                     margin: EdgeInsets.only(left: 13, right: 13, top: 3),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
