@@ -66,7 +66,7 @@ class BodyOfFAQPageState extends State<FAQPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 18),
                             child: Text(
                               "De app stuurt commando's naar een ESP8266 die draadloos via WiFi met dit apparaat verbonden is. De ESP8266 leest deze commando's dan en voert ze uit.",
                               style: TextStyle(
@@ -101,7 +101,7 @@ class BodyOfFAQPageState extends State<FAQPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 18),
                             child: Text(
                               "De app is volledig in Dart (Flutter) geschreven in de Visual Studio Code IDE. De app is open-source en staat op GitHub (de GitHub repository staat in de 'Over' pagina).",
                               style: TextStyle(
@@ -136,7 +136,7 @@ class BodyOfFAQPageState extends State<FAQPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 18),
                             child: Text(
                               "Feedback en bugs kunnen in de GitHub pagina gerapporteerd worden.",
                               style: TextStyle(
