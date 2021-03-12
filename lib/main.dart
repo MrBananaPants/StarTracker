@@ -70,7 +70,7 @@ class BodyOfAppState extends State<BodyOfApp> {
   String location = 'nog geen data';
   String description = '';
   var cloudCover = 0;
-  double neerslag = 0;
+  int neerslag = 0;
   double temperatureValue = 0;
   var temperature = 0;
 
@@ -85,7 +85,7 @@ class BodyOfAppState extends State<BodyOfApp> {
       location = decodedData['list'][0]['name'];
       description = decodedData['list'][0]['weather'][0]['description'];
       cloudCover = decodedData['list'][0]['clouds']['all'];
-      //  neerslag = decodedData['list'][0]['rain']['1h'];
+      neerslag = decodedData['list'][0]['rain'];
       temperatureValue = decodedData['list'][0]['main']['temp'];
 
       if (neerslag == null) {
@@ -639,12 +639,12 @@ class BodyOfAppState extends State<BodyOfApp> {
                               color: Theme.of(context).textTheme.bodyText1.color,
                             ),
                           ),
-                          // Text(
-                          //   'Neerslag: $neerslag%',
-                          //   style: TextStyle(
-                          //     color: Theme.of(context).textTheme.bodyText1.color,
-                          //   ),
-                          // ),
+                          Text(
+                            'Neerslag: $neerslag mm',
+                            style: TextStyle(
+                              color: Theme.of(context).textTheme.bodyText1.color,
+                            ),
+                          ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                             child: Text(
