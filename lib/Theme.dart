@@ -8,7 +8,7 @@ ThemeData buildLightTheme() {
   return base.copyWith(
       textTheme:
           TextTheme(bodyText2: TextStyle(color: Color(0xFF3D5AFE)), bodyText1: TextStyle(color: Colors.black), headline3: TextStyle(color: Colors.black)),
-      scaffoldBackgroundColor: Color(0xFFf3f3f8),
+      scaffoldBackgroundColor: Color(0xFFf6f6fb),
       canvasColor: Color(0xFFfbfafa),
       cardColor: Colors.white,
       cardTheme: CardTheme(
@@ -18,7 +18,7 @@ ThemeData buildLightTheme() {
       ),
       shadowColor: Color(0xFFedf6ff),
       iconTheme: IconThemeData(color: Colors.black),
-      appBarTheme: AppBarTheme(color: Color(0xFFf3f3f8)),
+      appBarTheme: AppBarTheme(color: Color(0xFFf6f6fb)),
       bottomAppBarColor: Colors.white,
       bottomAppBarTheme: BottomAppBarTheme(elevation: 11.5),
       elevatedButtonTheme: ElevatedButtonThemeData(
