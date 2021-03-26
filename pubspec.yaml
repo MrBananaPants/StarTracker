@@ -18,6 +18,7 @@ dependencies:
   url_launcher: 
   cupertino_icons: ^1.0.0
   geolocator: 
+  msix: ^1.0.3
 
 dev_dependencies:
   http:
@@ -35,3 +36,11 @@ flutter:
     - family: SF
       fonts:
         - asset: assets/fonts/SF-UI-Display-Regular.otf
+
+
+
+msix_config:
+  display_name: StarTracker
+  publisher_display_name: StarTracker
+  #identity_name: MyCompany.MySuite.MyApp
+  msix_version: 1.0.0.0
