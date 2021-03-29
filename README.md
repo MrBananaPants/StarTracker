@@ -6,6 +6,7 @@ You can control following things:
 - Speed
 - Direction of the motor
 - Turn the LED on or off
+
 You can also see the weather data (from GPS location) to know if the sky is clear (to take photos) and if it will rain or not.
 
 <div align="left">
