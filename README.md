@@ -28,4 +28,4 @@ You can also see the weather data (from GPS location) to know if the sky is clea
 
 # Bugs / problems
 
-- none in v1.1.0-stable
+- none in v1.2.0-stable
