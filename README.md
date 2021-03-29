@@ -1,4 +1,4 @@
-# Star Tracker
+# StarTracker
 An Android, iOS, Windows, and macOS app to wirelessly control an Arduino (ESP8266).
 The app is completely written in Dart to make it cross-platform compatible.
 You can control following things:
