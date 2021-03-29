@@ -9,7 +9,8 @@ You can control following things:
 You can also see the weather data (from GPS location) to know if the sky is clear (to take photos) and if it will rain or not.
 
 <div align="left">
-    <img src="/screenshot/iPhone.png" width="300"/>
+    <img src="/screenshot/Homescreen.png" width="300"/>
+     <img src="/screenshot/Homescreen-dark.png" width="300"/>
 </div>
 
 # Notice
