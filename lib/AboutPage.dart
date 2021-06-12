@@ -51,8 +51,7 @@ class MyAppState extends State<AboutPage> {
                             title: Text(
                               'Over deze app',
                               style: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1.color,
+                                color: Theme.of(context).textTheme.bodyText1.color,
                               ),
                             ),
                           ),
@@ -61,8 +60,7 @@ class MyAppState extends State<AboutPage> {
                             child: Text(
                               "Deze app is door Joran ontwikkeld voor zijn GIP StarTracker. Met deze app kan de StarTracker draadloos bediend worden.",
                               style: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1.color,
+                                color: Theme.of(context).textTheme.bodyText1.color,
                               ),
                             ),
                           ),
@@ -70,8 +68,7 @@ class MyAppState extends State<AboutPage> {
                             title: Text(
                               'GitHub',
                               style: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1.color,
+                                color: Theme.of(context).textTheme.bodyText1.color,
                               ),
                             ),
                           ),
@@ -86,8 +83,7 @@ class MyAppState extends State<AboutPage> {
                                 ),
                               ),
                               onTap: () {
-                                launch(
-                                    "https://github.com/MrBananaPants/StarTracker");
+                                launch("https://github.com/MrBananaPants/StarTracker");
                               },
                             ),
                           ),
@@ -114,7 +110,7 @@ class MyAppState extends State<AboutPage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: Text(
-                          "Flutter: 2.0.5",
+                          "Flutter: 2.2.2",
                           style: TextStyle(
                             color: Theme.of(context).textTheme.bodyText1.color,
                           ),
