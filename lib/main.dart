@@ -3,7 +3,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:condition/condition.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'SettingsPage.dart';
 import 'AboutPage.dart';
@@ -11,7 +10,6 @@ import 'Stopwatch.dart';
 import 'dart:convert';
 import 'FAQPage.dart';
 import 'Theme.dart';
-import 'dart:ui';
 
 const apiKey = '40a5994694fe3f819ab0e809530381bc';
 
