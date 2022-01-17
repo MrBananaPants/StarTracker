@@ -45,7 +45,7 @@ ThemeData buildDarkTheme() {
     cardColor: Color(0xFF454545),
     cardTheme: CardTheme(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 15,
+      elevation: 11.5,
       clipBehavior: Clip.antiAlias,
     ),
     iconTheme: IconThemeData(color: Colors.white),
