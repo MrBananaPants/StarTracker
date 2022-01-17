@@ -110,7 +110,7 @@ class MyAppState extends State<AboutPage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: Text(
-                          "Flutter: 2.5.3",
+                          "Flutter: 2.8.1",
                           style: TextStyle(
                             color: Theme.of(context).textTheme.bodyText1.color,
                           ),
