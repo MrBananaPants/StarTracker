@@ -18,7 +18,7 @@ dependencies:
   url_launcher: 
   cupertino_icons: ^1.0.0
   geolocator: 
-  msix: ^1.0.3
+#  msix: ^1.0.3
 
 dev_dependencies:
   http:
